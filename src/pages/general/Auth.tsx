@@ -9,7 +9,7 @@ const AuthPage = ()=>{
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   useEffect(()=>{
-    if(searchParams.get('mode')===null) navigate('/auth?mode=login');
+    if(searchParams.get('mode')!=='register' && searchParams.get('mode')!=='login') navigate('/auth?mode=login');
   },[searchParams,setSearchParams]);
   const isRegistration = searchParams.get('mode')==='register';
   /* ------------------- */

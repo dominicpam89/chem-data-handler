@@ -20,7 +20,7 @@ const AuthRegister = () => {
     setFormData(ps=>({...ps,[name]:e.target.value}));
   }
   return <>
-      <form className="w-slim flex flex-col space-y-12 p-14 shadow-xl">
+      <form className="w-slim flex flex-col space-y-8 p-14 shadow-xl">
         <div aria-label='form-header' className="p-5 flex justify-center items-center space-x-3">
           <DonutSmallIcon fontSize="large" color="primary" />
           <Typography variant="h6">Logo | Project Icon</Typography>
