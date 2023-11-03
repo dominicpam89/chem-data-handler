@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserRegistration } from "../../data/classes/User";
-import { RegistrationInputInterface } from "../../data/interfaces";
-import { initialValueRegistrationError } from "../../data/utils";
+// import { RegistrationInputInterface } from "../../data/interfaces";
+// import { initialValueRegistrationError } from "../../data/utils";
 
 import FormHeaderComp from "./AuthRegister/FormHeader";
 import FirstNameComp from "./AuthRegister/FirstName";
@@ -17,32 +17,32 @@ export interface Props{
 
 const AuthRegister = () => {
   const [formData, setFormData] = useState<UserRegistration>(new UserRegistration('','','','',''));
-  const [errors, setError] = useState<RegistrationInputInterface>(initialValueRegistrationError);
+  // const [errors, setError] = useState<RegistrationInputInterface>(initialValueRegistrationError);
   const [showPass, setShowPass] = useState<boolean>(false);
 
   console.log(formData);
 
   const inputBlurHandler = (e:React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>)=>{
-    setFormData(ps=>({...ps,[e.target.id]:e.target.value}));
-    const id = e.target.id;
-    const val = e.target.value;
-    switch(id){
-      case 'firstName':
-        if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
-        if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
-        else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
-      break;
-      case 'lastName':
-        if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
-        if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
-        else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
-      break;
-      case 'username':
-        if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
-        if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
-        else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
-      break;
-    }
+    // setFormData(ps=>({...ps,[e.target.id]:e.target.value}));
+    // const id = e.target.id;
+    // const val = e.target.value;
+    // switch(id){
+    //   case 'firstName':
+    //     if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
+    //     if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
+    //     else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
+    //   break;
+    //   case 'lastName':
+    //     if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
+    //     if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
+    //     else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
+    //   break;
+    //   case 'username':
+    //     if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
+    //     if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
+    //     else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
+    //   break;
+    // }
   }
 
   const onSubmitHandler = (e:React.FormEvent<HTMLFormElement>)=>{
