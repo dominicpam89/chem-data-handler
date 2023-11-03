@@ -9,17 +9,19 @@ const MobileView = () => {
   const [toggleDrawer, setToggleDrawer] = useState<boolean>(false);
   return (
     <>
-      <div aria-label="nav-center" className="flex flex-row items-center space-x-10">
+      <div aria-label="nav-center" className="flex flex-row items-center">
         <IconButton aria-label="brand" color="inherit">
           <DonutSmallIcon />
         </IconButton>
         <Typography variant="h6" color="inherit">
           AppName
         </Typography>
-        <Link to="/auth">Login (temporary)</Link>
       </div>
 
-      <div aria-label="nav-right">
+      <div aria-label="nav-right" className='flex flex-row items-center space-x-10'>
+        <Link to="/auth">
+          <Typography variant='h6' component={'span'} sx={{fontSize:'18px'}}>Link Authentication (temp)</Typography>
+        </Link>
         <div
           aria-label="avatar-wrapper"
           className={`bg-[${theme.palette.primary.main}] rounded-full mix-blend-hard-light`}
