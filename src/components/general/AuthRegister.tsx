@@ -1,95 +1,71 @@
 import { useState } from "react";
-import { TextField, Typography, ButtonGroup, Button, FormControl, InputLabel, Input, InputAdornment, IconButton, } from '@mui/material';
 import { UserRegistration } from "../../data/classes/User";
-import { useNavigate } from 'react-router-dom';
+import { RegistrationInputInterface } from "../../data/interfaces";
+import { initialValueRegistrationError } from "../../data/utils";
 
-import DonutSmallIcon from '@mui/icons-material/DonutSmall';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import FormHeaderComp from "./AuthRegister/FormHeader";
+import FirstNameComp from "./AuthRegister/FirstName";
+import LastNameComp from "./AuthRegister/LastName";
+import EmailComp from "./AuthRegister/Email";
+import UsernameComp from "./AuthRegister/Username";
+import PasswordComp from "./AuthRegister/Password";
+import ButtonsComp from "./AuthRegister/Buttons";
 
-const initialState = new UserRegistration('','','','','');
+export interface Props{
+  onBlurHandler: (e:React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>)=>void
+}
 
 const AuthRegister = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState<UserRegistration>(initialState);
+  const [formData, setFormData] = useState<UserRegistration>(new UserRegistration('','','','',''));
+  const [errors, setError] = useState<RegistrationInputInterface>(initialValueRegistrationError);
   const [showPass, setShowPass] = useState<boolean>(false);
-  const inputChangeHandler = (
-    e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    name:string
-  )=>{
-    setFormData(ps=>({...ps,[name]:e.target.value}));
+
+  console.log(formData);
+
+  const inputBlurHandler = (e:React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>)=>{
+    setFormData(ps=>({...ps,[e.target.id]:e.target.value}));
+    const id = e.target.id;
+    const val = e.target.value;
+    switch(id){
+      case 'firstName':
+        if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
+        if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
+        else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
+      break;
+      case 'lastName':
+        if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
+        if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
+        else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
+      break;
+      case 'username':
+        if(val==='') setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Couldn't empty`}}))
+        if(val.length<=3) setError(ps=>({...ps,firstName:{touched:true,error:true,errorMessage:`Must be more than 3`}}))
+        else setError(ps=>({...ps,firstName:{touched:true,error:false,errorMessage:null}})) 
+      break;
+    }
   }
+
+  const onSubmitHandler = (e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+  }
+
   return <>
-      <form className="w-slim flex flex-col space-y-8 p-14 shadow-xl">
-        <div aria-label='form-header' className="p-5 flex justify-center items-center space-x-3">
-          <DonutSmallIcon fontSize="large" color="primary" />
-          <Typography variant="h6">Logo | Project Icon</Typography>
-        </div>
+      <form className="w-slim flex flex-col space-y-8 p-14 shadow-xl" onSubmit={onSubmitHandler}>
+        <FormHeaderComp />
         <div aria-label='divider-2' className="flex space-x-6">
-          <TextField
-            fullWidth
-            variant="standard"
-            id="firstName"
-            label="First Name"
-            name="firstName"
-            type="text"
-            value={formData.firstName}
-            onChange={e=>inputChangeHandler(e,'firstName')}
-          />
-          <TextField
-            fullWidth
-            variant="standard"
-            id="lastName"
-            label="Last Name"
-            name="lastName"
-            type="text"
-            value={formData.lastName}
-            onChange={e=>inputChangeHandler(e,'lastName')}
-          />
+          <FirstNameComp onBlurHandler={inputBlurHandler} />
+          <LastNameComp onBlurHandler={inputBlurHandler} />
         </div>
-        <TextField
-          fullWidth
-          variant="standard"
-          id="email"
-          label="Email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={e=>inputChangeHandler(e,'email')}
+        <EmailComp onBlurHandler={inputBlurHandler} />
+        <UsernameComp onBlurHandler={inputBlurHandler} />
+        <PasswordComp 
+          onBlurHandler={inputBlurHandler}
+          setShowPass={setShowPass}
+          showPass={showPass}
         />
-        <TextField
-          fullWidth
-          variant="standard"
-          id="username"
-          label="Username"
-          name="username"
-          type="text"
-          value={formData.username}
-          onChange={e=>inputChangeHandler(e,'username')}
-        />
-        <FormControl variant='standard'>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input 
-            id="password"
-            type={showPass ? 'text':'password'}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton aria-label='toggle password visibility' onClick={()=>setShowPass(ps=>!ps)}>
-                  {showPass ? <VisibilityIcon />:<VisibilityOffIcon />}
-                </IconButton>
-              </InputAdornment>
-            }
-            value={formData.password}
-            onChange={e=>inputChangeHandler(e,'password')}
-          />
-        </FormControl>
-        <div className="flex flex-col space-y-6 pt-8">
-          <ButtonGroup size="small" fullWidth>
-            <Button variant="outlined" color="primary">Reset</Button>
-            <Button variant="contained" color="primary">Register</Button>
-          </ButtonGroup>
-          <Button fullWidth variant='text' color='info' size="small" onClick={()=>navigate('/auth?mode=login')}>Already has account?</Button>
-        </div>
+        
+        <ButtonsComp />
+        
       </form>
   </>
 };
