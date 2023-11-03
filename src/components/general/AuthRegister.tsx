@@ -23,7 +23,7 @@ const AuthRegister = () => {
   console.log(formData);
 
   const inputBlurHandler = (e:React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>)=>{
-    // setFormData(ps=>({...ps,[e.target.id]:e.target.value}));
+    setFormData(ps=>({...ps,[e.target.id]:e.target.value}));
     // const id = e.target.id;
     // const val = e.target.value;
     // switch(id){
