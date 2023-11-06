@@ -1,19 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { ThemeProvider } from '@mui/material';
-import { theme } from './styles/theme.ts';
-import { QueryClient, QueryClientProvider as QCP } from '@tanstack/react-query';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import ContextMainProvider from "./data/context/ContextMain.tsx";
+import { QueryClient, QueryClientProvider as QCP } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QCP client={queryClient}>
-      <ThemeProvider theme={theme}>
+      <ContextMainProvider>
         <App />
-      </ThemeProvider>
+      </ContextMainProvider>
     </QCP>
   </React.StrictMode>
-)
+);
