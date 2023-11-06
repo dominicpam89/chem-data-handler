@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -9,11 +10,11 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ['Montserrat', 'sans-serif'],
+      sans: ["Montserrat", "sans-serif"],
     },
     extend: {
-      colors:{
-          'primary': {
+      colors: {
+        primary: {
           100: "#d2d5e0",
           200: "#a6acc1",
           300: "#7982a2",
@@ -24,7 +25,7 @@ export default {
           800: "#0d1328",
           900: "#060914",
         },
-        'secondary': {
+        secondary: {
           100: "#e2e8fb",
           200: "#c5d1f7",
           300: "#a8b9f4",
@@ -33,20 +34,20 @@ export default {
           600: "#586fbd",
           700: "#42538e",
           800: "#2c385e",
-          900: "#161c2f"
+          900: "#161c2f",
         },
-        'success': {
-          100: "#cecece",
-          200: "#9d9d9d",
-          300: "#6b6b6b",
-          400: "#3a3a3a",
-          500: "#090909",
-          600: "#070707",
-          700: "#050505",
-          800: "#040404",
-          900: "#020202"
-        },
-        'warning': {
+        success: {
+          100: "#e2fad8",
+          200: "#c6f6b1",
+          300: "#a9f18a",
+          400: "#8ded63",
+          500: "#70e83c",
+          600: "#5aba30",
+          700: "#438b24",
+          800: "#2d5d18",
+          900: "#162e0c"
+},
+        warning: {
           100: "#f9f3da",
           200: "#f3e7b5",
           300: "#edda8f",
@@ -55,9 +56,9 @@ export default {
           600: "#b49b37",
           700: "#877429",
           800: "#5a4e1c",
-          900: "#2d270e"
+          900: "#2d270e",
         },
-        'danger': {
+        danger: {
           100: "#f9ceda",
           200: "#f39db5",
           300: "#ee6c90",
@@ -66,9 +67,9 @@ export default {
           600: "#b50838",
           700: "#88062a",
           800: "#5a041c",
-          900: "#2d020e"
+          900: "#2d020e",
         },
-        'info': {
+        info: {
           100: "#cfedfa",
           200: "#9fdbf5",
           300: "#70c9ef",
@@ -77,11 +78,10 @@ export default {
           600: "#0d84b7",
           700: "#0a6389",
           800: "#06425c",
-          900: "#03212e"
+          900: "#03212e",
         },
-      }
+      },
     },
   },
   plugins: [],
-}
-
+};
