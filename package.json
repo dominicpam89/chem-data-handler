@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.14.16",
+    "@supabase/supabase-js": "^2.38.4",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

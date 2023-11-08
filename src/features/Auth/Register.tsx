@@ -43,12 +43,12 @@ const AuthRegister = () => {
                     {...formik.getFieldProps("lastName")}
                 />
                 <TextField
-                    aria-label="input-username"
-                    error={formik.errors.username && formik.touched.username ? true : false}
-                    helperText={formik.errors.username && formik.touched.username ? formik.errors.username : null}
-                    id="username"
-                    label="Username"
-                    {...formik.getFieldProps("username")}
+                    aria-label="input-email"
+                    error={formik.errors.email && formik.touched.email ? true : false}
+                    helperText={formik.errors.email && formik.touched.email ? formik.errors.email : null}
+                    id="email"
+                    label="Email"
+                    {...formik.getFieldProps("email")}
                 />
                 <FormControl variant="outlined" aria-label="input-password" error={formik.errors.password && formik.touched.password ? true : false}>
                     <InputLabel htmlFor="password">Password</InputLabel>

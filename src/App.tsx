@@ -5,10 +5,11 @@ import HomeUserPage from './features/HomeUser';
 import ProfileUserPage from './features/ProfileUser';
 import HomeAdminPage from './features/HomeAdmin';
 import ProfileAdminPage from './features/ProfileAdmin';
+import RouteProtection from './features/RouteProtection';
 
 const router = createBrowserRouter([
   {path:'auth', element:<AuthPage />},
-  {path:'/', element:<UIRootLayout />, children:[
+  {path:'/', element:<RouteProtection><UIRootLayout /></RouteProtection>, children:[
     {index:true, element: <HomeUserPage />},
     {path:'profile', element: <ProfileUserPage />}
   ]},

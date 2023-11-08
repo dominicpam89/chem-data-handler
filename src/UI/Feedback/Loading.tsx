@@ -1,6 +1,10 @@
+import { CircularProgress } from '@mui/material';
+
 const UIFeedbackLoading = () => {
   return <>
-    <h1>UIFeedbackLoading</h1>
+    <div className='fixed z-[500] t-0 l-0 w-screen h-screen flex flex-col justify-center items-center'>
+      <CircularProgress />
+    </div>
   </>
 }
  

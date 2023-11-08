@@ -15,4 +15,10 @@
   .btn-primary-outlined{
     @apply rounded-lg font-semibold border border-solid border-primary-500 text-primary-500
   }
+  .btn-disabled{
+    @apply rounded-lg font-semibold bg-gradient-to-b from-gray-600 to-gray-400 text-gray-800
+  }
+  .btn-disabled-outlined{
+    @apply rounded-lg font-semibold border border-solid border-gray-800 text-gray-800
+  }
 }
