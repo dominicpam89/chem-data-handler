@@ -13,6 +13,9 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+
+
 const AuthLogin = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const formik = useFormik({
@@ -33,25 +36,17 @@ const AuthLogin = () => {
         }}
       >
         <TextField aria-label="input-username"
-          fullWidth
-          id="username"
-          label="username"
           error={
             formik.errors.username && formik.touched.username ? true : false
           }
-          helperText={formik.errors.username || null}
+          helperText={(formik.errors.username && formik.touched.username) ? formik.errors.username:null}
+          id="username"
+          label="Username"
           {...formik.getFieldProps("username")}
         />
-        <FormControl variant="outlined" aria-label="input-password">
-          <InputLabel
-            htmlFor="password"
-            color={
-              formik.errors.password && formik.touched.password
-                ? "error"
-                : "primary"
-            }
-          >
-            <span className={`${formik.errors.password?'text-danger-500':''}`}>Password</span>
+        <FormControl variant="outlined" aria-label="input-password" error={(formik.errors.password && formik.touched.password) ? true:false}>
+          <InputLabel htmlFor="password">
+            Password
           </InputLabel>
           <OutlinedInput
             id="password"
@@ -68,21 +63,16 @@ const AuthLogin = () => {
               </InputAdornment>
             }
             label="password"
-            error={formik.errors.password && formik.touched.password ? true : false}
-            {...formik.getFieldProps("password")}
+            {...formik.getFieldProps('password')}
           />
-          {formik.errors.password && formik.touched.password && (
-            <FormHelperText error id="password-helper-text">
-              {formik.errors.password}
-            </FormHelperText>
-          )}
+          {(formik.errors.password && formik.touched.password) && <FormHelperText error>{formik.errors.password}</FormHelperText>}
         </FormControl>
 
         <div className="w-full flex space-x-2" aria-label="input-button-group">
-          <button className="w-full p-3 rounded-lg font-semibold border border-solid border-primary-500 text-primary-500" type="reset" onClick={formik.handleReset}>
+          <button className="w-full p-3 btn-primary-outlined" type="reset" onClick={formik.handleReset}>
             Reset
           </button>
-          <button className="w-full p-3 rounded-lg font-semibold bg-gradient-to-b from-primary-500 to-secondary-700 text-white" type="submit">
+          <button className="w-full p-3 btn-primary" type="submit">
             Submit
           </button>
         </div>

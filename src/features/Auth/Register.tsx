@@ -17,6 +17,9 @@ import {
   AuthRegisterInitialValues,
 } from "../../utils/Auth/register";
 
+
+
+
 const AuthRegister = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -27,6 +30,7 @@ const AuthRegister = () => {
       console.log(values);
     },
   });
+  
   return (
     <>
       <form
@@ -40,7 +44,7 @@ const AuthRegister = () => {
           error={
             formik.errors.firstName && formik.touched.firstName ? true : false
           }
-          helperText={formik.errors.firstName || null}
+          helperText={(formik.errors.firstName && formik.touched.firstName) ? formik.errors.firstName:null}
           id="firstName"
           label="First Name"
           {...formik.getFieldProps("firstName")}
@@ -49,7 +53,7 @@ const AuthRegister = () => {
           error={
             formik.errors.lastName && formik.touched.lastName ? true : false
           }
-          helperText={formik.errors.lastName || null}
+          helperText={(formik.errors.lastName && formik.touched.lastName) ? formik.errors.lastName:null}
           id="lastName"
           label="Last Name"
           {...formik.getFieldProps("lastName")}
@@ -58,21 +62,14 @@ const AuthRegister = () => {
           error={
             formik.errors.username && formik.touched.username ? true : false
           }
-          helperText={formik.errors.username || null}
+          helperText={(formik.errors.username && formik.touched.username) ? formik.errors.username:null}
           id="username"
           label="Username"
           {...formik.getFieldProps("username")}
         />
-        <FormControl variant="outlined" aria-label="input-password">
-          <InputLabel
-            htmlFor="password"
-            color={
-              formik.errors.password && formik.touched.password
-                ? "error"
-                : "primary"
-            }
-          >
-            <span className={`${formik.errors.password?'text-danger-500':''}`}>Password</span>
+        <FormControl variant="outlined" aria-label="input-password" error={(formik.errors.password && formik.touched.password) ? true:false}>
+          <InputLabel htmlFor="password">
+            Password
           </InputLabel>
           <OutlinedInput
             id="password"
@@ -89,27 +86,22 @@ const AuthRegister = () => {
               </InputAdornment>
             }
             label="password"
-            error={formik.errors.password && formik.touched.password ? true : false}
-            {...formik.getFieldProps("password")}
+            {...formik.getFieldProps('password')}
           />
-          {formik.errors.password && formik.touched.password && (
-            <FormHelperText error id="password-helper-text">
-              {formik.errors.password}
-            </FormHelperText>
-          )}
+          {(formik.errors.password && formik.touched.password) && <FormHelperText error>{formik.errors.password}</FormHelperText>}
         </FormControl>
-        <div id="button-group" className="flex flex-col space-y-2">
-          <button className="p-3 btn-primary" type="submit">
+        <div id="button-group" className="w-full flex space-x-2">
+          <button className="w-full p-3 btn-primary-outlined" type="reset" onClick={formik.handleReset}>Reset</button>
+          <button className="w-full p-3 btn-primary" type="submit">
             Submit
           </button>
-          <button className="p-3 btn-primary-outlined" type="reset" onClick={formik.handleReset}>Reset</button>
         </div>
         <button id="navigate-register-button"
           onClick={(e) => {
             e.preventDefault();
             navigate("/auth?mode=login");
           }}
-          className="w-full rounded-lg font-semibold text-primary-500"
+          className="w-full p-3 rounded-lg font-semibold text-primary-500"
         >
           Already has account?
         </button>
