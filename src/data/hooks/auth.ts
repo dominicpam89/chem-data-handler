@@ -14,7 +14,6 @@ export const useLogin = () => {
         mutationFn: ({ email, password }: UserAuth) => serviceLogin({ email, password }),
         onSuccess: (data) => {
             console.log("Login is success!")
-            console.log(data)
             navigate("/")
         },
     })
