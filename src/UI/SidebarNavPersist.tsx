@@ -2,6 +2,7 @@ import React from 'react'
 import { utilsUserNavbarList } from '../utils/navbar'
 import UISidebarNavPersistHeader from './SidebarNavPersist/Header'
 import UISidebarNavPersistList from './SidebarNavPersist/List'
+import UISidebarListLogout from './Logout';
 
 const UISidebarPersist:React.FC = ()=>{
   return <>
@@ -19,6 +20,7 @@ const UISidebarPersist:React.FC = ()=>{
               />
             );
           })}
+          <UISidebarListLogout />
         </ul>
       </div>
   </>

@@ -4,6 +4,7 @@ import UIModal from "./Modal"
 import { utilsUserNavbarList } from '../utils/navbar'
 import UISidebarList from './Sidebar/List';
 import UISidebarHeader from './Sidebar/Header';
+import UISidebarListLogout from './Logout';
 
 const UISidebarNav:React.FC = ()=>{
   const context = React.useContext(ContextMain);
@@ -22,6 +23,7 @@ const UISidebarNav:React.FC = ()=>{
               />
             );
           })}
+          <UISidebarListLogout />
         </ul>
     </UIModal>
   </>
