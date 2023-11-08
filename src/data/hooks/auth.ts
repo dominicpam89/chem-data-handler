@@ -12,7 +12,7 @@ export const useLogin = () => {
     const navigate = useNavigate()
     const { mutate, isPending, isError, error } = useMutation({
         mutationFn: ({ email, password }: UserAuth) => serviceLogin({ email, password }),
-        onSuccess: (data) => {
+        onSuccess: () => {
             console.log("Login is success!")
             navigate("/")
         },
