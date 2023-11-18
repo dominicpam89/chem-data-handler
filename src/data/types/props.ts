@@ -1,15 +1,15 @@
 import { ReactNode } from 'react';
 
-export interface InterfacePropsChildren{
+export type TypePropsChildren={
   children: React.ReactNode,
 }
 
-export interface InterfacePropsUIModal{
+export type TypePropsUIModal={
   children: React.ReactNode,
   onClose: ()=>void,
 }
 
-export interface InterfaceSidebarNavProps{
+export type TypeSidebarNavProps={
   tag: string,
   link: string,
   text: string,

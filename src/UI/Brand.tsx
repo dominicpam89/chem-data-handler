@@ -1,23 +1,24 @@
-import { IconContext } from "react-icons";
-import { BiSolidAnalyse } from "react-icons/bi";
+import { IconContext } from "react-icons"
+import { BiSolidAnalyse } from "react-icons/bi"
+import { Typography, useTheme } from '@mui/material'
 
-interface Props{
-  size: number,
-  color: 'light'|'dark',
+interface Props {
+   size: number
+   color: "light" | "dark"
 }
 
-const UIBrand:React.FC<Props> = ({size, color}) => {
-  let textColor = color==='dark' ? 'primary-500':'gray-50';
-  return (
-    <>
-      <IconContext.Provider value={{ className: `w-${size} h-${size} text-${textColor}` }}>
-        <BiSolidAnalyse />
-      </IconContext.Provider>
-      <h1 className="font-semibold uppercase">
-        {import.meta.env.VITE_APP_NAME}
-      </h1>
-    </>
-  );
-};
+const UIBrand: React.FC<Props> = ({ size, color }) => {
+   const theme = useTheme()
+   const _size = String(size)
+   let _color = color === "dark" ? theme.palette.primary.dark : theme.palette.primary.light
+   return (
+      <>
+         <IconContext.Provider value={{ size:_size, color:_color }}>
+            <BiSolidAnalyse />
+         </IconContext.Provider>
+         <Typography variant="h4" component="h1" color="primary">{import.meta.env.VITE_APP_NAME}</Typography>
+      </>
+   )
+}
 
-export default UIBrand;
+export default UIBrand

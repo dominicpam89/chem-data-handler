@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContextMain } from '../../data/context/ContextMain';
-import { InterfaceSidebarNavProps } from "../../data/interfaces/props";
+import { InterfaceSidebarNavProps } from "../../data/types/props";
 import { NavLink } from "react-router-dom";
 import { IconContext } from "react-icons";
 

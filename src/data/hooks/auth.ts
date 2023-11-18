@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import { serviceLogin } from "../../services/auth"
 import { useNavigate } from "react-router-dom"
 import { serviceGetCurrentUser } from "../../services/auth"
+import { toast } from "react-hot-toast"
 
 type UserAuth = {
     email: string
@@ -13,7 +14,7 @@ export const useLogin = () => {
     const { mutate, isPending, isError, error } = useMutation({
         mutationFn: ({ email, password }: UserAuth) => serviceLogin({ email, password }),
         onSuccess: () => {
-            console.log("Login is success!")
+            toast.success("Login successful")
             navigate("/")
         },
     })

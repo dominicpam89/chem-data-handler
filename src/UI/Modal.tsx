@@ -1,5 +1,5 @@
 import React from "react";
-import { InterfacePropsUIModal } from "../data/interfaces/props";
+import { InterfacePropsUIModal } from "../data/types/props";
 import { createPortal } from "react-dom";
 
 const modal: Element | DocumentFragment | any =

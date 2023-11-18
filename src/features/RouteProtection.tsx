@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { InterfacePropsChildren } from "../data/interfaces/props";
+import { InterfacePropsChildren } from "../data/types/props";
 import { useGetCurrentUser } from "../data/hooks/auth";
 import UIFeedbackLoading from "../UI/Feedback/Loading";
 import { useNavigate } from "react-router-dom";

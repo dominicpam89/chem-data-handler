@@ -1,24 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
-  box-sizing: border-box;
-}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components{
-  .btn-primary{
-    @apply rounded-lg font-semibold bg-gradient-to-b from-primary-500 to-secondary-700 text-white
-  }
-  .btn-primary-outlined{
-    @apply rounded-lg font-semibold border border-solid border-primary-500 text-primary-500
-  }
-  .btn-disabled{
-    @apply rounded-lg font-semibold bg-gradient-to-b from-gray-600 to-gray-400 text-gray-800
-  }
-  .btn-disabled-outlined{
-    @apply rounded-lg font-semibold border border-solid border-gray-800 text-gray-800
-  }
-}

@@ -1,37 +1,18 @@
-import { InterfacePropsChildren } from '../interfaces/props';
-import { createTheme, ThemeProvider, ThemeOptions } from '@mui/material';
+import { TypePropsChildren } from '../types/props';
+import { createTheme, ThemeProvider, ThemeOptions, CssBaseline } from '@mui/material';
+import { ThemeTypography, LightPaletteOptions } from "./ThemeOptions"
 
-const themeOptions:ThemeOptions = {
-  palette:{
-    primary:{
-      main: '#202f64',
-    },
-    secondary:{
-      main: '#6e8bec',
-    },
-    success:{
-      main: '#70e83c',
-    },
-    warning:{
-      main: '#e1c245',
-    },
-    error:{
-      main: '#e20a46',
-    },
-    info:{
-      main: '#10a5e5',
-    }
-  },
-  typography:{
-    fontFamily: 'Montserrat, sans-serif',
-  }
+const lightThemeOptions:ThemeOptions = {
+  palette:LightPaletteOptions,
+  typography:ThemeTypography
 }
 
-const theme = createTheme(themeOptions);
+const lightTheme = createTheme(lightThemeOptions);
 
-const MUIThemeProvider:React.FC<InterfacePropsChildren> = ({children})=>{
+const MUIThemeProvider:React.FC<TypePropsChildren> = ({children})=>{
   return <>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
       {children}
     </ThemeProvider>
   </>

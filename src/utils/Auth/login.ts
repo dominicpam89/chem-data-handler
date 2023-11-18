@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 export const AuthLoginInitialValues = {
   email: "johndoe@example.com",
-  password: "always54321",
+  password: "always54321",  
 }
 
 export const AuthLoginValidationSchema = yup.object({

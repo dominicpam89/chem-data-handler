@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
-
-import UIContainerLanding from "../UI/ContainerLanding"
+import { Box } from "@mui/material"
 import UICard from "../UI/Card"
 import UICardHeader from "../UI/Card/Header"
 import UICardContent from "../UI/Card/Content"
@@ -16,20 +15,20 @@ const AuthPage = () => {
             const param = new URLSearchParams("?mode=login")
             setSearchParams(param)
         }
-    }, [searchParams, setSearchParams])
+    }, [searchParams, setSearchParams]) 
     return (
         <>
-            <UIContainerLanding>
-                <UICard>
+            <Box paddingY={6}>
+                <UICard aria-label="Card">
                     <UICardHeader>
-                        <UIBrand size={16} color={"dark"} />
+                        <UIBrand size={50} color={"dark"} />
                     </UICardHeader>
                     <UICardContent>
                         {searchParams.get("mode") === "login" && <AuthLogin />}
                         {searchParams.get("mode") === "register" && <AuthRegister />}
                     </UICardContent>
                 </UICard>
-            </UIContainerLanding>
+            </Box>
         </>
     )
 }
