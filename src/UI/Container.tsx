@@ -1,12 +1,26 @@
+import { Box, styled } from "@mui/material"
 import { TypePropsChildren } from "../data/types/props";
 
-
+const StyledBox = styled(Box)(({theme})=>({
+  width: "100%",
+  padding: `0 ${theme.spacing(3)}`,
+  paddingTop: "70px",
+  [theme.breakpoints.up("md")]:{
+    width: "75%",
+    padding: `${theme.spacing(5)} ${theme.spacing(3)}`,
+    marginLeft: "25%",
+  },
+  [theme.breakpoints.up("lg")]:{
+    width: "80%",
+    marginLeft: "20%"
+  }
+}))
 
 const UIContainer:React.FC<TypePropsChildren> = ({children}) => {
   return <>
-    <div className="w-100 px-5 py-[70px] md:py-5 md:w-[75%] lg:w-[80%] md:ml-[25%] lg:ml-[20%]">
+    <StyledBox>
       {children}
-    </div>
+    </StyledBox>
   </>
 }
  

@@ -1,21 +1,18 @@
-import { TypePropsChildren } from '../types/props';
-import { createTheme, ThemeProvider, ThemeOptions, CssBaseline } from '@mui/material';
-import { ThemeTypography, LightPaletteOptions } from "./ThemeOptions"
+import { TypePropsChildren } from "../types/props"
+import { ThemeProvider, CssBaseline } from "@mui/material"
+import { useContext } from "react"
+import { ContextMain } from "../context/ContextMain"
 
-const lightThemeOptions:ThemeOptions = {
-  palette:LightPaletteOptions,
-  typography:ThemeTypography
-}
-
-const lightTheme = createTheme(lightThemeOptions);
-
-const MUIThemeProvider:React.FC<TypePropsChildren> = ({children})=>{
-  return <>
-    <ThemeProvider theme={lightTheme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
-  </>
+const MUIThemeProvider: React.FC<TypePropsChildren> = ({ children }) => {
+   const context = useContext(ContextMain)
+   return (
+      <>
+         <ThemeProvider theme={context.theme.current}>
+            <CssBaseline />
+            {children}
+         </ThemeProvider>
+      </>
+   )
 }
 
 export default MUIThemeProvider
