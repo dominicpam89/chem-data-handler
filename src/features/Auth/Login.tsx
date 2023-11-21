@@ -34,7 +34,7 @@ const AuthLogin = () => {
 
    useEffect(() => {
       if (isAuth) navigate("/")
-   }, [isAuth])
+   }, [isAuth, navigate])
 
 
    return (

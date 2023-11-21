@@ -2,6 +2,7 @@ import { TypePropsChildren } from "../types/props"
 import { ThemeProvider, CssBaseline } from "@mui/material"
 import { useContext } from "react"
 import { ContextMain } from "../context/ContextMain"
+import UIToaster from "../../UI/Toaster.tsx"
 
 const MUIThemeProvider: React.FC<TypePropsChildren> = ({ children }) => {
    const context = useContext(ContextMain)
@@ -9,6 +10,7 @@ const MUIThemeProvider: React.FC<TypePropsChildren> = ({ children }) => {
       <>
          <ThemeProvider theme={context.theme.current}>
             <CssBaseline />
+            <UIToaster />
             {children}
          </ThemeProvider>
       </>

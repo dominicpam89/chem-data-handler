@@ -29,8 +29,10 @@ const AuthRegister = () => {
 
    return (
       <>
-         <form
-            className="flex flex-col space-y-4"
+         <Stack
+            component="form"
+            direction={"column"}
+            spacing={3}
             onSubmit={(e) => {
                e.preventDefault()
                formik.handleSubmit()
@@ -95,17 +97,16 @@ const AuthRegister = () => {
                   Submit
                </ButtonPrimary>
             </Stack>
-            <button
+            <ButtonPrimary
                id="navigate-register-button"
                onClick={(e) => {
                   e.preventDefault()
                   navigate("/auth?mode=login")
                }}
-               className="w-full p-3 rounded-lg font-semibold text-primary-500"
             >
                Already has account?
-            </button>
-         </form>
+            </ButtonPrimary>
+         </Stack>
       </>
    )
 }

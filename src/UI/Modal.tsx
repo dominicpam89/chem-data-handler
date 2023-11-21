@@ -1,11 +1,11 @@
 import React from "react";
-import { InterfacePropsUIModal } from "../data/types/props";
+import { TypePropsUIModal } from "../data/types/props";
 import { createPortal } from "react-dom";
 
 const modal: Element | DocumentFragment | any =
   document.querySelector("#modal");
 
-const UIModal: React.FC<InterfacePropsUIModal> = ({ children, onClose }) => {
+const UIModal: React.FC<TypePropsUIModal> = ({ children, onClose }) => {
   return (
     <>
       {createPortal(
