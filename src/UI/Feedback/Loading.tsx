@@ -1,10 +1,24 @@
+import { styled, Box } from "@mui/material"
 import { CircularProgress } from '@mui/material';
+
+const StyledBox = styled(Box)(()=>({
+  position: "fixed",
+  zIndex: "500",
+  top: "0",
+  left: "0",
+  width: "100vw",
+  height: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center"
+}))
 
 const UIFeedbackLoading = () => {
   return <>
-    <div className='fixed z-[500] t-0 l-0 w-screen h-screen flex flex-col justify-center items-center'>
+    <StyledBox>
       <CircularProgress />
-    </div>
+    </StyledBox>
   </>
 }
  
