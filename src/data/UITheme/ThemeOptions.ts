@@ -15,23 +15,23 @@ export const ThemeTypography = {
    },
    h1: {
       fontSize: 48.828,
-      fontWeight: 700,
+      fontWeight: 800,
    },
    h2: {
       fontSize: 39,
-      fontWeight: 600,
+      fontWeight: 700,
    },
    h3: {
       fontSize: 31.25,
-      fontWeight: 700,
+      fontWeight: 600,
    },
    h4: {
       fontSize: 25,
-      fontWeight: 600,
+      fontWeight: 500,
    },
    h5: {
       fontSize: 20,
-      fontWeight: 500,
+      fontWeight: 400,
    },
 }
 

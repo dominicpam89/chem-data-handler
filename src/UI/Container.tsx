@@ -7,7 +7,7 @@ const StyledBox = styled(Box)(({theme})=>({
   paddingTop: theme.spacing(12),
   [theme.breakpoints.up("sm")]:{
     width: "calc(100% - 240px)",
-    padding: `${theme.spacing(5)} ${theme.spacing(3)}`,
+    padding: `5%`,
     marginLeft: "240px",
   },
 }))

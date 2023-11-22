@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material"
 import UIFeedback from "../Feedback"
 
-const UIFeedbackLoading = () => {
+const UIFeedbackError = () => {
    return (
       <UIFeedback>
          <CircularProgress />
@@ -9,4 +9,4 @@ const UIFeedbackLoading = () => {
    )
 }
 
-export default UIFeedbackLoading
+export default UIFeedbackError

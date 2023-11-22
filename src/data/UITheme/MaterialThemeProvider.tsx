@@ -9,8 +9,8 @@ const MUIThemeProvider: React.FC<TypePropsChildren> = ({ children }) => {
    return (
       <>
          <ThemeProvider theme={context.theme.current}>
-            <CssBaseline />
             <UIToaster />
+            <CssBaseline />
             {children}
          </ThemeProvider>
       </>
