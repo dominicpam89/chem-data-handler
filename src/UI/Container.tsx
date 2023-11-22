@@ -3,17 +3,13 @@ import { TypePropsChildren } from "../data/types/props";
 
 const StyledBox = styled(Box)(({theme})=>({
   width: "100%",
-  padding: `0 ${theme.spacing(3)}`,
-  paddingTop: "70px",
-  [theme.breakpoints.up("md")]:{
-    width: "75%",
+  padding: `0 ${theme.spacing(4)}`,
+  paddingTop: theme.spacing(12),
+  [theme.breakpoints.up("sm")]:{
+    width: "calc(100% - 240px)",
     padding: `${theme.spacing(5)} ${theme.spacing(3)}`,
-    marginLeft: "25%",
+    marginLeft: "240px",
   },
-  [theme.breakpoints.up("lg")]:{
-    width: "80%",
-    marginLeft: "20%"
-  }
 }))
 
 const UIContainer:React.FC<TypePropsChildren> = ({children}) => {
