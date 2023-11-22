@@ -1,20 +1,30 @@
-import React from 'react';
+import { useContext } from 'react';
+import { styled } from "@mui/material"
 import { ContextMain } from '../../data/context/ContextMain';
-import { InterfaceSidebarNavProps } from "../../data/types/props";
+import { TypeSidebarNavProps } from "../../data/types/props";
 import { NavLink } from "react-router-dom";
 import { IconContext } from "react-icons";
 
-const UISidebarList:React.FC<InterfaceSidebarNavProps> = ({icon,link,tag,text}) => {
-  const context = React.useContext(ContextMain);
-  const navlinkClass = (isActive:boolean)=>{
-    const equivState = 'w-full pl-8 py-2 flex flex-row space-x-2 items-center';
-    return isActive ? `bg-primary-500 text-gray-50 ${equivState}`:equivState;
-  }
+const StyledNavLink = styled(NavLink)(({theme})=>({
+    width: "100%",
+    padding: `${theme.spacing(1)} 0`,
+    paddingLeft: theme.spacing(5),
+    display: "Flex",
+    flexDirection: "row",
+    gap: theme.spacing(1),
+    alignItems: "center",
+    "&.active":{
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.grey[100]
+    }
+}))
+
+const UISidebarList:React.FC<TypeSidebarNavProps> = ({icon,link,tag,text}) => {
+  const context = useContext(ContextMain);
   return (
     <li key={tag}>
-      <NavLink
+      <StyledNavLink
         to={link}
-        className={({isActive})=>navlinkClass(isActive)}
         onClick={context.sidebar.hideSidebar}
       >
         {
@@ -23,7 +33,7 @@ const UISidebarList:React.FC<InterfaceSidebarNavProps> = ({icon,link,tag,text}) 
           </IconContext.Provider>
         }
         <span aria-label="link-text">{text}</span>
-      </NavLink>
+      </StyledNavLink>
     </li>
   );
 };

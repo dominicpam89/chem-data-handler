@@ -8,7 +8,6 @@ const RouteProtection:React.FC<TypePropsChildren> = ({children}) => {
     const navigate = useNavigate()
     const {isLoading, isAuth} = useGetCurrentUser()
     useEffect(()=>{
-      console.log(isAuth)
       if(!isLoading && !isAuth) navigate('/auth?mode=login')
     },[isLoading, isAuth, navigate])
     if(isLoading) return <UIFeedbackLoading />

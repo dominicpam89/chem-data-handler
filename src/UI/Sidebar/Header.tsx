@@ -1,14 +1,34 @@
 import { IconContext } from "react-icons";
 import { BiSolidAnalyse } from 'react-icons/bi';
+import { Box, Typography, styled, useTheme } from "@mui/material"
+
+const StyledBox = styled(Box)(({theme})=>({
+  width: "100%",
+  marginTop: theme.spacing(3),
+  padding: theme.spacing(4),
+  display: "Flex",
+  flexDirection: "column",
+  gap: theme.spacing(1),
+  alignItems: "center"
+}))
+
+const StyledHeading = styled(Typography)(({theme})=>({
+  fontSize: "18px",
+  fontWeight: "800",
+  color: "transparent",
+  background: `linear-gradient(105deg, ${theme.palette.primary.main}, ${theme.palette.secondary.dark})`,
+  WebkitBackgroundClip: "text"
+}))
 
 const UISidebarHeader = () => {
+  const theme = useTheme()
   return (
-    <div className="w-full mt-4 py-4 px-4 flex flex-col items-center">
-      <IconContext.Provider value={{ className: "w-16 h-16 text-primary-500" }}>
+    <StyledBox>
+      <IconContext.Provider value={{ style: {width: 44, height: 44, color: theme.palette.primary.main} }}>
         <BiSolidAnalyse />
       </IconContext.Provider>
-      <h1 className="bg-clip-text bg-gradient-to-tl from-primary-500 to-secondary-800 text-xl text-transparent">{import.meta.env.VITE_APP_NAME}</h1>
-    </div>
+      <StyledHeading>{import.meta.env.VITE_APP_NAME}</StyledHeading>
+    </StyledBox>
   );
 };
 

@@ -1,6 +1,6 @@
-import { InterfacePropsChildren } from "../../data/types/props";
+import { TypePropsChildren } from "../../data/types/props";
 
-const UICardFooter:React.FC<InterfacePropsChildren> = ({children}) => {
+const UICardFooter:React.FC<TypePropsChildren> = ({children}) => {
   return <>
     <div>
       {children}

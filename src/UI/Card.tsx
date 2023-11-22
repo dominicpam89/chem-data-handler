@@ -1,6 +1,5 @@
 import { styled, Paper } from "@mui/material"
 
-{/* <div aria-label="UICard" className="p-4 md:p-8 lg:p-12 flex flex-col gap-4 shadow-md border border-gray-200"> */}
 const UICard = styled(Paper)(({theme})=>{
   return {
     maxWidth: "480px",
