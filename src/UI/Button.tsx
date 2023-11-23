@@ -36,3 +36,33 @@ export const ButtonPrimary = styled(Button)<ButtonProps>(({ theme, variant }) =>
          },
     }
 })
+
+
+export const ButtonError = styled(Button)<ButtonProps>(({ theme, variant }) => {
+   if (variant === "contained")
+      return {
+         backgroundColor: theme.palette.error.main,
+         color: theme.palette.error.contrastText,
+         "&:hover": {
+            backgroundColor: theme.palette.error.light,
+         },
+      }
+   if (variant === "outlined")
+      return {
+         backgroundColor: "transparent",
+         border: `${theme.palette.error.main} 1px solid`,
+         color: theme.palette.error.main,
+         "&:hover": {
+            backgroundColor: theme.palette.error.main,
+            color: theme.palette.error.contrastText,
+         },
+      }
+  if(variant==="text")
+    return {
+        backgroundColor: "transparent",
+        color: theme.palette.error.main,
+        "&:hover": {
+            color: theme.palette.error.light,
+         },
+    }
+})

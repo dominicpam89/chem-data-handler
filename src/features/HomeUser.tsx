@@ -10,7 +10,7 @@ import { ContextHomeUserProvider } from "../data/context/ContextHomeUser"
 const ContentBox = styled(Box)(({ theme }) => ({
    display: "grid",
    gridTemplateColumns: "1fr",
-   gap: theme.spacing(3),
+   gap: theme.spacing(12),
 }))
 
 const HomeUserPage = () => {
@@ -24,8 +24,8 @@ const HomeUserPage = () => {
                   <Stack direction={"column"} spacing={12}>
                      <HomeUserTitle />
                      <ContentBox>
-                        <HomeUserSearchBar data={chems.data} />
                         <HomeUserDisplaySearch />
+                        <HomeUserSearchBar data={chems.data} />
                      </ContentBox>
                   </Stack>
                )}

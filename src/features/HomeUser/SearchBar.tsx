@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { ContextHomeUser } from "../../data/context/ContextHomeUser"
-import { Box, Autocomplete, TextField, styled } from "@mui/material"
-import { ButtonPrimary } from "../../UI/Button"
+import { Box, Stack, Autocomplete, TextField, styled } from "@mui/material"
+import { ButtonPrimary as BP, ButtonError as BE } from "../../UI/Button"
 import { TypeChems } from "../../data/types/query-result"
 import SearchHistory from "./SearchHistory"
 
@@ -18,17 +18,23 @@ const SearchBox = styled(Box)(({ theme }) => ({
 
 const SearchBoxPanel = styled(Box)(({ theme }) => ({
    display: "grid",
-   gridTemplateColumns: "9fr 3fr",
+   gridTemplateColumns: "6fr 6fr",
    gap: theme.spacing(3),
-   [theme.breakpoints.down("sm")]:{
-      gridTemplateColumns: "1fr"
-   }
+   [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "1fr",
+   },
 }))
 
-const Button = styled(ButtonPrimary)(({theme})=>({
-   [theme.breakpoints.down("sm")]:{
-      gridRow: "1/span 1",
-   }
+const ButtonPrimary = styled(BP)(({ }) => ({
+   width: "100%",
+   height: "100%",
+   borderRadius: "0.6rem",
+}))
+
+const ButtonError = styled(BE)(({ }) => ({
+   width: "100%",
+   height: "100%",
+   borderRadius: "0.6rem",
 }))
 
 const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
@@ -50,9 +56,12 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
                   getOptionLabel={(option: TypeChems) => option.chemical_compound}
                   renderInput={(params) => <TextField {...params} label="Compounds" />}
                />
-               <Button variant="contained">Add New Compound</Button>
+               <Stack direction="row" spacing={1}>
+                  <ButtonError variant="contained">Run Prediction</ButtonError>
+                  <ButtonPrimary variant="contained">New Compound</ButtonPrimary>
+               </Stack>
             </SearchBoxPanel>
-           <SearchHistory />
+            <SearchHistory />
          </SearchBox>
       </>
    )
