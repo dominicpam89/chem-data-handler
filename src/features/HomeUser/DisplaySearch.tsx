@@ -21,7 +21,7 @@ const HomeUserDisplaySearch = () => {
       <>
          <Stack id="display-search" direction="column" spacing={3}>
             {context.compoundSearch.val !== null && (
-               <StyledUICard id="display-search searched-compound">
+               <StyledUICard id="display-search searched-compound" elevation={3}>
                   <Typography variant="h4" component="h2">
                      {context.compoundSearch.val?.common_name}
                   </Typography>
