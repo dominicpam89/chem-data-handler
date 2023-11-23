@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { ContextHomeUser } from "../../data/context/ContextHomeUser"
 import UICard from "../../UI/Card"
-import { styled, Typography } from "@mui/material"
+import { styled, Typography, Button, Stack } from "@mui/material"
 
 const StyledUICard = styled(UICard)(({ theme }) => ({
    maxWidth: "100%",
@@ -19,15 +19,17 @@ const HomeUserDisplaySearch = () => {
    const context = useContext(ContextHomeUser)
    return (
       <>
-         {context.compoundSearch.val !== null && (
-            <StyledUICard id="displays-search">
-               <Typography variant="h4" component="h2">
-                  {context.compoundSearch.val?.common_name}
-               </Typography>
-               <Typography variant="h2">{context.compoundSearch.val?.chemical_compound}</Typography>
-               <Typography variant="h6">{context.compoundSearch.val?.formula}</Typography>
-            </StyledUICard>
-         )}
+         <Stack id="display-search" direction="column" spacing={3}>
+            {context.compoundSearch.val !== null && (
+               <StyledUICard id="display-search searched-compound">
+                  <Typography variant="h4" component="h2">
+                     {context.compoundSearch.val?.common_name}
+                  </Typography>
+                  <Typography variant="h2">{context.compoundSearch.val?.chemical_compound}</Typography>
+                  <Typography variant="h6">{context.compoundSearch.val?.formula}</Typography>
+               </StyledUICard>
+            )}
+         </Stack>
       </>
    )
 }

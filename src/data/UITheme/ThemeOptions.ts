@@ -10,7 +10,7 @@ export const ThemeTypography = {
       fontWeight: 400,
    },
    button: {
-      fontSize: 14,
+      fontSize: 12,
       fontWeight: 600,
    },
    h1: {

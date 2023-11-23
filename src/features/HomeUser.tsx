@@ -8,14 +8,9 @@ import HomeUserDisplaySearch from "./HomeUser/DisplaySearch"
 import { ContextHomeUserProvider } from "../data/context/ContextHomeUser"
 
 const ContentBox = styled(Box)(({ theme }) => ({
-   display: "flex",
-   flexDirection: "column",
-   gap: theme.spacing(4),
-   [theme.breakpoints.up("md")]:{
-      display: "grid",
-      gridTemplateColumns: "5fr 15fr",
-      alignItems: "start",
-   }
+   display: "grid",
+   gridTemplateColumns: "1fr",
+   gap: theme.spacing(3),
 }))
 
 const HomeUserPage = () => {
