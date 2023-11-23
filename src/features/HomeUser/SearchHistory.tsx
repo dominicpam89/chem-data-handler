@@ -31,7 +31,7 @@ const Item = styled(Stack)(({ theme }) => ({
    },
 }))
 
-const ItemBody = styled(Stack)(({ theme }) => ({
+const ItemBody = styled(Stack)(({}) => ({
    display: "flex",
    flexDirection: "column",
 }))
