@@ -7,6 +7,7 @@ export type TypeContextHomeUser = {
   },
   selectedHistory:{
     val: TypeChems[],
-    setVal: (val:TypeChems)=>void
+    setVal: (val:TypeChems)=>void,
+    remove: (val:TypeChems)=>void,
   }
 }

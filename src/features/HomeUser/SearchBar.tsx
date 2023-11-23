@@ -1,6 +1,16 @@
 import { useContext } from "react"
 import { ContextHomeUser } from "../../data/context/ContextHomeUser"
-import { Box, Autocomplete, TextField, styled, List, ListItem, ListItemIcon, ListItemText, ListItemButton } from "@mui/material"
+import {
+   Box,
+   Autocomplete,
+   TextField,
+   styled,
+   List,
+   ListItem,
+   ListItemIcon,
+   ListItemText,
+   ListItemButton,
+} from "@mui/material"
 import { utilsMUIHexToRgba as hexToRGBA } from "../../utils/mui"
 import { TypeChems } from "../../data/types/query-result"
 import CloseIcon from "@mui/icons-material/Close"
@@ -30,8 +40,9 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
    const context = useContext(ContextHomeUser)
    return (
       <>
-         <SearchBox>
+         <SearchBox id="search-bar-search-box">
             <Autocomplete
+               id="search-bar-autocomplete"
                value={context.compoundSearch.val}
                onChange={(_, val) => {
                   context.compoundSearch.setVal(val)
@@ -40,7 +51,6 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
                   if (val && !compoundExist) context.selectedHistory.setVal(val)
                }}
                disablePortal
-               id="combo-box-demo"
                options={data}
                includeInputInList
                getOptionLabel={(option: TypeChems) => option.chemical_compound}
@@ -48,16 +58,25 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
             />
 
             {context.selectedHistory.val.length > 0 && (
-               <StyledList>
+               <StyledList id="search-bar-list">
                   {context.selectedHistory.val.map((item) => {
                      return (
                         <ListItem key={item.id}>
-                          <ListItemIcon sx={{cursor:"pointer"}} onClick={() => console.log("icon clicked")}>
+                           <ListItemIcon
+                              sx={{ cursor: "pointer" }}
+                              onClick={() => {
+                                 context.selectedHistory.remove(item)
+                              }}
+                           >
                               <CloseIcon />
-                          </ListItemIcon>
-                          <ListItemButton>
-                            <ListItemText primary={item.chemical_compound} secondary={item.formula} />
-                          </ListItemButton>
+                           </ListItemIcon>
+                           <ListItemButton
+                              onClick={() => {
+                                 context.compoundSearch.setVal(item)
+                              }}
+                           >
+                              <ListItemText primary={item.chemical_compound} secondary={item.formula} />
+                           </ListItemButton>
                         </ListItem>
                      )
                   })}

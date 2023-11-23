@@ -10,7 +10,8 @@ const context:TypeContextHomeUser = {
   },
   selectedHistory:{
     val: [],
-    setVal: (val)=>{val}
+    setVal: (val)=>{val},
+    remove: (val)=>{val}
   }
 }
 
@@ -28,7 +29,8 @@ export const ContextHomeUserProvider: React.FC<TypePropsChildren> = ({ children 
             },
             selectedHistory: {
               val: selectedHistory,
-              setVal: (val)=>setSelectedHistory(ps=>([...ps,val]))
+              setVal: (val)=>setSelectedHistory(ps=>([...ps,val])),
+              remove: (val)=>setSelectedHistory(ps=>ps.filter(item=>item.id!==val.id))
             }
          }}
       >
