@@ -2,7 +2,6 @@ import { Stack, Box, styled } from "@mui/material"
 import UIContainer from "../UI/Container"
 import UIFeedbackLoading from "../UI/Feedback/Loading"
 import { useChems } from "../data/hooks/compounds"
-import HomeUserTitle from "./HomeUser/Title"
 import HomeUserSearchBar from "./HomeUser/SearchBar"
 import HomeUserDisplaySearch from "./HomeUser/DisplaySearch"
 import { ContextHomeUserProvider } from "../data/context/ContextHomeUser"
@@ -22,7 +21,6 @@ const HomeUserPage = () => {
             <ContextHomeUserProvider>
                {chems?.data?.length > 0 && !chems.isLoading && (
                   <Stack direction={"column"} spacing={12}>
-                     <HomeUserTitle />
                      <ContentBox>
                         <HomeUserDisplaySearch />
                         <HomeUserSearchBar data={chems.data} />
