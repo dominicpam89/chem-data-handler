@@ -21,7 +21,7 @@ const HomeUserPage = () => {
          <UIContainer>
             <ContextHomeUserProvider>
                {chems?.data?.length > 0 && !chems.isLoading && (
-                  <Stack direction={"column"} spacing={6}>
+                  <Stack direction={"column"} spacing={12}>
                      <HomeUserTitle />
                      <ContentBox>
                         <HomeUserSearchBar data={chems.data} />

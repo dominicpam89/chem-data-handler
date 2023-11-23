@@ -9,6 +9,7 @@ import { IconContext } from "react-icons"
 
 const StyledNav = styled("nav")(({ theme }) => ({
    position: "fixed",
+   zIndex: 100,
    width: "100%",
    padding: theme.spacing(3),
    display: "flex",
