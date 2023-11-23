@@ -57,7 +57,6 @@ export const LightPaletteOptions = {
 }
 
 export const DarkPaletteOptions = {
-   mode: "dark",
    primary: {
       main: "#202f64",
    },
@@ -85,6 +84,6 @@ export const lightTheme = createTheme({
 })
 
 export const darkTheme = createTheme({
-   palette: LightPaletteOptions,
+   palette: {...DarkPaletteOptions, mode:"dark"},
    typography: ThemeTypography
 })
