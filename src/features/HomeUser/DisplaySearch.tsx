@@ -1,25 +1,36 @@
 import { useContext } from "react"
 import { ContextHomeUser } from "../../data/context/ContextHomeUser"
-import { styled, Typography, Stack, Paper, Alert, ButtonGroup, Chip } from "@mui/material"
+import { styled, Typography, Stack, Box, Paper, Alert, Button, ButtonGroup, Chip, IconButton } from "@mui/material"
 import { ButtonPrimary } from "../../UI/Button"
+import CancelIcon from "@mui/icons-material/Cancel"
 
 // Demo purposes
 import { useHooksDisplaySearch } from "../../data/hooks/temp"
 import toast from "react-hot-toast"
 
 const StyledUICard = styled(Paper)(({ theme }) => ({
+   position: "relative",
    maxWidth: "100%",
    width: "100%",
    padding: theme.spacing(1),
    display: "grid",
    gridTemplateColumns: "8fr 4fr",
-   gap: theme.spacing(1),
+   gap: theme.spacing(2),
    [theme.breakpoints.up("sm")]: {
       padding: theme.spacing(3),
    },
    [theme.breakpoints.up("md")]: {
       padding: theme.spacing(6),
    },
+}))
+
+const CloseIconContainer = styled(Box)(() => ({
+   position: "absolute",
+   top: 0,
+   right: 0,
+   display: "flex",
+   alignItems: "center",
+   justifyContent: "center",
 }))
 
 const HomeUserDisplaySearch = () => {
@@ -29,6 +40,11 @@ const HomeUserDisplaySearch = () => {
       <>
          {context.compoundSearch.val !== null && (
             <StyledUICard id="display-search searched-compound" elevation={3}>
+               <CloseIconContainer>
+                  <IconButton onClick={()=>context.compoundSearch.setVal(null)}>
+                     <CancelIcon sx={{ fontSize: "2rem" }} />
+                  </IconButton>
+               </CloseIconContainer>
                <Stack direction="column" spacing={1}>
                   <Typography variant="h4" component="h2">
                      {context.compoundSearch.val?.common_name}
@@ -53,7 +69,7 @@ const HomeUserDisplaySearch = () => {
                            Prediction result: {context.predictCompound.data}
                         </Alert>
                         <ButtonGroup fullWidth>
-                           <ButtonPrimary
+                           <Button
                               variant="contained"
                               onClick={() => {
                                  toast.success("Saved!")
@@ -61,10 +77,10 @@ const HomeUserDisplaySearch = () => {
                               }}
                            >
                               Save?
-                           </ButtonPrimary>
-                           <ButtonPrimary variant="outlined" onClick={() => setDisplayResult(false)}>
+                           </Button>
+                           <Button variant="outlined" onClick={() => setDisplayResult(false)}>
                               Cancel
-                           </ButtonPrimary>
+                           </Button>
                         </ButtonGroup>
                      </Stack>
                   )}

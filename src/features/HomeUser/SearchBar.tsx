@@ -59,7 +59,7 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
                <Stack direction="row" spacing={1}>
                   <ButtonError
                      variant="contained"
-                     disabled={context.predictCompound.onPredictState.pending}
+                     disabled={context.predictCompound.onPredictState.pending || context.compoundSearch.val===null}
                      onClick={context.predictCompound.onPredict}
                   >
                      Run Prediction
