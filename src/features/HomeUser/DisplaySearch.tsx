@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import { ContextHomeUser } from "../../data/context/ContextHomeUser"
 import { styled, Typography, Stack, Box, Paper, Alert, Button, ButtonGroup, Chip, IconButton } from "@mui/material"
-import { ButtonPrimary } from "../../UI/Button"
 import CancelIcon from "@mui/icons-material/Cancel"
 
 // Demo purposes

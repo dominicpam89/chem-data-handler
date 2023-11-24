@@ -10,14 +10,13 @@ export const getChems = async () => {
 
 // Fake Dummy API Call
 export const serviceRunPrediction = async () => {
-   let toastId
    const promise = new Promise((resolve, reject)=>{
       const randomNum = Math.random()
       if(randomNum<0.5) setTimeout(()=>reject("Couldn't predict!"),1500)
       else setTimeout(()=>resolve(`Predict result: ${Math.round(Math.random()*999999)}`),1500)
    })
    const fakeAPICall = async ()=>{
-      toastId = toast.promise(promise,{
+      toast.promise(promise,{
          error: (t)=><UIToast message="Failed to predict!" t={t} />,
          loading: "Predicting...",
          success: (t)=><UIToast message="Predict successful!" t={t} />,
