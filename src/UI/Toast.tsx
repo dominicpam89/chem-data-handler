@@ -10,12 +10,11 @@ const UIToast: React.FC<TypeUIToast> = ({ t, message }) => {
          <Typography variant="body2">{message}</Typography>
          <motion.div
             animate={{
-               rotate: [-15,15],
+               rotate: [-10,10],
             }}
             transition={{
                repeat: Infinity,
                repeatType: "mirror",
-               // type: "spring",
                duration: 0.8,
                ease: "easeInOut"
             }}

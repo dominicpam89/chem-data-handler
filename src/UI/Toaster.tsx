@@ -14,7 +14,7 @@ const UIToaster = () => {
             padding: theme.spacing(2)
          }}
          toastOptions={{
-            duration: 3500,
+            duration: 2500,
             style: {
                background: theme.palette.primary.dark,
                color: theme.palette.common.white,
