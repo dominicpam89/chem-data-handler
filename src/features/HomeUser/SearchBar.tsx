@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import { ContextHomeUser } from "../../data/context/ContextHomeUser"
 import { Box, Stack, Autocomplete, TextField, styled } from "@mui/material"
 import { ButtonPrimary as BP, ButtonError as BE } from "../../UI/Button"
@@ -39,6 +40,7 @@ const ButtonError = styled(BE)(({}) => ({
 
 const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
    const context = useContext(ContextHomeUser)
+   const navigate = useNavigate()
    return (
       <>
          <SearchBox id="search-bar-search-box">
@@ -64,7 +66,7 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
                   >
                      Run Prediction
                   </ButtonError>
-                  <ButtonPrimary variant="contained">New Compound</ButtonPrimary>
+                  <ButtonPrimary variant="contained" onClick={()=>navigate("/operation")}>New Compound</ButtonPrimary>
                </Stack>
             </SearchBoxPanel>
             <SearchHistory />

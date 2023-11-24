@@ -58,8 +58,8 @@ const HomeUserDisplaySearch = () => {
                   {displayError && (
                      <Alert severity="error" sx={{ alignSelf: "start" }} onClick={() => setDisplayError(false)}>
                         <Stack direction="column" spacing={1}>
-                           <span>This compound couldn't be predicted!</span>
-                           <Chip label="This is made for demo purposes, click to delete" />
+                           <span>This compound couldn't be predicted! Since it was made for demo purposes, API calls was made using random Math, therefore, <b>try again until succeed!</b></span>
+                           <Chip label="click to delete" />
                         </Stack>
                      </Alert>
                   )}

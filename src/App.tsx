@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import UIRootLayout from "./UI/RootLayout"
 import AuthPage from "./features/Auth"
 import HomeUserPage from "./features/HomeUser"
+import CompoundOperation from "./features/Compound"
 import ProfileUserPage from "./features/ProfileUser"
 import HomeAdminPage from "./features/HomeAdmin"
 import ProfileAdminPage from "./features/ProfileAdmin"
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       ),
       children: [
          { index: true, element: <HomeUserPage /> },
+         { path: "operation", element: <CompoundOperation />},
          { path: "profile", element: <ProfileUserPage /> },
       ],
    },
