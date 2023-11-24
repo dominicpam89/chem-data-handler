@@ -4,6 +4,7 @@ import { Box, Stack, Autocomplete, TextField, styled } from "@mui/material"
 import { ButtonPrimary as BP, ButtonError as BE } from "../../UI/Button"
 import { TypeChems } from "../../data/types/query-result"
 import SearchHistory from "./SearchHistory"
+import { usePredictChem } from "../../data/hooks/compounds"
 
 type Props = {
    data: TypeChems[]
@@ -39,9 +40,12 @@ const ButtonError = styled(BE)(({ }) => ({
 
 const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
    const context = useContext(ContextHomeUser)
+   const {mutate,isPending, error, result} = usePredictChem()
    return (
       <>
          <SearchBox id="search-bar-search-box">
+            {error && <p>{error.message}</p>}
+            {result && <p>{result}</p>}
             <SearchBoxPanel>
                <Autocomplete
                   id="search-bar-autocomplete"
@@ -57,7 +61,7 @@ const HomeUserSearchBar: React.FC<Props> = ({ data }) => {
                   renderInput={(params) => <TextField {...params} label="Compounds" />}
                />
                <Stack direction="row" spacing={1}>
-                  <ButtonError variant="contained">Run Prediction</ButtonError>
+                  <ButtonError variant="contained" disabled={isPending} onClick={()=>mutate()}>Run Prediction</ButtonError>
                   <ButtonPrimary variant="contained">New Compound</ButtonPrimary>
                </Stack>
             </SearchBoxPanel>

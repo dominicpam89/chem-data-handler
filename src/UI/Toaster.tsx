@@ -10,11 +10,15 @@ const UIToaster = () => {
       <Toaster
          position="top-center"
          gutter={8}
+         containerStyle={{
+            padding: theme.spacing(2)
+         }}
          toastOptions={{
-            duration: 5000,
+            duration: 3500,
             style: {
                background: theme.palette.primary.dark,
                color: theme.palette.common.white,
+               padding: theme.spacing(2),
             },
          }}
       />,

@@ -15,3 +15,8 @@ export type TypeSidebarNavProps={
   text: string,
   icon: ReactNode,
 }
+
+export type TypeUIToast={
+  t: any,
+  message: string,
+}
