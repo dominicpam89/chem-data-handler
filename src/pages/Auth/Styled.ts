@@ -1,9 +1,14 @@
-import { styled, Paper as PaperDefault, Box as BoxDefault, Button as B, ButtonProps } from "@mui/material"
-import { BiSolidAnalyse } from "react-icons/bi"
+import {
+	styled,
+	Paper as PaperDefault,
+	Box as BoxDefault,
+	Button as B,
+	ButtonProps,
+} from "@mui/material"
 
 export const AuthCard = styled(PaperDefault)(({ theme }) => ({
 	maxWidth: "480px",
-   width: "100%",
+	width: "100%",
 	margin: "0 auto",
 	padding: theme.spacing(2),
 	display: "flex",
@@ -17,67 +22,60 @@ export const AuthCard = styled(PaperDefault)(({ theme }) => ({
 	},
 }))
 
-export const AuthCardHeader = styled(BoxDefault)(({theme})=>({
-  width: "100%",
-  padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center"
+export const AuthCardHeader = styled(BoxDefault)(({ theme }) => ({
+	width: "100%",
+	padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "center",
+	alignItems: "center",
 }))
 
-export const AuthCardContent = styled(BoxDefault)(()=>({}))
+export const AuthCardContent = styled(BoxDefault)(() => ({}))
 
-export const AuthForm = styled("form")(({theme})=>({
+export const AuthForm = styled("form")(({ theme }) => ({
 	display: "flex",
 	flexDirection: "column",
 	gap: theme.spacing(3),
 }))
 
-
 const Button = styled(B)<ButtonProps>(({ theme }) => ({
-   borderRadius: theme.spacing(2),
-   transition: "all ease-in-out 300ms",
-   "&:hover":{
-    transform: "scale(1.03)"
-   },
-   "&:active":{
-      transform: "scale(0.95)"
-   }
-}))
-
-export const ButtonPrimary = styled(Button)<ButtonProps>(({ theme, variant }) => {
-   if (variant === "contained")
-      return {
-         backgroundColor: theme.palette.primary.main,
-         color: theme.palette.primary.contrastText,
-         "&:hover": {
-            backgroundColor: theme.palette.primary.light,
-         },
-      }
-   if (variant === "outlined")
-      return {
-         backgroundColor: "transparent",
-         border: `${theme.palette.primary.main} 1px solid`,
-         color: theme.palette.primary.main,
-         "&:hover": {
-            opacity: 0.8
-         },
-      }
-  if(variant==="text")
-    return {
-        backgroundColor: "transparent",
-        color: theme.palette.primary.main,
-        "&:hover": {
-            color: theme.palette.primary.light,
-         },
-    }
-})
-
-export const BrandIcon = styled(BiSolidAnalyse)(({ theme }) => ({
-	fontSize: "36px",
-	color: theme.palette.primary.main,
-	[theme.breakpoints.up("md")]: {
-		fontSize: "54px",
+	borderRadius: theme.spacing(2),
+	transition: "all ease-in-out 300ms",
+	"&:hover": {
+		transform: "scale(1.03)",
+	},
+	"&:active": {
+		transform: "scale(0.95)",
 	},
 }))
+
+export const ButtonPrimary = styled(Button)<ButtonProps>(
+	({ theme, variant }) => {
+		if (variant === "contained")
+			return {
+				backgroundColor: theme.palette.primary.main,
+				color: theme.palette.primary.contrastText,
+				"&:hover": {
+					backgroundColor: theme.palette.primary.light,
+				},
+			}
+		if (variant === "outlined")
+			return {
+				backgroundColor: "transparent",
+				border: `${theme.palette.primary.main} 1px solid`,
+				color: theme.palette.primary.main,
+				"&:hover": {
+					opacity: 0.8,
+				},
+			}
+		if (variant === "text")
+			return {
+				backgroundColor: "transparent",
+				color: theme.palette.primary.main,
+				"&:hover": {
+					color: theme.palette.primary.light,
+				},
+			}
+	}
+)

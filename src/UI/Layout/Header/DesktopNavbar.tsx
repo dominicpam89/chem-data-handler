@@ -1,7 +1,14 @@
+import DesktopNavbarContainer from "./DesktopNavbar/Container"
+import ContainerWidthToggle from "./DesktopNavbar/ContainerWidthToggle"
+
 const DekstopNavbar = () => {
-  return <>
-  
-  </>
+	return (
+		<>
+			<DesktopNavbarContainer>
+				<ContainerWidthToggle />
+			</DesktopNavbarContainer>
+		</>
+	)
 }
- 
-export default DekstopNavbar;
+
+export default DekstopNavbar

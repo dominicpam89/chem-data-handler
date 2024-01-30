@@ -1,15 +1,13 @@
-import { Typography } from "@mui/material"
-import { BrandIcon as Icon } from "../Styled"
-
+import { Stack, useTheme } from "@mui/material"
+import { AuthBrandIcon, BrandText } from "../../../UI/Brand"
 
 const AuthBrand = () => {
+	const theme = useTheme()
 	return (
-		<>
-			<Icon />
-			<Typography variant="h4" component="h1" color="primary">
-				{import.meta.env.VITE_APP_NAME}
-			</Typography>
-		</>
+		<Stack direction="column" spacing={2} alignItems="center">
+			<AuthBrandIcon />
+			<BrandText color={theme.palette.primary.main} variant="h6" />
+		</Stack>
 	)
 }
 

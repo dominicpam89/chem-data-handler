@@ -1,16 +1,18 @@
-import { Outlet } from "react-router-dom";
-import UILayoutMain from "./Layout/Main";
-import UILayoutHeader from "./Layout/Header";
-import UILayoutFooter from "./Layout/Footer";
+import { Outlet } from "react-router-dom"
+import { UILayoutMainRootComponent } from "./Layout/Main"
+import UILayoutHeader from "./Layout/Header"
+import UILayoutFooter from "./Layout/Footer"
 
 const RootLayout = () => {
-  return <>
-    <UILayoutHeader />
-    <UILayoutMain>
-      <Outlet />
-    </UILayoutMain>
-    <UILayoutFooter />
-  </>
+	return (
+		<>
+			<UILayoutHeader />
+			<UILayoutMainRootComponent>
+				<Outlet />
+			</UILayoutMainRootComponent>
+			<UILayoutFooter />
+		</>
+	)
 }
- 
-export default RootLayout;
+
+export default RootLayout
