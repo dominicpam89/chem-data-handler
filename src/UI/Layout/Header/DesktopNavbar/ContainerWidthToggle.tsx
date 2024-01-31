@@ -1,28 +1,47 @@
 import { Box, IconButton, useTheme } from "@mui/material"
-import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
-import { useContext } from "react";
-import { ContextMain } from "../../../../data/context/main";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle"
+import { useContext, useEffect } from "react"
+import { ContextMain } from "../../../../data/context/main"
+import { useAnimate } from "framer-motion"
+
+const useHooks = ()=>{
+	const theme = useTheme()
+	const { sidebarPersist } = useContext(ContextMain)
+	const [scope, animate] = useAnimate()
+	useEffect(()=>{
+		if(sidebarPersist.minimize){
+			animate("button", {rotateZ:"-90deg"})
+		}
+		else{
+			animate("button", {rotateZ:"90deg"})
+		}
+	},[sidebarPersist.minimize])
+	return {scope, sidebarPersist, theme}
+}
 
 const ContainerWidthToggle = () => {
-  const theme = useTheme()
-  const {sidebarPersist} = useContext(ContextMain)
-  return <Box sx={{
-    position:"absolute",
-    top: "50%",
-    right: sidebarPersist.minimize ? "-100%":"-20%",
-    zIndex: "500",
-  }}>
-    <IconButton sx={{
-      rotate: sidebarPersist.minimize ? "-90deg":"90deg",
-      translate: "-20% 0%",
-      fontSize: "48px",
-      color: sidebarPersist.minimize ? theme.palette.primary.main:theme.palette.primary.light
-    }}
-      onClick={()=>sidebarPersist.toggleSizeSidebar()}
-    >
-      <ArrowDropDownCircleIcon fontSize="inherit" color="inherit" />
-    </IconButton>
-  </Box>
+	const { scope, sidebarPersist, theme } = useHooks()
+	return (
+		<Box
+			ref={scope}
+			sx={{
+				position: "absolute",
+				top: "50%",
+				right: "-30px",
+				zIndex: "500",
+			}}
+		>
+			<IconButton
+				sx={{
+					fontSize: "40px",
+					color: theme.palette.primary.main
+				}}
+				onClick={() => sidebarPersist.toggleSizeSidebar()}
+			>
+				<ArrowDropDownCircleIcon fontSize="inherit" color="inherit" />
+			</IconButton>
+		</Box>
+	)
 }
- 
-export default ContainerWidthToggle;
+
+export default ContainerWidthToggle

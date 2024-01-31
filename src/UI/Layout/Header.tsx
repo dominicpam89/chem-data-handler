@@ -1,11 +1,13 @@
-import MobileNavbar from "./Header/MobileNavbar";
-import DekstopNavbar from "./Header/DesktopNavbar";
+import MobileNavbar from "./Header/MobileNavbar"
+import DekstopNavbar from "./Header/DesktopNavbar"
 
 const UILayoutHeader = () => {
-  return <header>
-    <MobileNavbar />
-    <DekstopNavbar />
-  </header>
+	return (
+		<header>
+				<MobileNavbar />
+				<DekstopNavbar />
+		</header>
+	)
 }
- 
-export default UILayoutHeader;
+
+export default UILayoutHeader

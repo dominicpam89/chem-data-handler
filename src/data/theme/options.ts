@@ -1,5 +1,6 @@
 import { BreakpointsOptions, createTheme } from '@mui/material/styles';
 import { TypographyOptions } from '@mui/material/styles/createTypography';
+
 export const ThemeTypography:TypographyOptions = {
    fontFamily: "Montserrat, sans-serif",
    h1: {

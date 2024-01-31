@@ -1,7 +1,7 @@
-import { AppBar, IconButton, Stack } from "@mui/material"
+import { IconButton, Stack } from "@mui/material"
 import { useContext } from "react"
 import { ContextMain } from "../../../data/context/main"
-import { ToolbarStyled } from "./Styled"
+import { AppBarStyled, ToolbarStyled } from "./Styled"
 import MenuIcon from "@mui/icons-material/Menu"
 import NavbarSidebar from "./MobileNavbar/Sidebar"
 import { MobileNavbarBrandIcon, BrandText } from "../../Brand"
@@ -24,11 +24,7 @@ const MobileNavbar = () => {
 	const { sidebar } = useContext(ContextMain)
 	return (
 		<>
-			<AppBar
-				aria-label="mobile-nav"
-				component="nav"
-				sx={{ display: { md: "none" } }}
-			>
+			<AppBarStyled aria-label="mobile-nav">
 				<ToolbarStyled>
 					<Brand />
 					<IconButton
@@ -40,8 +36,8 @@ const MobileNavbar = () => {
 						<MenuIcon />
 					</IconButton>
 				</ToolbarStyled>
-			</AppBar>
-			{sidebar.visible && <NavbarSidebar />}
+			</AppBarStyled>
+			<NavbarSidebar />
 		</>
 	)
 }

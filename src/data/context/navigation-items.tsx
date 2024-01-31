@@ -4,7 +4,7 @@ import ScienceIcon from "@mui/icons-material/Science"
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
 import LogoutIcon from "@mui/icons-material/Logout"
 
-type TypeNavItem = {
+export type TypeNavItem = {
     id: string;
     text: string;
     link: string;
@@ -27,9 +27,9 @@ const initialState = [
 		icon: <HomeIcon fontSize="inherit" />,
 	},
 	{
-		id: "compounds",
-		text: "Compound",
-		link: "/compounds",
+		id: "predict",
+		text: "Predict",
+		link: "/predict",
 		icon: <ScienceIcon fontSize="inherit" />,
 	},
 	{

@@ -1,7 +1,7 @@
 import { Stack, Typography, styled } from "@mui/material"
 import { BiSolidAnalyse } from "react-icons/bi"
 
-export const BrandIcon = styled(BiSolidAnalyse)(({ }) => ({
+export const BrandIcon = styled(BiSolidAnalyse)(({}) => ({
 	fontSize: "24px",
 	color: "inherit",
 }))
@@ -9,6 +9,11 @@ export const BrandIcon = styled(BiSolidAnalyse)(({ }) => ({
 export const MobileNavbarBrandIcon = styled(BiSolidAnalyse)(({ }) => ({
 	fontSize: "24px",
 	color: "inherit",
+}))
+
+export const DesktopNavbarBrandIcon = styled(BiSolidAnalyse)(({theme}) => ({
+	fontSize: "32px",
+	color: theme.palette.primary.contrastText,
 }))
 
 export const AuthBrandIcon = styled(BiSolidAnalyse)(({ theme }) => ({
@@ -23,7 +28,6 @@ export const SidebarBrandIcon = styled(BiSolidAnalyse)(({ theme }) => ({
 	fontSize: "36px",
 	color: theme.palette.primary.main,
 }))
-
 
 interface IBrandText{
 	variant: "h1"|"h2"|"h3"|"h4"|"h5"|"h6"|"body1"|"body2"

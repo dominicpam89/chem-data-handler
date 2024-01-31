@@ -1,13 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import AuthPage from "./pages/Auth"
 import RootLayout from "./UI/Layout"
-import PageHome from "./pages/Home"
+import {loader as loaderHome} from "./pages/Home"
+import PagePredict from "./pages/Predict"
 
 const router = createBrowserRouter([
   {path:"/", element: <RootLayout />, children:[
-    {index:true, element:<PageHome />},
-    {path: "operation", element:<>Operation Page</>},
-    {path: "profile", element: <>Profile Page</>}
+    {index:true, loader: loaderHome},
+    {path: "predict", element:<PagePredict />},
+    {path: "profile", element: <>Profile Page</>},
+    {path: "logout", element: <>Logout</>},
   ]},
   {path: "/auth", element: <AuthPage />}
 ])
