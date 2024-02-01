@@ -1,6 +1,27 @@
-import { useState } from "react"
+import { TypeModalNewCompound, useContextCompoundModalNew } from "./compound/modal"
+import { TypeSearchBar, useContextCompoundPredictSearchBar } from "./compound/searchBar"
 
-export const ContextCompound = {
+export type TypeCompound = {
+	pk: number
+	trivial_name: string
+	cas_number: string
+	inci_name: string
+	smiles: string
+	comedogenicity_class: number
+}
+
+type TypeContextCompound = {
+	modal: {
+		newCompound: TypeModalNewCompound
+	}
+	predict: {
+		// searchBar in predict page
+		searchBar: TypeSearchBar
+	}
+}
+
+// used in createContext({compound})
+export const ContextCompound:TypeContextCompound = {
 	modal: {
 		newCompound: {
 			visibility: false,
@@ -8,24 +29,27 @@ export const ContextCompound = {
 			hide: () => {},
 		},
 	},
-}
-
-export const useContextCompoundModalNew = () => {
-	const [formNewVisibile, setFormNewVisible] = useState(false)
-	const newCompound = {
-		visibility: formNewVisibile,
-		hide: () => setFormNewVisible(false),
-		show: () => setFormNewVisible(true),
+	predict:{
+	// searchBar in predict page
+		searchBar:{
+			displayValue: "",
+			setDisplayValue: (val)=>{val},
+			selectedValue: null,
+			setSelectedValue: (val)=>{val}
+		}
 	}
-	return newCompound
 }
 
 export const useContextCompound = ()=>{
   const newCompound = useContextCompoundModalNew()
-  const compound = {
+	const searchBar:TypeSearchBar = useContextCompoundPredictSearchBar()
+  const compound:TypeContextCompound = {
     modal:{
       newCompound
-    }
+    },
+		predict:{
+			searchBar
+		}
   }
   return compound
 }

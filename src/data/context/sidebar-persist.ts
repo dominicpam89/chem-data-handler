@@ -15,7 +15,7 @@ export const ContextSidebarPersist:TypeContextSidebarPersist = {
 };
 
 export const useContextSidebarPersist = ()=>{
-  const [sidebarMinimize, setSidebarMinimize] = useState<boolean>(true)
+  const [sidebarMinimize, setSidebarMinimize] = useState<boolean>(false)
   const sidebar = {
     minimize: sidebarMinimize,
     maximizeSidebar: ()=>setSidebarMinimize(false),

@@ -21,16 +21,16 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 	const theme = useContextTheme()
 	const sidebar = useContextSidebar()
 	const sidebarPersist = useContextSidebarPersist()
-	const compound = useContextCompound()
 	const navigationItems = useContextNavigationItems()
+	const compound = useContextCompound()
 	return (
 		<ContextMain.Provider
 			value={{
 				theme,
 				sidebar,
-				compound,
 				sidebarPersist,
-				navigationItems
+				navigationItems,
+				compound,
 			}}
 		>
 			{children}

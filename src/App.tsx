@@ -3,11 +3,13 @@ import AuthPage from "./pages/Auth"
 import RootLayout from "./UI/Layout"
 import {loader as loaderHome} from "./pages/Home"
 import PagePredict from "./pages/Predict"
+import PagePredictTest from "./pages/Predict.test"
 
 const router = createBrowserRouter([
   {path:"/", element: <RootLayout />, children:[
     {index:true, loader: loaderHome},
     {path: "predict", element:<PagePredict />},
+    {path: "predict-test", element: <PagePredictTest />},
     {path: "profile", element: <>Profile Page</>},
     {path: "logout", element: <>Logout</>},
   ]},
