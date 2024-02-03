@@ -5,16 +5,17 @@ import { Container } from "./Predict.styled";
 import { useContext } from "react";
 import { ContextMain } from "../data/context/main";
 import Compounds from "./Predict/Compounds";
+import PredictCompound from "./Predict/Compound";
 
 const PagePredict = () => {
   const {searchBar} = useContext(ContextMain).compound.predict
-  searchBar
   const {compoundsData, compoundsState} = useGetCompounds()
   return (
 		<Container>
 			{compoundsState.isLoading && <UILoader />}
 			{compoundsData.data && <SearchBar data={compoundsData.data} />}
       {compoundsData.data && <Compounds data={compoundsData.data} />}
+      {searchBar.selectedValue && <PredictCompound />}
 		</Container>
   )
 }

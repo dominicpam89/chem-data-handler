@@ -13,7 +13,7 @@ const TestCompounds: React.FC<Props> = ({ data }) => {
 		pageSizeOptions,
 		paginationModel,
 		rowSelectionModel,
-		searchBar,
+		filterModel,
 		setPaginationModel,
 		setRowSelectionModel,
 		getRowId,
@@ -25,7 +25,7 @@ const TestCompounds: React.FC<Props> = ({ data }) => {
 				rows={data}
 				rowHeight={8 * 14}
 				getRowId={getRowId}
-				columns={columns}
+				columns={columns}	
 				paginationModel={paginationModel}
 				onPaginationModelChange={setPaginationModel}
 				pageSizeOptions={pageSizeOptions}
@@ -33,15 +33,7 @@ const TestCompounds: React.FC<Props> = ({ data }) => {
 				onRowSelectionModelChange={(newSelection) => {
 					setRowSelectionModel(newSelection)
 				}}
-				filterModel={{
-					items: [
-						{
-							field: "trivial_name",
-							operator: "contains",
-							value: searchBar.selectedValue?.trivial_name,
-						},
-					],
-				}}
+				filterModel={filterModel}
 			/>
 		</Box>
 	)

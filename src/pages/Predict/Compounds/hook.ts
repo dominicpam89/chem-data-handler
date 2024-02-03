@@ -6,7 +6,7 @@ import { TypeCompound } from "../../../data/context/compound";
 export const useGetParams = (data:TypeCompound[])=>{
 	const {searchBar} = useContext(ContextMain).compound.predict
   const [paginationModel, setPaginationModel] = useState({
-		pageSize: 10,
+		pageSize: 5,
 		page: 0,
 	})
 	const pageSizeOptions = [5,10,20,50,100]
@@ -37,6 +37,7 @@ export const useGetParams = (data:TypeCompound[])=>{
 		rowSelectionModel,
 		pageSizeOptions,
 		filterModel,
+		searchBar,
 		setPaginationModel,
 		setRowSelectionModel,
 		getRowId,

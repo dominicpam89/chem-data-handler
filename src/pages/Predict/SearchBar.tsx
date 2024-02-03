@@ -1,10 +1,10 @@
-import { Autocomplete } from "@mui/material"
-import { useContext } from "react"
+import Autocomplete from "@mui/material/Autocomplete"
+import { memo, useContext } from "react"
 import { ContextMain } from "../../data/context/main"
 import { TypeCompound } from "../../data/context/compound"
 import { TypeSearchBarSelectedValue } from "../../data/context/compound/searchBar"
 import RenderInput from "./SearchBar/RenderInput"
-import RenderOption from "./SearchBar/RenderOption"
+import {BoxContainer,CasNumber,TrivialName} from "./SearchBar/RenderOption"
 
 interface Props {
 	data: TypeCompound[]
@@ -27,13 +27,16 @@ const SearchBar: React.FC<Props> = ({ data }) => {
 				event
 				searchBar.setDisplayValue(newInputValue)
 			}}
-			disablePortal
 			id="compounds-search-field"
 			options={data}
 			getOptionLabel={(option) => option.trivial_name}
-			renderOption={(props, option) => (
-				<RenderOption key={option.pk} props={props} option={option} />
-			)}
+			renderOption={(props, option) => {
+				props
+				return <BoxContainer key={option.pk} props={props}>
+					<TrivialName>{option.trivial_name}</TrivialName>
+					<CasNumber>{option.cas_number}</CasNumber>
+				</BoxContainer>
+			}}
 			renderInput={(params) => (
 				<RenderInput key={params.id} params={params} />
 			)}
@@ -41,4 +44,4 @@ const SearchBar: React.FC<Props> = ({ data }) => {
 	)
 }
 
-export default SearchBar
+export default memo(SearchBar)

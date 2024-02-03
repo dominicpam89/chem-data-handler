@@ -33,12 +33,12 @@ const renderCellCasNumber = (params: GridRenderCellParams) => {
 	return casNum
 }
 
-const renderCellComedogenicity = (params:GridRenderCellParams)=>{
-	const {row}:{row:TypeCompound} = params
-	let comedogenicityVal:number|string = row.comedogenicity_class
-	if(!comedogenicityVal) comedogenicityVal = "-"
-	return <span>{comedogenicityVal}</span>
-}
+// const renderCellComedogenicity = (params:GridRenderCellParams)=>{
+// 	const {row}:{row:TypeCompound} = params
+// 	let comedogenicityVal:number|string = row.comedogenicity_class
+// 	if(!comedogenicityVal) comedogenicityVal = "-"
+// 	return <span>{comedogenicityVal}</span>
+// }
 
 export const columns: GridColDef[] = [
 	{
@@ -56,12 +56,12 @@ export const columns: GridColDef[] = [
 		width: 180,
 		renderCell: renderCellCasNumber,
 	},
-	{ field: "smiles", headerName: "Smiles", width: 180 },
-	{
-		field: "comedogenicity_class",
-		headerName: "Comedogenicity",
-		width: 240,
-		align: "center",
-		renderCell: renderCellComedogenicity,
-	},
+	// { field: "smiles", headerName: "Smiles", width: 180 },
+	// {
+	// 	field: "comedogenicity_class",
+	// 	headerName: "Comedogenicity",
+	// 	width: 240,
+	// 	align: "center",
+	// 	renderCell: renderCellComedogenicity,
+	// },
 ]

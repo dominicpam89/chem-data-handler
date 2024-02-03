@@ -10,6 +10,7 @@ interface Props {
 
 const Compounds: React.FC<Props> = ({ data }) => {
 	const {
+		searchBar,
 		pageSizeOptions,
 		paginationModel,
 		rowSelectionModel,
@@ -20,7 +21,7 @@ const Compounds: React.FC<Props> = ({ data }) => {
 	} = useGetParams(data)
 
 	return (
-		<Box>
+		!searchBar.selectedValue && <Box>
 			<DataGridStyled
 				rows={data}
 				rowHeight={8 * 14}

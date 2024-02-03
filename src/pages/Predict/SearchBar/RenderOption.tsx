@@ -1,37 +1,54 @@
-// import { Box, Typography } from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import { TypeCompound } from "../../../data/context/compound"
+import React, { memo } from "react"
 
-interface IRenderOption {
+export const BoxContainer: React.FC<{
+	children: React.ReactNode
 	props: React.HTMLAttributes<HTMLLIElement>
-	option: TypeCompound
-}
-const RenderOption: React.FC<IRenderOption> = ({ props, option }) => {
+}> = memo(({ children, props }) => {
 	return (
 		<Box component="li" {...props}>
 			<Box
-				component="span"
-				// sx={{
-				// 	width: "100%",
-				// 	display: "flex",
-				// 	justifyContent: "space-between",
-				// }}
+				component="div"
+				sx={{
+					padding: 1,
+					width: "100%",
+					display: "flex",
+					justifyContent: "space-between",
+					gap: 2,
+				}}
 			>
-				<Typography variant="body1" component="h3">
-					{option.trivial_name}
-				</Typography>
-				{/* <Typography
-					variant="body2"
-					component="h5"
-					fontSize={12}
-					sx={{ opacity: 0.6 }}
-				>
-					{option.smiles}
-				</Typography> */}
+				{children}
 			</Box>
 		</Box>
 	)
-}
+})
 
-export default RenderOption
+export const TrivialName: React.FC<{ children: React.ReactNode }> = memo(({
+	children,
+}) => {
+	return (
+		<Typography variant="body1" component="h3">
+			{children}
+		</Typography>
+	)
+})
+
+export const CasNumber: React.FC<{ children: React.ReactNode }> = memo(
+	({ children }) => {
+		return (
+			<Typography
+				variant="body2"
+				component="h5"
+				fontSize={12}
+				sx={{ opacity: 0.6 }}
+			>
+				{children}
+			</Typography>
+		)
+	}
+)
+
+export default function Default() {
+	return <></>
+}

@@ -10,7 +10,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "87-01-90",
 		inci_name: "Inci Additive Anusia",
 		smiles: "CCC3(C)C2CCC3C(C)CCCC(C)C)C(=C)CC1",
-		comedogenicity_class: 2,
+		// comedogenicity_class: 2,
 	},
 	{
 		pk: 2,
@@ -18,7 +18,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "45-67-89",
 		inci_name: "Inci Additive Abecmdiul",
 		smiles: "O=C(O)CCCCCCCCCCCCCCCCCCC",
-		comedogenicity_class: 1,
+		// comedogenicity_class: 1,
 	},
 	{
 		pk: 3,
@@ -26,7 +26,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "['121879-14-9', '6938-94-9']",
 		inci_name: "Additive AnusiaDiisopropyl adipate",
 		smiles: "O=C(OC(C)C)CCCCC(=O)OC(C)C",
-		comedogenicity_class: 0,
+		// comedogenicity_class: 0,
 	},
 	{
 		pk: 4,
@@ -34,7 +34,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "['121879-14-9', '6938-94-9']",
 		inci_name: "Test 4 Inci Name asdoq0w98y12",
 		smiles: "O=C(OC(C)C)CCCCC(=O)OC(C)CCCCOOOO",
-		comedogenicity_class: 2,
+		// comedogenicity_class: 2,
 	},
 	{
 		pk: 5,
@@ -42,7 +42,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "['121879-14-9', '6938-94-9']",
 		inci_name: "Test 4 Inci Name asdoq0w98y12",
 		smiles: "O=C(OC(C)C)CCCCC(=O)OC(C)CCCCOOOO",
-		comedogenicity_class: 1,
+		// comedogenicity_class: 1,
 	},
 	{
 		pk: 6,
@@ -50,7 +50,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "['121879-14-9', '6938-94-9']",
 		inci_name: "Test 4 Inci Name asdoq0w98y12",
 		smiles: "O=C(OC(C)C)CCCCC(=O)OC(C)CCCCOOOO",
-		comedogenicity_class: 2,
+		// comedogenicity_class: 2,
 	},
 	{
 		pk: 7,
@@ -58,7 +58,7 @@ const mockData: TypeCompound[] = [
 		cas_number: "['121879-14-9', '6938-94-9']",
 		inci_name: "Test 4 Inci Name asdoq0w98y12",
 		smiles: "O=C(OC(C)C)CCCCC(=O)OC(C)CCCCOOOO",
-		comedogenicity_class: 2,
+		// comedogenicity_class: 2,
 	},
 ]
 
