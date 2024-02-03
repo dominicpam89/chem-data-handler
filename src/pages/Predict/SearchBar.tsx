@@ -16,6 +16,7 @@ const SearchBar: React.FC<Props> = ({ data }) => {
 	} = useContext(ContextMain).compound
 	return (
 		<Autocomplete
+			sx={{ width: "100%" }}
 			value={searchBar.selectedValue}
 			onChange={(event: any, newValue: TypeSearchBarSelectedValue) => {
 				event
@@ -30,7 +31,6 @@ const SearchBar: React.FC<Props> = ({ data }) => {
 			id="compounds-search-field"
 			options={data}
 			getOptionLabel={(option) => option.trivial_name}
-			sx={{ width: "100%" }}
 			renderOption={(props, option) => (
 				<RenderOption key={option.pk} props={props} option={option} />
 			)}

@@ -38,6 +38,7 @@ const DesktopNavbarContainer: React.FC<Props> = ({ children }) => {
 	const { theme, scope } = useHooks()
 	return (
 		<Box
+			component="header"
 			ref={scope}
 			aria-label="desktop-navbar-container"
 			display={{ xs: "none", md: "block" }}

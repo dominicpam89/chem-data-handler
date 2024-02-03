@@ -27,8 +27,7 @@ const LayoutBase = styled("main")(({ theme }) => ({
 	- can be full width: DESKTOPNAVBARCONTAINERFULL_WIDTH (240px)
 */
 
-export const UIRootLayoutMainDesktop = styled(LayoutBase)(({ theme }) => ({
-	maxWidth: theme.breakpoints.values.md,
+export const UIRootLayoutMainDesktop = styled(LayoutBase)(({ }) => ({
 	display: "flex",
 	justifyContent: "center",
 	alignItems: "center",

@@ -1,4 +1,6 @@
-import { Box, Typography } from "@mui/material"
+// import { Box, Typography } from "@mui/material"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 import { TypeCompound } from "../../../data/context/compound"
 
 interface IRenderOption {
@@ -10,23 +12,23 @@ const RenderOption: React.FC<IRenderOption> = ({ props, option }) => {
 		<Box component="li" {...props}>
 			<Box
 				component="span"
-				sx={{
-					width: "100%",
-					display: "flex",
-					justifyContent: "space-between",
-				}}
+				// sx={{
+				// 	width: "100%",
+				// 	display: "flex",
+				// 	justifyContent: "space-between",
+				// }}
 			>
 				<Typography variant="body1" component="h3">
 					{option.trivial_name}
 				</Typography>
-				<Typography
+				{/* <Typography
 					variant="body2"
 					component="h5"
 					fontSize={12}
 					sx={{ opacity: 0.6 }}
 				>
 					{option.smiles}
-				</Typography>
+				</Typography> */}
 			</Box>
 		</Box>
 	)
