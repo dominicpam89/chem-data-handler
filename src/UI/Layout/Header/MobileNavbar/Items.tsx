@@ -9,7 +9,7 @@ const SidebarItems = () => {
 	return (
 		<List aria-label="list-container">
 			{items.map((item) => {
-				if (pathname === item.link)
+				if (pathname.includes(item.link))
 					return (
 						<ListItem key={item.id} className="active">
 							<ListItemIcon>{item.icon}</ListItemIcon>

@@ -23,13 +23,13 @@ const initialState = [
   {
 		id: "home",
 		text: "Home",
-		link: "/",
+		link: "/home",
 		icon: <HomeIcon fontSize="inherit" />,
 	},
 	{
-		id: "predict",
-		text: "Predict",
-		link: "/predict",
+		id: "compounds",
+		text: "Compounds",
+		link: "/compounds",
 		icon: <ScienceIcon fontSize="inherit" />,
 	},
 	{

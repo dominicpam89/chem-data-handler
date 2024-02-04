@@ -22,7 +22,7 @@ const ItemsMinimal = () => {
 				return (
 					<ListItem
 						key={item.id}
-						className={`${pathname === item.link ? "active" : ""}`}
+						className={`${pathname.includes(item.link) ? "active" : ""}`}
 					>
 						<ListItemLink to={item.link}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
