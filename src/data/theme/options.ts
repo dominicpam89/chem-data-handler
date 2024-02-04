@@ -1,4 +1,4 @@
-import { BreakpointsOptions, createTheme } from '@mui/material/styles';
+import { BreakpointsOptions, createTheme, PaletteOptions } from '@mui/material/styles';
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 
 export const ThemeTypography:TypographyOptions = {
@@ -40,7 +40,7 @@ export const ThemeBreakpoints:BreakpointsOptions = {
    }
 }
 
-export const LightPaletteOptions = {
+export const LightPaletteOptions:PaletteOptions = {
    primary: {
       main: "#202f64",
    },
@@ -58,10 +58,11 @@ export const LightPaletteOptions = {
    },
    info: {
       main: "#10a5e5",
+      contrastText: "#fff",
    },
 }
 
-export const DarkPaletteOptions = {
+export const DarkPaletteOptions:PaletteOptions = {
    primary: {
       main: "#3d5abf",
    },
@@ -76,6 +77,7 @@ export const DarkPaletteOptions = {
    },
    error: {
       main: "#d93865",
+      contrastText: "#fff",
    },
    info: {
       main: "#10a5e5",
