@@ -17,18 +17,30 @@ const ItemsMinimal = () => {
 	const { pathname } = useLocation()
 
 	return (
-		<List>
+		<List sx={{
+			paddingTop: sidebarPersist.minimize ? 4 : 0,
+			overflow: "hidden",
+		}}>
 			{items.map((item) => {
 				return (
 					<ListItem
 						key={item.id}
 						className={`${pathname.includes(item.link) ? "active" : ""}`}
+						sx={{
+							paddingLeft: sidebarPersist.minimize ? 2.4 : 4,
+							paddingRight: sidebarPersist.minimize ? 2 : 0,
+						}}
 					>
 						<ListItemLink to={item.link}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
-							{!sidebarPersist.minimize && (
-								<ListItemText>{item.text}</ListItemText>
-							)}
+								<ListItemText
+									sx={{
+										opacity: sidebarPersist.minimize ? 0 : 1,
+										transition: "all 600ms ease-in-out",
+									}}
+								>
+									{item.text}
+								</ListItemText>
 						</ListItemLink>
 					</ListItem>
 				)

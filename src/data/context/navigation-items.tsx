@@ -3,6 +3,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import ScienceIcon from "@mui/icons-material/Science"
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
 import LogoutIcon from "@mui/icons-material/Logout"
+import VpnKeyIcon from '@mui/icons-material/VpnKey'
 
 export type TypeNavItem = {
     id: string;
@@ -43,6 +44,12 @@ const initialState = [
 		text: "Logout",
 		link: "/logout",
 		icon: <LogoutIcon fontSize="inherit" />,
+	},
+	{
+		id: "auth-demo",
+		text: "Demo Auth",
+		link: "/auth",
+		icon: <VpnKeyIcon fontSize="inherit" />,
 	},
 ]
 

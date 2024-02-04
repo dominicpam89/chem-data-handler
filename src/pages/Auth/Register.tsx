@@ -5,6 +5,7 @@ import InputEmail from "./Common/InputEmail"
 import InputPassword from "./Common/InputPassword"
 import AuthButtons from "./Common/Buttons"
 import { Stack } from "@mui/material"
+import { useDemoLogin } from "../../data/hooks/useDemoLogin"
 
 export type TypeRegisterInputForm = {
 	name: {
@@ -16,6 +17,7 @@ export type TypeRegisterInputForm = {
 }
 
 const AuthRegister = () => {
+	const {onLoginState} = useDemoLogin()
 	const { control, handleSubmit, reset } = useForm<TypeRegisterInputForm>({
 		defaultValues: {
 			name: {
@@ -47,7 +49,7 @@ const AuthRegister = () => {
 			</Stack>
 			<InputEmail control={control} name="email" label="Email" />
 			<InputPassword control={control} name="password" label="Password" />
-			<AuthButtons reset={reset} switchMode="login" />
+			<AuthButtons reset={reset} switchMode="login" onLoginState={onLoginState} />
 		</AuthForm>
 	)
 }

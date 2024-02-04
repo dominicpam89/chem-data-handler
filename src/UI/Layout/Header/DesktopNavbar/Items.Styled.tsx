@@ -1,7 +1,7 @@
 import { IconButton, styled } from "@mui/material"
 import { Link } from "react-router-dom"
 
-export const ListStyled = styled("ul")(({ theme }) => ({
+export const List = styled("ul")(({ theme }) => ({
 	margin: 0,
 	padding: 0,
 	display: "flex",
@@ -9,10 +9,6 @@ export const ListStyled = styled("ul")(({ theme }) => ({
 	gap: theme.spacing(4),
 	listStyle: "none",
 }))
-
-export const List:React.FC<{children:React.ReactNode}> = ({children})=>{
-	return <ListStyled aria-label="list-container">{children}</ListStyled>
-}
 
 export const ListItem = styled("li")(({ theme, className }) => ({
 	color: className && className!.includes("active")

@@ -6,9 +6,14 @@ import { Stack } from "@mui/material"
 interface Props{
   switchMode: "register"|"login"
 	reset: UseFormReset<any>
+	onLoginState: {
+		isError: boolean;
+    isPending: boolean;
+    isSuccess: boolean;
+	}
 }
 
-const AuthButtons:React.FC<Props> = ({switchMode, reset}) => {
+const AuthButtons:React.FC<Props> = ({switchMode, reset, onLoginState}) => {
   const navigate = useNavigate()
 	return (
 		<>
@@ -23,6 +28,7 @@ const AuthButtons:React.FC<Props> = ({switchMode, reset}) => {
 					variant="outlined"
 					type="reset"
 					onClick={()=>reset()}
+					disabled={switchMode==="register" ? onLoginState.isPending:false}
 				>
 					Reset
 				</ButtonPrimary>
@@ -31,12 +37,14 @@ const AuthButtons:React.FC<Props> = ({switchMode, reset}) => {
 					variant="contained"
 					type="submit"
 					disableElevation
+					disabled={switchMode==="register" ? onLoginState.isPending:false}
 				>
 					Submit
 				</ButtonPrimary>
 			</Stack>
 
 			<ButtonPrimary
+				disabled={switchMode==="register" ? onLoginState.isPending:false}
 				onClick={(e) => {
 					e.preventDefault()
 					navigate(`/auth?mode=${switchMode}`)

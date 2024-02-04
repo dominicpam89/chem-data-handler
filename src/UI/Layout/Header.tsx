@@ -1,11 +1,13 @@
 import MobileNavbar from "./Header/MobileNavbar"
 import DekstopNavbar from "./Header/DesktopNavbar"
+import { useMediaQuery } from "@mui/material"
 
 const UILayoutHeader = () => {
+	const isDesktop = useMediaQuery('(min-width:768px)')
 	return (
 		<>
-				<MobileNavbar />
-				<DekstopNavbar />
+				{!isDesktop && <MobileNavbar />}
+				{isDesktop && <DekstopNavbar />}
 		</>
 	)
 }
