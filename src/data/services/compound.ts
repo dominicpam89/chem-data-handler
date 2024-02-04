@@ -1,4 +1,5 @@
 const URL = "https://charming-plum-handbag.cyclic.app"
+import { TypeCompound } from "../context/compound"
 import { getError } from "./errors"
 
 export const getCompounds = async ()=>{
@@ -7,6 +8,6 @@ export const getCompounds = async ()=>{
     const error = getError(response)
     throw error
   }
-  const data = await response.json()
+  const data:TypeCompound[] = await response.json()
   return data
 }

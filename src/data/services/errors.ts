@@ -23,6 +23,6 @@ export const getError = (response:Response)=>{
       errorMessage="Some errors"
       break
   }
-  const error = { errorStatus, errorMessage }
+  const error:ErrorFetch = { errorStatus, errorMessage }
   return error
 }
