@@ -3,13 +3,19 @@ import AuthPage from "./pages/Auth"
 import RootLayout from "./UI/Layout"
 import PageHome, {loader as loaderHome} from "./pages/Home"
 import PageCompounds from "./pages/Compounds"
+import PagePredictResult from "./pages/Compounds/Page_PredictResult"
+import PageAddCompound from "./pages/Compounds/Page_AddCompound"
 import PageProfile from "./pages/Profile"
 
 const router = createBrowserRouter([
   {path:"/", element: <RootLayout />, children:[
     {index:true, loader: loaderHome},
     {path: "home", element:<PageHome />},
-    {path: "compounds", element:<PageCompounds />},
+    {path: "compounds", children:[
+      {index:true, element:<PageCompounds />},
+      {path: "add", element: <PageAddCompound />},
+      {path: ":pk/result", element: <PagePredictResult />}
+    ]},
     {path: "profile", element: <PageProfile />},
     {path: "logout", element: <>Logout</>},
   ]},
