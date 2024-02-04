@@ -1,3 +1,8 @@
+export type ErrorFetch = {
+  errorStatus: number
+  errorMessage: string
+}
+
 export const getError = (response:Response)=>{
   const errorStatus = response.status
   let errorMessage:string = ""
