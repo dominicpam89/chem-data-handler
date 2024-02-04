@@ -1,7 +1,10 @@
-import { Typography } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 
 const PageProfile = () => {
-	return <Typography variant="h5" component="h1">PageProfile</Typography>
+	return <Stack direction="column" spacing={2}>
+    <Typography variant="h3" component="h1">PageProfile</Typography>
+    <Typography variant="body1" component="p">Wait for Auth API and another brief</Typography>
+  </Stack>
 }
 
 export default PageProfile
