@@ -1,14 +1,14 @@
 import { Box } from "@mui/material"
 import { TypeCompound } from "../../data/context/compound"
-import { useGetParams } from "./Compounds/hook"
-import { DataGridStyled } from "./Compounds/Styled"
-import { columns } from "./Compounds/Columns"
+import { useGetParams } from "./ListCompound/hook"
+import { DataGridStyled } from "./ListCompound/Styled"
+import { columns } from "./ListCompound/Columns"
 
 interface Props {
 	data: TypeCompound[]
 }
 
-const Compounds: React.FC<Props> = ({ data }) => {
+const ListCompound: React.FC<Props> = ({ data }) => {
 	const {
 		searchBar,
 		pageSizeOptions,
@@ -40,4 +40,4 @@ const Compounds: React.FC<Props> = ({ data }) => {
 	)
 }
 
-export default Compounds
+export default ListCompound

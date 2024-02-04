@@ -6,7 +6,7 @@ import TableHeadComponent from "./Compound/TableHeadComponent";
 import TableList from "./Compound/TableList";
 import Buttons from "./Compound/Buttons";
 
-const PredictCompound = () => {
+const Compound = () => {
   const {searchBar} = useContext(ContextMain).compound.predict
   const {selectedValue} = searchBar
   const keyPairArr = selectedValue ? Object.entries(selectedValue) : []
@@ -23,4 +23,4 @@ const PredictCompound = () => {
   )
 }
  
-export default PredictCompound;
+export default Compound;

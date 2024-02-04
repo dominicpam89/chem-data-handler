@@ -14,7 +14,7 @@ const Buttons = ()=>{
 			}}
 		>
 			<Button variant="outlined" color="error" onClick={()=>searchBar.setSelectedValue(null)}>
-				Clear
+				Back to Compounds
 			</Button>
 			<Button variant="contained" color="secondary">
 				Predict
