@@ -1,8 +1,10 @@
 import { Box, Button } from "@mui/material"
 import { useContext } from "react"
 import { ContextMain } from "../../../data/context/main"
+import { useNavigate } from "react-router-dom"
 
 const Buttons = ()=>{
+	const navigate = useNavigate()
 	const {searchBar} = useContext(ContextMain).compound.predict
   return (
 		<Box
@@ -14,9 +16,9 @@ const Buttons = ()=>{
 			}}
 		>
 			<Button variant="outlined" color="error" onClick={()=>searchBar.setSelectedValue(null)}>
-				Back to Compounds
+				Clear Search
 			</Button>
-			<Button variant="contained" color="secondary">
+			<Button variant="contained" color="secondary" onClick={()=>navigate(`${searchBar.selectedValue!.pk}/result`)}>
 				Predict
 			</Button>
 		</Box>
