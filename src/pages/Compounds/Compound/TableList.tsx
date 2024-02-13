@@ -68,27 +68,39 @@ const ComponentComedogenicity:React.FC<IComponentComedogenicity> = ({keyObject,v
 		? "success"
 		: valObject==="1"
 		? "warning"
-		: "error"
+		: valObject==="2"
+		? "error"
+		: "grey"
 	const level = valObject==="0"
 		? "low"
 		: valObject==="1"
 		? "medium"
-		: "high"
-	return <TableRow
-			key={keyObject}
-		>
+		: valObject==="2"
+		? "high"
+		: "none / unknown / null"
+	return (
+		<TableRow key={keyObject}>
 			<TableCell component="th" scope="row" sx={{ paddingX: 4 }}>
 				{keyObject}
 			</TableCell>
 			<TableCell align="left">
 				<Stack spacing={2} direction="row">
-					<ComedogenicityIndicator sx={{
-						backgroundColor: theme.palette[color].main
-					}} />
-					<Typography variant="body2">{valObject} ({level})</Typography>
+					<ComedogenicityIndicator
+						className={color}
+						sx={{
+							backgroundColor:
+								color !== "grey"
+									? theme.palette[color].main
+									: theme.palette[color][400],
+						}}
+					/>
+					<Typography variant="body2">
+						{level}
+					</Typography>
 				</Stack>
 			</TableCell>
 		</TableRow>
+	)
 }
 
 /* 
