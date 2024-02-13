@@ -1,10 +1,9 @@
 import { IconButton, Stack } from "@mui/material"
-import { useContext } from "react"
-import { ContextMain } from "../../../data/context/main"
 import { AppBarStyled, ToolbarStyled } from "./Styled"
 import MenuIcon from "@mui/icons-material/Menu"
 import NavbarSidebar from "./MobileNavbar/Sidebar"
 import { MobileNavbarBrandIcon, BrandText } from "../../Brand"
+import { useContextMain } from "../../../data/hooks/useContext"
 
 const Brand = ()=>{
 	return (
@@ -21,7 +20,7 @@ const Brand = ()=>{
 }
 
 const MobileNavbar = () => {
-	const { sidebar } = useContext(ContextMain)
+	const { sidebar } = useContextMain()
 	return (
 		<>
 			<AppBarStyled aria-label="mobile-nav">

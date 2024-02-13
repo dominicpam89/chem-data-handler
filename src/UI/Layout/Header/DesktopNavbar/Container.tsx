@@ -1,14 +1,13 @@
 import { useTheme, Box } from "@mui/material"
 import { DESKTOPNAVBARCONTAINERFULL_WIDTH, DESKTOPNAVBARCONTAINERMINIMIZE_WIDTH } from "../Styled"
-import { useContext } from "react"
-import { ContextMain } from "../../../../data/context/main"
+import { useContextMain } from "../../../../data/hooks/useContext"
 
 interface Props {
 	children: React.ReactNode
 }
 
 const DesktopNavbarContainer: React.FC<Props> = ({ children }) => {
-	const {sidebarPersist} = useContext(ContextMain)
+	const {sidebarPersist} = useContextMain()
 	const theme = useTheme()
 	return (
 		<Box

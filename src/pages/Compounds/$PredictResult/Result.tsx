@@ -1,14 +1,13 @@
 import { Button, Stack, Typography } from "@mui/material"
 import { TypeCompound } from "../../../data/context/compound"
 import { useNavigate } from "react-router-dom"
-import { useContext } from "react"
-import { ContextMain } from "../../../data/context/main"
+import { useContextMain } from "../../../data/hooks/useContext"
 
 interface Props{
   item: TypeCompound
 }
 const Result:React.FC<Props> = ({item}) => {
-	const {searchBar} = useContext(ContextMain).compound.predict
+	const {searchBar} = useContextMain().compound.predict
 	const navigate = useNavigate()
   return (
 		<Stack direction="column" spacing={2} alignItems="center">

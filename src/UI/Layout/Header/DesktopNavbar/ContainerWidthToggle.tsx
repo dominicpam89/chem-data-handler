@@ -1,12 +1,12 @@
 import { Box, IconButton, useTheme } from "@mui/material"
 import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle"
-import { useContext, useEffect } from "react"
-import { ContextMain } from "../../../../data/context/main"
+import { useEffect } from "react"
 import { useAnimate } from "framer-motion"
+import { useContextMain } from "../../../../data/hooks/useContext"
 
 const useHooks = ()=>{
 	const theme = useTheme()
-	const { sidebarPersist } = useContext(ContextMain)
+	const { sidebarPersist } = useContextMain()
 	const [scope, animate] = useAnimate()
 	useEffect(()=>{
 		if(sidebarPersist.minimize){

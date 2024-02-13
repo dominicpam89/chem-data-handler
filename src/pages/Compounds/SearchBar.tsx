@@ -1,12 +1,12 @@
 import Autocomplete from "@mui/material/Autocomplete"
-import { memo, useContext } from "react"
-import { ContextMain } from "../../data/context/main"
+import { memo } from "react"
 import { TypeCompound } from "../../data/context/compound"
 import { TypeSearchBarSelectedValue } from "../../data/context/compound/searchBar"
 import RenderInput from "./SearchBar/RenderInput"
 import {BoxContainer,CasNumber,TrivialName} from "./SearchBar/RenderOption"
 import { Button, Stack } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import { useContextMain } from "../../data/hooks/useContext"
 
 const SearchBarContainer:React.FC<{children:React.ReactNode}> = ({children})=>{
 	const navigate = useNavigate()
@@ -29,9 +29,7 @@ interface Props {
 }
 
 const SearchBar: React.FC<Props> = ({ data }) => {
-	const {
-		predict: { searchBar },
-	} = useContext(ContextMain).compound
+	const {searchBar} = useContextMain().compound.predict
 	return (
 		<SearchBarContainer>
 			<Autocomplete

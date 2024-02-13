@@ -1,7 +1,6 @@
 import { Box, Stack, useTheme } from "@mui/material"
 import { BrandText, DesktopNavbarBrandIcon } from "../../../Brand"
-import { useContext } from "react"
-import { ContextMain } from "../../../../data/context/main"
+import { useContextMain } from "../../../../data/hooks/useContext"
 
 const BrandComponent = () => {
 	const theme = useTheme()
@@ -30,7 +29,7 @@ const BrandComponent = () => {
 }
 
 const Brand = () => {
-	const { sidebarPersist } = useContext(ContextMain)
+	const { sidebarPersist } = useContextMain()
 	return !sidebarPersist.minimize && <BrandComponent />
 }
 

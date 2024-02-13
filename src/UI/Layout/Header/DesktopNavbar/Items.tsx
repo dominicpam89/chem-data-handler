@@ -1,6 +1,4 @@
-import { useContext } from "react"
 import { useLocation } from "react-router-dom"
-import { ContextMain } from "../../../../data/context/main"
 import {
 	List,
 	ListItem,
@@ -8,12 +6,13 @@ import {
 	ListItemLink,
 	ListItemText,
 } from "./Items.Styled"
+import { useContextMain } from "../../../../data/hooks/useContext"
 
 const ItemsMinimal = () => {
 	const {
 		sidebarPersist,
 		navigationItems: { items },
-	} = useContext(ContextMain)
+	} = useContextMain()
 	const { pathname } = useLocation()
 
 	return (

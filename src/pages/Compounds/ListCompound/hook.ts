@@ -1,10 +1,10 @@
 import { GridRowIdGetter, GridRowSelectionModel, GridValidRowModel } from "@mui/x-data-grid";
-import { useState, useContext, useEffect } from "react";
-import { ContextMain } from "../../../data/context/main";
+import { useState, useEffect } from "react";
 import { TypeCompound } from "../../../data/context/compound";
+import { useContextMain } from "../../../data/hooks/useContext";
 
 export const useGetParams = (data:TypeCompound[])=>{
-	const {searchBar} = useContext(ContextMain).compound.predict
+	const {searchBar} = useContextMain().compound.predict
   const [paginationModel, setPaginationModel] = useState({
 		pageSize: 5,
 		page: 0,

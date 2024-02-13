@@ -1,11 +1,10 @@
 import { Box, Button } from "@mui/material"
-import { useContext } from "react"
-import { ContextMain } from "../../../data/context/main"
 import { useNavigate } from "react-router-dom"
+import { useContextMain } from "../../../data/hooks/useContext"
 
 const Buttons = ()=>{
 	const navigate = useNavigate()
-	const {searchBar} = useContext(ContextMain).compound.predict
+	const {searchBar} = useContextMain().compound.predict
   return (
 		<Box
 			sx={{

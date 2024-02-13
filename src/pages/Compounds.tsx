@@ -1,14 +1,13 @@
 import { useGetCompounds } from "../data/hooks/useGetCompounds"
 import { Container } from "./Compounds.styled"
-import { useContext } from "react"
-import { ContextMain } from "../data/context/main"
 import UILoader from "../UI/Loader"
 import SearchBar from "./Compounds/SearchBar"
 import ListCompound from "./Compounds/ListCompound"
 import Compound from "./Compounds/Compound"
+import { useContextMain } from "../data/hooks/useContext"
 
 const PageCompounds = () => {
-	const { searchBar } = useContext(ContextMain).compound.predict
+	const { searchBar } = useContextMain().compound.predict
 	const { compoundsData, compoundsState } = useGetCompounds()
 	return (
 		<Container>

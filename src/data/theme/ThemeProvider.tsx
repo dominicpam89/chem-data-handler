@@ -1,7 +1,6 @@
-import { useContext } from "react"
-import { ContextMain } from "../context/main"
 import {default as MUIThemeProvider} from "@mui/material/styles/ThemeProvider"
 import CssBaseline from "@mui/material/CssBaseline"
+import { useContextMain } from "../hooks/useContext"
 
 
 interface Props{
@@ -9,10 +8,10 @@ interface Props{
 }
 
 const ThemeProvider: React.FC<Props> = ({ children }) => {
-   const {theme} = useContext(ContextMain)
+   const {current} = useContextMain().theme
    return (
       <>
-         <MUIThemeProvider theme={theme.current}>
+         <MUIThemeProvider theme={current}>
             <CssBaseline />
             {children}
          </MUIThemeProvider>

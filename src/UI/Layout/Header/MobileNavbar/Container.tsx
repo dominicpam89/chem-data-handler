@@ -1,13 +1,12 @@
 import { Box } from "@mui/material"
-import React, { useContext } from "react"
-import { ContextMain } from "../../../../data/context/main"
+import { useContextMain } from "../../../../data/hooks/useContext"
 
 interface Props {
 	children: React.ReactNode
 }
 
 const SidebarContainer: React.FC<Props> = ({ children }) => {
-	const { sidebar } = useContext(ContextMain)
+	const { sidebar } = useContextMain()
 	return (
 		<Box
 			aria-label="sidebar-container"

@@ -1,11 +1,10 @@
-import { useContext } from "react"
 import { useLocation } from "react-router-dom"
-import { ContextMain } from "../../../../data/context/main"
 import { List, ListItem, ListItemIcon, ListItemLink } from "./Styled"
+import { useContextMain } from "../../../../data/hooks/useContext"
 
 const SidebarItems = () => {
 	const { pathname } = useLocation()
-	const {navigationItems:{items}} = useContext(ContextMain)
+	const {items} = useContextMain().navigationItems
 	return (
 		<List aria-label="list-container">
 			{items.map((item) => {

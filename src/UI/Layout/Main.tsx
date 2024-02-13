@@ -1,12 +1,11 @@
 import { styled, useMediaQuery, useTheme } from "@mui/material"
-import { useContext } from "react"
-import { ContextMain } from "../../data/context/main"
 import {
 	DESKTOPNAVBARCONTAINERFULL_WIDTH,
 	DESKTOPNAVBARCONTAINERMINIMIZE_WIDTH,
 	APPBAR_HEIGHT,
 	TOOLBAR_STYLED_PADDING,
 } from "./Header/Styled"
+import { useContextMain } from "../../data/hooks/useContext"
 
 const LayoutBase = styled("main")(({ theme }) => ({
 	[theme.breakpoints.up("xs")]: {
@@ -51,7 +50,7 @@ interface Props {
 export const UILayoutMainRootComponent: React.FC<Props> = ({ children }) => {
 	const theme = useTheme()
 	const isDesktop = useMediaQuery(theme.breakpoints.up("md"))
-	const { sidebarPersist } = useContext(ContextMain)
+	const { sidebarPersist } = useContextMain()
 	if (isDesktop)
 		return (
 			<UIRootLayoutMainDesktop

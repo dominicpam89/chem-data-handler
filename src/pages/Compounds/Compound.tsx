@@ -1,13 +1,12 @@
-import { useContext } from "react";
-import { ContextMain } from "../../data/context/main";
 import { Table, TableBody, TableContainer, Paper } from "@mui/material";
 import TableHeadComponent from "./Compound/TableHeadComponent";
 import TableList from "./Compound/TableList";
 import Buttons from "./Compound/Buttons";
 import CompoundImage from "./Compound/Image";
+import { useContextMain } from "../../data/hooks/useContext";
 
 const Compound = () => {
-  const {searchBar} = useContext(ContextMain).compound.predict
+  const {searchBar} = useContextMain().compound.predict
   const {selectedValue} = searchBar
   const keyPairArr = selectedValue ? Object.entries(selectedValue) : []
   return (
