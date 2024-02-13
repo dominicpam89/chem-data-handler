@@ -1,10 +1,24 @@
-import { TableCell, TableRow } from "@mui/material"
+import { Box, Stack, TableCell, TableRow, Typography, styled, useTheme } from "@mui/material"
 
-interface IComponentNotCas{
+/* 
+	-------------------------------------------------
+	PARTIAL COMPONENT
+*/
+interface IComponentCommon{
 	keyObject:string
 	valObject:string|number
 }
-const ComponentNotCas:React.FC<IComponentNotCas> = ({keyObject, valObject})=>{
+
+interface IComponentCasNumber{
+	valObject: string
+}
+
+interface IComponentComedogenicity{
+	keyObject: string
+	valObject: string
+}
+
+const ComponentCommon:React.FC<IComponentCommon> = ({keyObject, valObject})=>{
 	return <TableRow
 			key={keyObject}
 		>
@@ -17,10 +31,15 @@ const ComponentNotCas:React.FC<IComponentNotCas> = ({keyObject, valObject})=>{
 		</TableRow>
 }
 
-interface IComponentCasNumber{
-	casNums:string[]
-}
-const ComponentCasNumber:React.FC<IComponentCasNumber> = ({casNums})=>{
+const ComponentCasNumber:React.FC<IComponentCasNumber> = ({valObject})=>{
+	let casNums:string[] = []
+	const isValCasMoreThanOne = valObject.includes("["||"]")
+	casNums = isValCasMoreThanOne
+		? valObject
+				.replace(/[\[\]']/g, "")
+				.split(",")
+		: [valObject]
+
 	return casNums.map((casNum,index)=>{
 		return <TableRow
 			key={casNum}
@@ -36,19 +55,57 @@ const ComponentCasNumber:React.FC<IComponentCasNumber> = ({casNums})=>{
 }
 
 
+
+const ComedogenicityIndicator = styled(Box)(() => ({
+	height: 24,
+	width: 24,
+	borderRadius: 9999,
+}))
+
+const ComponentComedogenicity:React.FC<IComponentComedogenicity> = ({keyObject,valObject})=>{
+	const theme = useTheme()
+	const color = valObject==="0"
+		? "success"
+		: valObject==="1"
+		? "warning"
+		: "error"
+	const level = valObject==="0"
+		? "low"
+		: valObject==="1"
+		? "medium"
+		: "high"
+	return <TableRow
+			key={keyObject}
+		>
+			<TableCell component="th" scope="row" sx={{ paddingX: 4 }}>
+				{keyObject}
+			</TableCell>
+			<TableCell align="left">
+				<Stack spacing={2} direction="row">
+					<ComedogenicityIndicator sx={{
+						backgroundColor: theme.palette[color].main
+					}} />
+					<Typography variant="body2">{valObject} ({level})</Typography>
+				</Stack>
+			</TableCell>
+		</TableRow>
+}
+
+/* 
+	-------------------------------------------------
+	MAIN COMPONENT
+*/
 interface IProps{
   row: [string, string | number]
 }
 const TableList:React.FC<IProps> = ({row})=>{
 	const key = row[0]
 	const val = row[1]
-	let casNums:string[] = []
-	const isValCasMoreThanOne = String(val).includes("["||"]")
-	if(isValCasMoreThanOne){
-		casNums = String(val).replace(/[\[\]']/g,"").split(",")
-		return <ComponentCasNumber casNums={casNums} />
-	}
-	if(!isValCasMoreThanOne) return <ComponentNotCas keyObject={key} valObject={val} />
+	const isRowCas = key==="cas_number"
+	const isRowComedogenicity = key === "comedogenicity_class"
+	if(isRowCas) return <ComponentCasNumber valObject={String(val)} />
+	if(isRowComedogenicity) return <ComponentComedogenicity keyObject={key} valObject={String(val)} />
+	if(!isRowCas && !isRowComedogenicity) return <ComponentCommon keyObject={key} valObject={val} />
 }
 
 export default TableList
