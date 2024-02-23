@@ -1,14 +1,11 @@
 import { Button, Stack, Typography } from "@mui/material"
 import { TypeCompound } from "../../../data/context/compound"
 import { useNavigate } from "react-router-dom"
-import { useContext } from "react"
-import { ContextMain } from "../../../data/context/main"
 
 interface Props{
   item: TypeCompound
 }
 const Result:React.FC<Props> = ({item}) => {
-	const {searchBar} = useContext(ContextMain).compound.predict
 	const navigate = useNavigate()
   return (
 		<Stack direction="column" spacing={2} alignItems="center">
@@ -22,9 +19,8 @@ const Result:React.FC<Props> = ({item}) => {
 				Temporary Page until API is ready
 			</Typography>
       <Button variant="outlined" color="info" onClick={()=>{
-				searchBar.setSelectedValue(null)
-				navigate("/compounds")
-			}}>Back to Compounds</Button>
+				navigate("/compounds/"+item.pk)
+			}}>Back</Button>
 		</Stack>
 	)
 }

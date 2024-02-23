@@ -32,9 +32,9 @@ const AddCompound = () => {
 						onInputFilterChange={onInputFilterChange}
 					/>
 					<InputSearch inputFilter={inputFilter} />
+					<ButtonActions />
 				</Form>
 			</PubChemContainer>
-			<ButtonActions />
 		</Container>
 	)
 }

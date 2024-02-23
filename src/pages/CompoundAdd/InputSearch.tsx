@@ -14,7 +14,7 @@ const Label = styled(InputLabel)(({theme})=>({
 
 const InputCID = () => (
 	<FormControl>
-		<Label htmlFor="cid">By ID</Label>
+		<Label htmlFor="cid">Search by ID</Label>
 		<OutlinedInput id="cid" name="cid" />
 		<HelperText id="cid">
 			Search based on ID of compound in Pubchem Database (number)
@@ -23,15 +23,15 @@ const InputCID = () => (
 )
 
 const InputName = ()=><FormControl>
-  <Label htmlFor="name">By Name</Label>
-  <OutlinedInput id="name" name="name" />
+  <Label htmlFor="name">Search by Name</Label>
+  <OutlinedInput id="name" name="name" autoComplete="off" />
   <HelperText id="name">
     Compound Name to search in Pubchem database
   </HelperText>
 </FormControl>
 
 const InputSmiles = ()=><FormControl>
-  <Label htmlFor="smiles">By Structure</Label>
+  <Label htmlFor="smiles">Search by Structure</Label>
   <OutlinedInput id="smiles" name="smiles" />
   <HelperText id="smiles">
     Compound Structure Identity known as SMILES, to search in Pubchem database

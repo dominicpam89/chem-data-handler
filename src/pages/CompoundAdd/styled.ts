@@ -1,6 +1,7 @@
 import { Box, InputLabel as InputLabelBase, styled } from "@mui/material"
 
 export const Container = styled(Box)(({theme})=>({
+	maxWidth: theme.breakpoints.values.md,
 	width: "100%",
 	display: "flex",
 	flexDirection: "column",

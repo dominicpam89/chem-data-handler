@@ -3,11 +3,11 @@ import AuthPage from "./pages/Auth"
 import RootLayout from "./UI/Layout"
 import PageHome, {loader as loaderHome} from "./pages/Home"
 import PageCompounds from "./pages/Compounds"
-import PagePredictResult from "./pages/Compounds/Page_PredictResult"
+import PageCompound from "./pages/Compound"
 import PageAddCompound from "./pages/CompoundAdd"
+import PagePredictResult from "./pages/Compound/_PredictResult"
 import PageProfile from "./pages/Profile"
 import { loaderLogout } from "./pages/Logout"
-import PageCompound from "./pages/Compound"
 
 const router = createBrowserRouter([
   {path:"/", element: <RootLayout />, children:[
@@ -15,9 +15,9 @@ const router = createBrowserRouter([
     {path: "home", element:<PageHome />},
     {path: "compounds", children:[
       {index:true, element:<PageCompounds />},
-      {path: "add", element: <PageAddCompound />},
       {path: ":pk", element: <PageCompound />},
-      {path: ":pk/result", element: <PagePredictResult />}
+      {path: ":pk/result", element: <PagePredictResult />},
+      {path: "add", element: <PageAddCompound />},
     ]},
     {path: "profile", element: <PageProfile />},
     {path: "logout", loader: loaderLogout},
