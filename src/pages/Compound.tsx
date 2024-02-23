@@ -3,11 +3,11 @@ import TableHeadComponent from "./Compound/TableHeadComponent"
 import TableList from "./Compound/TableList"
 import Buttons from "./Compound/Buttons"
 import CompoundImage from "./Compound/Image"
-import { Container } from "./../Compounds.styled"
-import { useGetCompound } from "../../data/hooks/useGetCompound"
-import UILoader from "../../UI/Loader"
+import { Container } from "./Compounds.styled"
+import { useGetCompound } from "../data/hooks/useGetCompound"
+import UILoader from "../UI/Loader"
 
-const Compound = () => {
+const PageCompound = () => {
 	const { compoundData, compoundState } = useGetCompound()
 	const data = compoundData.data || null
 	/* 
@@ -39,4 +39,4 @@ const Compound = () => {
 	}
 }
 
-export default Compound
+export default PageCompound

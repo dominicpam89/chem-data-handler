@@ -1,8 +1,9 @@
 import { useGetCompounds } from "../data/hooks/useGetCompounds"
-import { Container } from "./Compounds.styled"
 import UILoader from "../UI/Loader"
 import SearchBar from "./Compounds/SearchBar"
 import ListCompound from "./Compounds/ListCompound"
+import { Box, styled } from "@mui/material"
+import { Container } from "./Compounds.styled"
 
 const PageCompounds = () => {
 	const { compoundsData, compoundsState } = useGetCompounds()

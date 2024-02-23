@@ -1,5 +1,5 @@
 import { styled } from "@mui/material"
-import { useGetCompoundImage } from "../../../data/hooks/useGetCompoundImage";
+import { useGetCompoundImage } from "../../data/hooks/useGetCompoundImage";
 import { motion } from "framer-motion"
 import { PropsWithChildren } from "react";
 

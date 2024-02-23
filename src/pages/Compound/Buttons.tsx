@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material"
 import { useContext } from "react"
-import { ContextMain } from "../../../data/context/main"
+import { ContextMain } from "../../data/context/main"
 import { useNavigate } from "react-router-dom"
 
 const Buttons = ()=>{
