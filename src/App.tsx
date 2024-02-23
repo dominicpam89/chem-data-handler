@@ -4,7 +4,7 @@ import RootLayout from "./UI/Layout"
 import PageHome, {loader as loaderHome} from "./pages/Home"
 import PageCompounds from "./pages/Compounds"
 import PagePredictResult from "./pages/Compounds/Page_PredictResult"
-import PageAddCompound from "./pages/Compounds/Page_AddCompound"
+import PageAddCompound from "./pages/CompoundAdd"
 import PageProfile from "./pages/Profile"
 import { loaderLogout } from "./pages/Logout"
 
