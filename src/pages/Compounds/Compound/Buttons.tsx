@@ -15,10 +15,13 @@ const Buttons = ()=>{
 				gap: 1,
 			}}
 		>
-			<Button variant="outlined" color="error" onClick={()=>searchBar.setSelectedValue(null)}>
+			<Button variant="outlined" color="error" onClick={()=>{
+				searchBar.setSelectedValue(null)
+				navigate("/compounds")
+			}}>
 				Clear Search
 			</Button>
-			<Button variant="contained" color="secondary" onClick={()=>navigate(`${searchBar.selectedValue!.pk}/result`)}>
+			<Button variant="contained" color="secondary" onClick={()=>navigate(`result`)}>
 				Predict
 			</Button>
 		</Box>

@@ -11,3 +11,14 @@ export const getCompounds = async ()=>{
   const data:TypeCompound[] = await response.json()
   return data
 }
+
+export const getCompound = async (id:string)=>{
+  const response = await fetch(URL+"/compounds?pk="+id)
+  if(!response.ok){
+    const error = getError(response)
+    throw error
+  }
+  const dataArr = await response.json()
+  const data:TypeCompound = await dataArr[0]
+  return data
+}

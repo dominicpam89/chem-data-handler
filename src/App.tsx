@@ -7,6 +7,7 @@ import PagePredictResult from "./pages/Compounds/Page_PredictResult"
 import PageAddCompound from "./pages/CompoundAdd"
 import PageProfile from "./pages/Profile"
 import { loaderLogout } from "./pages/Logout"
+import Compound from "./pages/Compounds/Compound"
 
 const router = createBrowserRouter([
   {path:"/", element: <RootLayout />, children:[
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     {path: "compounds", children:[
       {index:true, element:<PageCompounds />},
       {path: "add", element: <PageAddCompound />},
+      {path: ":pk", element: <Compound />},
       {path: ":pk/result", element: <PagePredictResult />}
     ]},
     {path: "profile", element: <PageProfile />},
