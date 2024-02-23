@@ -1,15 +1,14 @@
 export const PUBCHEM_BASE_API = "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
 
-export enum EInputSearch{
-  "Identifier"="cid",
-  "Name"="name",
-  "StructureIdentity"="smiles",
-}
-
 export type TType = "compound"|"substance"
 export type TInputSearch = "cid"|"name"|"smiles"
+export const inputSearchOptions:{val:TInputSearch, text:string}[] = [
+  {val: "cid", text:"By CID"},
+  {val: "name", text:"By Name"},
+  {val: "smiles", text:"By SMILES"},
+]
 
-export const pubchemGetURL = (dataType:TType, inputBy: TInputSearch, inputByVal:string)=>{
+export const pubchemGetURL = (dataType:TType="compound", inputBy: TInputSearch, inputByVal:string)=>{
   
   /* 
     target return URL:
