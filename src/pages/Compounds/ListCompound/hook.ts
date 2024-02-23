@@ -2,8 +2,10 @@ import { GridRowIdGetter, GridRowSelectionModel, GridValidRowModel } from "@mui/
 import { useState, useContext, useEffect } from "react";
 import { ContextMain } from "../../../data/context/main";
 import { TypeCompound } from "../../../data/context/compound";
+import { useNavigate } from "react-router-dom";
 
 export const useGetParams = (data:TypeCompound[])=>{
+	const navigate = useNavigate()
 	const {searchBar} = useContext(ContextMain).compound.predict
   const [paginationModel, setPaginationModel] = useState({
 		pageSize: 5,
@@ -16,7 +18,7 @@ export const useGetParams = (data:TypeCompound[])=>{
 		if(rowSelectionModel.length>0){
 			const id = rowSelectionModel.at(0)
 			const targetData = data.find(item=>item.pk===id)
-			targetData && searchBar.setSelectedValue(targetData)
+			targetData && navigate("/compounds/"+targetData.pk)
 		}
 	},[rowSelectionModel])
 
