@@ -1,8 +1,7 @@
 import { delay, http, HttpResponse } from "msw"
-import { pubchemGetURL } from "./pubchem"
 import { mockJSON_cid_500, mockJSON_name_glucose, mockJSON_smiles_acetone } from "./mockHandlers/mockDataAll"
+import { pubchemGetURL } from "./pubchem/method"
 
-export const mockGetCompoundByCid = pubchemGetURL("compound", "cid", "500")
 export const mockGetCompoundByName = pubchemGetURL("compound", "name", "glucose")
 export const mockGetCompoundBySmiles = pubchemGetURL("compound", "smiles", "O=C(C)C")
 
@@ -22,7 +21,6 @@ export const mockResolverCompoundBySmilesAll = async ()=>{
 }
 
 export const handlers = [
-  http.post(mockGetCompoundByCid, mockResolverCompoundByCidAll),
-  http.post(mockGetCompoundByName, mockResolverCompoundByNameAll),
-  http.post(mockGetCompoundBySmiles, mockResolverCompoundBySmilesAll)
+  http.get(mockGetCompoundByName, mockResolverCompoundByNameAll),
+  http.get(mockGetCompoundBySmiles, mockResolverCompoundBySmilesAll)
 ]

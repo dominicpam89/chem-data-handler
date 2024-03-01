@@ -1,27 +1,27 @@
 import { SelectChangeEvent } from "@mui/material"
 import { Container, PubChemContainer, Form } from "./CompoundAdd/styled"
-import { TInputSearch } from "../data/utils/pubchem"
 import { useState } from "react"
 import InputFilter from "./CompoundAdd/InputFilter"
 import InputSearch from "./CompoundAdd/InputSearch"
 import FormTitle from "./CompoundAdd/FormTitle"
 import ButtonActions from "./CompoundAdd/ButtonActions"
 import SearchResult from "./CompoundAdd/SearchResult"
+import { TPubchemInputFilter } from "../data/utils/pubchem/input-filter"
 
 export interface IInputFilterProps {
-	inputFilter: TInputSearch
-	onInputFilterChange: (e: SelectChangeEvent<TInputSearch>) => void
+	inputFilter: TPubchemInputFilter
+	onInputFilterChange: (e: SelectChangeEvent<TPubchemInputFilter>) => void
 }
 
 export interface IInputSearchProps {
-	inputFilter: TInputSearch
+	inputFilter: TPubchemInputFilter
 }
 
 const AddCompound = () => {
-	const [inputFilter, setInputFilter] = useState<TInputSearch>("name")
-	const onInputFilterChange = (e: SelectChangeEvent<TInputSearch>) => {
+	const [inputFilter, setInputFilter] = useState<TPubchemInputFilter>("name")
+	const onInputFilterChange = (e: SelectChangeEvent<TPubchemInputFilter>) => {
 		const filter = e.target.value
-		setInputFilter(filter as TInputSearch)
+		setInputFilter(filter as TPubchemInputFilter)
 	}
 	return (
 		<Container aria-label="compound-add-container">

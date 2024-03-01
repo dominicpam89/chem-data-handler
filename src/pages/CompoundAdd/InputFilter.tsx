@@ -1,7 +1,7 @@
 import { FormControl, Select, MenuItem } from "@mui/material";
-import { inputSearchOptions } from "../../data/utils/pubchem";
 import { InputLabel } from "./styled";
 import { IInputFilterProps } from "../CompoundAdd";
+import { inputSearchOptions } from "../../data/utils/pubchem/input-filter";
 
 const InputFilter:React.FC<IInputFilterProps> = ({inputFilter, onInputFilterChange}) => {
   return (

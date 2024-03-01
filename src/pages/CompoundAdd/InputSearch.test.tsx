@@ -1,16 +1,9 @@
 import { render, screen } from "@testing-library/react"
 import InputSearch from "./InputSearch"
-import { TInputSearch } from "../../data/utils/pubchem"
+import { TPubchemInputFilter } from "../../data/utils/pubchem/input-filter"
 
-const inputFilterMockCID:TInputSearch = "cid"
-const inputFilterMockName:TInputSearch = "name"
-const inputFilterMockSmiles:TInputSearch = "smiles"
-
-test("inputSearch as cid", ()=>{
-  render(<InputSearch inputFilter={inputFilterMockCID} />)
-  const textFieldElement = screen.getByLabelText("id", {exact:false})
-  expect(textFieldElement).toBeInTheDocument()
-})
+const inputFilterMockName:TPubchemInputFilter = "name"
+const inputFilterMockSmiles:TPubchemInputFilter = "smiles"
 
 test("inputSearch as name", ()=>{
   render(<InputSearch inputFilter={inputFilterMockName} />)
