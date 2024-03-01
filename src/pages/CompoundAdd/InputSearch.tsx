@@ -1,10 +1,13 @@
 import { FormControl, FormHelperText, InputLabel, OutlinedInput, styled } from "@mui/material";
 import { IInputSearchProps } from "../CompoundAdd";
 
-const HelperText = styled(FormHelperText)(({})=>({
+const HelperText = styled(FormHelperText)(({theme})=>({
   paddingTop: 1,
-  fontSize: 16,
+  fontSize: 14,
   fontStyle: "italic",
+  [theme.breakpoints.up("md")]:{
+    fontSize: 16
+  }
 }))
 
 const Label = styled(InputLabel)(({theme})=>({
@@ -12,15 +15,6 @@ const Label = styled(InputLabel)(({theme})=>({
   padding: "0 8px",
 }))
 
-const InputCID = () => (
-	<FormControl>
-		<Label htmlFor="cid">Search by ID</Label>
-		<OutlinedInput id="cid" name="cid" />
-		<HelperText id="cid">
-			Search based on ID of compound in Pubchem Database (number)
-		</HelperText>
-	</FormControl>
-)
 
 const InputName = ()=><FormControl>
   <Label htmlFor="name">Search by Name</Label>
@@ -42,9 +36,6 @@ const InputSearch:React.FC<IInputSearchProps> = ({inputFilter}) => {
   let content = <></>
   switch(inputFilter){
     default:
-      content = <InputCID />
-      break
-    case "name":
       content = <InputName />
       break
     case "smiles":

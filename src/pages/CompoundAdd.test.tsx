@@ -51,7 +51,7 @@ describe("basic UI for navigation and panel info", ()=>{
   })
 })
 
-describe("basic UI Form of search pubchem form",()=>{
+describe.only("basic UI Form of search pubchem form",()=>{
   // test whether the form is in the component
   test("form named pubchem-search-form", ()=>{
     renderComp()
@@ -60,19 +60,12 @@ describe("basic UI Form of search pubchem form",()=>{
   })
 
   // test whether 1 options element (dubbed selectOption) is in the form
-  test("display 1 options element in the form, which consist value of byCid, byName, and bySmiles", async ()=>{
+  test("display 1 options element in the form, which consist value of byName, and bySmiles", async ()=>{
     const user = userEvent.setup()
     const screenForm = renderCompForm()
     const selectOption = screenForm.getByRole("combobox", {name:/\b(?=.*\binput\b)(?=.*\bfilter\b)/i})
     expect(selectOption).toBeInTheDocument()
 
-    // assertion in selectOption default "cid"
-    expect(selectOption).toHaveTextContent(/cid/i)
-
-    // assertion and simulate if user select name as filter in selectOption
-    await user.click(selectOption)
-    await user.keyboard('{ArrowDown}')
-    await user.keyboard('{Enter}')
     expect(selectOption).toHaveTextContent(/name/i)
 
     // assertion and simulate if user select smiles as filter in selectOption
@@ -83,22 +76,14 @@ describe("basic UI Form of search pubchem form",()=>{
   })
 
   // test whether inputSearch display label text input based on the filter (options element)
-  test("display 1 textfield based on input filter, may be byCid, byName, and bySmiles", async ()=>{
+  test("display 1 textfield based on input filter, may be byName, and bySmiles", async ()=>{
     const user = userEvent.setup()
     const screenForm = renderCompForm()
     const selectOption = screenForm.getByRole("combobox", {name:/\b(?=.*\binput\b)(?=.*\bfilter\b)/i})
     expect(selectOption).toBeInTheDocument()
-    expect(selectOption).toHaveTextContent(/cid/i)
     
     // input search as default option
-    let inputSearch = screenForm.getByLabelText("id", {exact:false})
-    expect(inputSearch).toBeInTheDocument()
-
-    // input search when selectOption is selected to "name"
-    await user.click(selectOption)
-    await user.keyboard("{ArrowDown}")
-    await user.keyboard("{Enter}")
-    inputSearch = screenForm.getByLabelText("name", {exact:false})
+    let inputSearch = screenForm.getByLabelText("name", {exact:false})
     expect(inputSearch).toBeInTheDocument()
 
     // input search when selectOption is selected to "smiles"

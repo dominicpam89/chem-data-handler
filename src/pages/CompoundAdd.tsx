@@ -6,6 +6,7 @@ import InputFilter from "./CompoundAdd/InputFilter"
 import InputSearch from "./CompoundAdd/InputSearch"
 import FormTitle from "./CompoundAdd/FormTitle"
 import ButtonActions from "./CompoundAdd/ButtonActions"
+import SearchResult from "./CompoundAdd/SearchResult"
 
 export interface IInputFilterProps {
 	inputFilter: TInputSearch
@@ -17,7 +18,7 @@ export interface IInputSearchProps {
 }
 
 const AddCompound = () => {
-	const [inputFilter, setInputFilter] = useState<TInputSearch>("cid")
+	const [inputFilter, setInputFilter] = useState<TInputSearch>("name")
 	const onInputFilterChange = (e: SelectChangeEvent<TInputSearch>) => {
 		const filter = e.target.value
 		setInputFilter(filter as TInputSearch)
@@ -26,6 +27,7 @@ const AddCompound = () => {
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
 				<FormTitle>Pubchem Search</FormTitle>
+				<SearchResult />
 				<Form aria-label="pubchem-search-form">
 					<InputFilter
 						inputFilter={inputFilter}
