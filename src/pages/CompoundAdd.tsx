@@ -1,44 +1,61 @@
-import { SelectChangeEvent } from "@mui/material"
-import { Container, PubChemContainer, Form } from "./CompoundAdd/styled"
-import { useState } from "react"
-import InputFilter from "./CompoundAdd/InputFilter"
-import InputSearch from "./CompoundAdd/InputSearch"
-import FormTitle from "./CompoundAdd/FormTitle"
-import ButtonActions from "./CompoundAdd/ButtonActions"
-import SearchResult from "./CompoundAdd/SearchResult"
-import { TPubchemInputFilter } from "../data/utils/pubchem/input-filter"
+/** Modules */
+import { inputSearchOptions } from "../data/utils/pubchem/input-filter";
+import {
+	pubchemOutputFilterChoices,
+	pubchemOperationChoices,
+} from "../data/utils/pubchem/output-filter";
 
-export interface IInputFilterProps {
-	inputFilter: TPubchemInputFilter
-	onInputFilterChange: (e: SelectChangeEvent<TPubchemInputFilter>) => void
-}
-
-export interface IInputSearchProps {
-	inputFilter: TPubchemInputFilter
-}
+/** Components */
+import { Container, PubChemContainer, Form } from "./CompoundAdd/styled";
+import FormTitle from "./CompoundAdd/FormTitle";
+import InputSearch from "./CompoundAdd/FormSearchInput";
+import ButtonActions from "./CompoundAdd/FormButtons";
+import FormFilter from "./CompoundAdd/FormFilter";
+import { useHookCompoundAdd } from "../data/hooks/useCompoundAdd";
 
 const AddCompound = () => {
-	const [inputFilter, setInputFilter] = useState<TPubchemInputFilter>("name")
-	const onInputFilterChange = (e: SelectChangeEvent<TPubchemInputFilter>) => {
-		const filter = e.target.value
-		setInputFilter(filter as TPubchemInputFilter)
-	}
+	const {
+		inputFilter,
+		outputFilter,
+		propertyFilter,
+		onInputFilterChange,
+		onOutputFilterChange,
+		onPropertyFilterChange,
+	} = useHookCompoundAdd();
+
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
 				<FormTitle>Pubchem Search</FormTitle>
-				<SearchResult />
 				<Form aria-label="pubchem-search-form">
-					<InputFilter
-						inputFilter={inputFilter}
-						onInputFilterChange={onInputFilterChange}
+					<FormFilter 
+							label="Input Filter"
+							name="inputFilter"
+							filterValue={inputFilter}
+							onFilterChange={onInputFilterChange}
+							options={inputSearchOptions}
 					/>
 					<InputSearch inputFilter={inputFilter} />
+					<FormFilter 
+							name="outputType"
+							label="Output Type"
+							filterValue={outputFilter}
+							onFilterChange={onOutputFilterChange}
+							options={pubchemOutputFilterChoices}
+					/>
+					<FormFilter 
+							display={outputFilter==="property"}
+							name="propertyOptions"
+							label="Property Options"
+							filterValue={propertyFilter}
+							onFilterChange={onPropertyFilterChange}
+							options={pubchemOperationChoices}
+					/>
 					<ButtonActions />
 				</Form>
 			</PubChemContainer>
 		</Container>
-	)
-}
+	);
+};
 
-export default AddCompound
+export default AddCompound;

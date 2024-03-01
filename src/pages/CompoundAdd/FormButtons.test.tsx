@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react"
-import ButtonActions from "./ButtonActions"
+import ButtonActions from "./FormButtons"
 import { renderWithAllProviders } from "../../data/utils/test"
 
 const renderComp = ()=>{

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import InputSearch from "./InputSearch"
+import InputSearch from "./FormSearchInput"
 import { TPubchemInputFilter } from "../../data/utils/pubchem/input-filter"
 
 const inputFilterMockName:TPubchemInputFilter = "name"

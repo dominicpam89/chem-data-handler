@@ -1,5 +1,5 @@
 import { FormControl, FormHelperText, InputLabel, OutlinedInput, styled } from "@mui/material";
-import { IInputSearchProps } from "../CompoundAdd";
+import { TPubchemInputFilter } from "../../data/utils/pubchem/input-filter";
 
 const HelperText = styled(FormHelperText)(({theme})=>({
   paddingTop: 1,
@@ -31,6 +31,10 @@ const InputSmiles = ()=><FormControl>
     Compound Structure Identity known as SMILES, to search in Pubchem database
   </HelperText>
 </FormControl>
+
+interface IInputSearchProps {
+	inputFilter: TPubchemInputFilter
+}
 
 const InputSearch:React.FC<IInputSearchProps> = ({inputFilter}) => {
   let content = <></>

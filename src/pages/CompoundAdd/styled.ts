@@ -27,3 +27,7 @@ export const InputLabel = styled(InputLabelBase)(({theme})=>({
 	paddingLeft: "8px",
 	paddingRight: "8px",
 }))
+
+export const FormGroup = styled("div")(({theme})=>({
+	
+}))
