@@ -20,7 +20,7 @@ export const getError = (response:Response)=>{
       errorMessage="Link is not found"
       break
     default:
-      errorMessage="Some errors"
+      errorMessage="There has been some errors"
       break
   }
   const error:ErrorFetch = { errorStatus, errorMessage }
