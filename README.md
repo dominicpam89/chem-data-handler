@@ -1,4 +1,3 @@
-- Adding compound images per selected compound
-- Adding color based on comedogenicity (red, yellow, green)
+- There is bug in filter of datatable
 - Connecting to Pubchem API, notes in Whatsapp
 - Drawing chemical structure to be integrated with App using ketcher-react
