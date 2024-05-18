@@ -1,56 +1,31 @@
-/** Modules */
-import { inputSearchOptions } from "../data/utils/pubchem/input-filter";
-import {
-	pubchemOutputFilterChoices,
-	pubchemOperationChoices,
-} from "../data/utils/pubchem/output-filter";
-
 /** Components */
-import { Container, PubChemContainer, Form } from "./CompoundAdd/styled";
-import FormTitle from "./CompoundAdd/FormTitle";
-import InputSearch from "./CompoundAdd/FormSearchInput";
-import ButtonActions from "./CompoundAdd/FormButtons";
-import FormFilter from "./CompoundAdd/FormFilter";
-import { useHookCompoundAdd } from "../data/hooks/useCompoundAdd";
+import { Container, PubChemContainer, Form } from './CompoundAdd/styled';
+import FormTitle from './CompoundAdd/FormTitle';
+import ButtonActions from './CompoundAdd/FormButtons';
+import { propertyOptions } from './../data/utils/pubchem/properties';
+import SearchBySelect from './CompoundAdd/SearchBySelect';
+
+/**
+ * This references can be taken from
+ * middleware API or API Gateway
+ * https://github.com/dominicpam89/chem-handler-api-v2.git/test-localhost
+ * or
+ * https://github.com/dominicpam89/chem-handler-api-v2.git/test-vercel
+ */
+// const operationTypeOptions = ['property', 'fullRecords', 'image', 'synonyms'];
+const searchFilterOptions = [
+	{ val: 'fullRecords', text: 'Essential' },
+	{ val: 'property', text: 'Property Name' },
+	{ val: 'synonyms', text: 'Synonyms' },
+];
 
 const AddCompound = () => {
-	const {
-		inputFilter,
-		outputFilter,
-		propertyFilter,
-		onInputFilterChange,
-		onOutputFilterChange,
-		onPropertyFilterChange,
-	} = useHookCompoundAdd();
-
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
 				<FormTitle>Pubchem Search</FormTitle>
 				<Form aria-label="pubchem-search-form">
-					<FormFilter 
-							label="Input Filter"
-							name="inputFilter"
-							filterValue={inputFilter}
-							onFilterChange={onInputFilterChange}
-							options={inputSearchOptions}
-					/>
-					<InputSearch inputFilter={inputFilter} />
-					<FormFilter 
-							name="outputType"
-							label="Output Type"
-							filterValue={outputFilter}
-							onFilterChange={onOutputFilterChange}
-							options={pubchemOutputFilterChoices}
-					/>
-					<FormFilter 
-							display={outputFilter==="property"}
-							name="propertyOptions"
-							label="Property Options"
-							filterValue={propertyFilter}
-							onFilterChange={onPropertyFilterChange}
-							options={pubchemOperationChoices}
-					/>
+					<SearchBySelect />
 					<ButtonActions />
 				</Form>
 			</PubChemContainer>
