@@ -8,7 +8,5 @@ export const useContextSidebarPersist = () =>
 	useContext(ContextMain).sidebarPersist;
 export const useContextNavigationItems = () =>
 	useContext(ContextMain).navigationItems;
-export const useContextCompoundModal = () =>
-	useContext(ContextMain).compound.modal;
-export const useContextCompoundView = () =>
-	useContext(ContextMain).compound.view;
+export const useContextCompoundSearchBar = () =>
+	useContext(ContextMain).compound.searchBar;
