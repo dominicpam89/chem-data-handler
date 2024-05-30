@@ -16,13 +16,16 @@ const AutoCompleteComp: React.FC<Props> = ({ data }) => {
 	const { searchBar } = useContext(ContextMain).compound.view;
 	return (
 		<Autocomplete
+			sx={{ width: "100%" }}
 			open={open}
 			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
-			sx={{ width: "100%" }}
+			clearOnBlur={false}
 			value={searchBar.selectedValue}
 			onChange={(_, newValue: TypeSearchBarSelectedValue) => {
+				console.log(newValue);
 				searchBar.setSelectedValue(newValue);
+				// if (newValue) searchBar.setDisplayValue(newValue.trivial_name);
 			}}
 			inputValue={searchBar.displayValue}
 			onInputChange={(_, newInputValue) => {
@@ -40,14 +43,7 @@ const AutoCompleteComp: React.FC<Props> = ({ data }) => {
 				);
 			}}
 			renderInput={(params) => (
-				<TextField
-					key="input"
-					onKeyDown={(event) => {
-						if (event.key === "Enter") setOpen(false);
-					}}
-					{...params}
-					label="Search Compounds"
-				/>
+				<TextField {...params} label="Search Compounds" />
 			)}
 		/>
 	);

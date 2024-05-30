@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { getCompound } from '../services/compound';
-import { ErrorFetch } from '../services/errors';
-import { TypeCompound } from '../context/compound';
-import { useParams } from 'react-router-dom';
+import { useQuery } from "@tanstack/react-query";
+import { getCompound } from "../services/compound";
+import { ErrorFetch } from "../services/errors";
+import { TypeCompound } from "../context/compound";
+import { useParams } from "react-router-dom";
 
 /* 
   This hook is used on Compound.tsx
@@ -18,7 +18,7 @@ export const useGetCompound = () => {
 		TypeCompound,
 		string[]
 	>({
-		queryKey: ['compounds', id],
+		queryKey: ["compounds", id],
 		queryFn: () => getCompound(id),
 	});
 	const compoundState = { isLoading, isError, isSuccess };
