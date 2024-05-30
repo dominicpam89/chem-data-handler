@@ -13,7 +13,7 @@ interface Props {
 
 const AutoCompleteComp: React.FC<Props> = ({ data }) => {
 	const [open, setOpen] = useState(false);
-	const { searchBar } = useContext(ContextMain).compound.view;
+	const { searchBar } = useContext(ContextMain).compound;
 	return (
 		<Autocomplete
 			sx={{ width: "100%" }}

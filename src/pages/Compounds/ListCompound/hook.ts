@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const useGetParams = (data: TypeCompound[]) => {
 	const navigate = useNavigate();
-	const { searchBar } = useContext(ContextMain).compound.view;
+	const { searchBar } = useContext(ContextMain).compound;
 	const [paginationModel, setPaginationModel] = useState({
 		pageSize: 5,
 		page: 0,

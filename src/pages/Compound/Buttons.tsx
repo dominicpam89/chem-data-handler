@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Buttons = () => {
 	const navigate = useNavigate();
-	const { searchBar } = useContext(ContextMain).compound.view;
+	const { searchBar } = useContext(ContextMain).compound;
 	return (
 		<Box
 			sx={{
