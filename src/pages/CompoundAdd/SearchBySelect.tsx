@@ -4,18 +4,17 @@ import {
 	MenuItem,
 	Select,
 	SelectChangeEvent,
-} from '@mui/material';
-import { useState } from 'react';
+} from "@mui/material";
 
-enum SearchBy {
-	name = 'name',
-	smiles = 'smiles',
-}
+import { useContext } from "react";
+import { TSearchBy } from "../../data/context/pubchem-search-ui";
+import { ContextMain } from "../../data/context/main";
 
 const SearchBySelect = () => {
-	const [searchBy, setSearchBy] = useState<SearchBy>(SearchBy.name);
+	const { searchBy, onSearchByChange } =
+		useContext(ContextMain).pubchemSearchUI;
 	const handleChange = (event: SelectChangeEvent) =>
-		setSearchBy(event.target.value as SearchBy);
+		onSearchByChange(event.target.value as TSearchBy);
 	return (
 		<FormControl variant="standard" fullWidth>
 			<InputLabel id="searchBy">Search By</InputLabel>
@@ -26,12 +25,8 @@ const SearchBySelect = () => {
 				label="Age"
 				onChange={handleChange}
 			>
-				<MenuItem value={SearchBy.name}>
-					Search by name
-				</MenuItem>
-				<MenuItem value={SearchBy.smiles}>
-					Search by smiles
-				</MenuItem>
+				<MenuItem value={"name" as TSearchBy}>Search by name</MenuItem>
+				<MenuItem value={"smiles" as TSearchBy}>Search by smiles</MenuItem>
 			</Select>
 		</FormControl>
 	);
