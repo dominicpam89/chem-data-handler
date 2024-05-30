@@ -24,6 +24,7 @@ const ListCompound: React.FC<Props> = ({ data }) => {
 		getRowId,
 	} = useGetParams(data);
 
+	console.log(filterModel);
 	/* render */
 	return (
 		!searchBar.selectedValue && (
