@@ -1,8 +1,8 @@
-import { Stack, Button } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { Stack, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ButtonActions = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	return (
 		<Stack direction="row" spacing={2}>
 			<Button variant="contained" type="submit" aria-label="form-submit">
@@ -17,7 +17,7 @@ const ButtonActions = () => {
 				Back to Compounds
 			</Button>
 		</Stack>
-	)
-}
+	);
+};
 
-export default ButtonActions
+export default ButtonActions;

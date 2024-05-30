@@ -1,9 +1,9 @@
 /** Components */
-import { Container, PubChemContainer, Form } from './CompoundAdd/styled';
-import FormTitle from './CompoundAdd/FormTitle';
-import ButtonActions from './CompoundAdd/FormButtons';
-import { propertyOptions } from './../data/utils/pubchem/properties';
-import SearchBySelect from './CompoundAdd/SearchBySelect';
+import { Container, PubChemContainer, Form } from "./CompoundAdd/styled";
+import FormTitle from "./CompoundAdd/FormTitle";
+import ButtonActions from "./CompoundAdd/FormButtons";
+// import { propertyOptions } from './../data/utils/pubchem/properties';
+import SearchBySelect from "./CompoundAdd/SearchBySelect";
 
 /**
  * This references can be taken from
@@ -13,11 +13,11 @@ import SearchBySelect from './CompoundAdd/SearchBySelect';
  * https://github.com/dominicpam89/chem-handler-api-v2.git/test-vercel
  */
 // const operationTypeOptions = ['property', 'fullRecords', 'image', 'synonyms'];
-const searchFilterOptions = [
-	{ val: 'fullRecords', text: 'Essential' },
-	{ val: 'property', text: 'Property Name' },
-	{ val: 'synonyms', text: 'Synonyms' },
-];
+// const searchFilterOptions = [
+// 	{ val: 'fullRecords', text: 'Essential' },
+// 	{ val: 'property', text: 'Property Name' },
+// 	{ val: 'synonyms', text: 'Synonyms' },
+// ];
 
 const AddCompound = () => {
 	return (
