@@ -1,11 +1,11 @@
 import {
 	TypeModalNewCompound,
 	useContextCompoundModalNew,
-} from './compound/modal';
+} from "./compound/modal";
 import {
 	TypeSearchBar,
-	useContextCompoundPredictSearchBar,
-} from './compound/searchBar';
+	useContextCompoundViewSearchBar,
+} from "./compound/searchBar";
 
 export type TypeCompound = {
 	pk: number;
@@ -21,7 +21,7 @@ type TypeContextCompound = {
 	modal: {
 		newCompound: TypeModalNewCompound;
 	};
-	predict: {
+	view: {
 		// searchBar in predict page
 		searchBar: TypeSearchBar;
 	};
@@ -36,10 +36,10 @@ export const ContextCompound: TypeContextCompound = {
 			hide: () => {},
 		},
 	},
-	predict: {
+	view: {
 		// searchBar in predict page
 		searchBar: {
-			displayValue: '',
+			displayValue: "",
 			setDisplayValue: (val) => {
 				val;
 			},
@@ -53,12 +53,12 @@ export const ContextCompound: TypeContextCompound = {
 
 export const useContextCompound = () => {
 	const newCompound = useContextCompoundModalNew();
-	const searchBar: TypeSearchBar = useContextCompoundPredictSearchBar();
+	const searchBar: TypeSearchBar = useContextCompoundViewSearchBar();
 	const compound: TypeContextCompound = {
 		modal: {
 			newCompound,
 		},
-		predict: {
+		view: {
 			searchBar,
 		},
 	};

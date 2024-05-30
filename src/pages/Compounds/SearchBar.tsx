@@ -1,77 +1,71 @@
-import Autocomplete from '@mui/material/Autocomplete';
-import { memo, useContext } from 'react';
-import { ContextMain } from '../../data/context/main';
-import { TypeCompound } from '../../data/context/compound';
-import { TypeSearchBarSelectedValue } from '../../data/context/compound/searchBar';
-import RenderInput from './SearchBar/RenderInput';
-import { BoxContainer, CasNumber, TrivialName } from './SearchBar/RenderOption';
-import { Button, Stack } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
-const SearchBarContainer: React.FC<{ children: React.ReactNode }> = ({
-	children,
-}) => {
-	const navigate = useNavigate();
-	return (
-		<Stack direction="row" spacing={1}>
-			{children}
-			<Button
-				variant="outlined"
-				size="small"
-				onClick={() => navigate('/compounds/add')}
-			>
-				Add Compound
-			</Button>
-		</Stack>
-	);
-};
+import Autocomplete from "@mui/material/Autocomplete";
+import { memo, useContext, useState } from "react";
+import { ContextMain } from "../../data/context/main";
+import { TypeCompound } from "../../data/context/compound";
+import { TypeSearchBarSelectedValue } from "../../data/context/compound/searchBar";
+import { BoxContainer, TrivialName, CasNumber } from "./SearchBar/RenderOption";
+import { Button, Stack, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
 	data: TypeCompound[];
 }
 
-const SearchBar: React.FC<Props> = ({ data }) => {
-	const {
-		predict: { searchBar },
-	} = useContext(ContextMain).compound;
+const AutoCompleteComp: React.FC<Props> = ({ data }) => {
+	const [open, setOpen] = useState(false);
+	const { searchBar } = useContext(ContextMain).compound.view;
 	return (
-		<SearchBarContainer>
-			<Autocomplete
-				sx={{ width: '100%' }}
-				value={searchBar.selectedValue}
-				onChange={(
-					event: any,
-					newValue: TypeSearchBarSelectedValue
-				) => {
-					event;
-					searchBar.setSelectedValue(newValue);
-				}}
-				inputValue={searchBar.displayValue}
-				onInputChange={(event, newInputValue) => {
-					event;
-					searchBar.setDisplayValue(newInputValue);
-				}}
-				id="compounds-search-field"
-				options={data}
-				getOptionLabel={(option) => option.trivial_name}
-				renderOption={(props, option) => {
-					props;
-					return (
-						<BoxContainer key={option.pk} props={props}>
-							<TrivialName>
-								{option.trivial_name}
-							</TrivialName>
-							<CasNumber>
-								{option.cas_number}
-							</CasNumber>
-						</BoxContainer>
-					);
-				}}
-				renderInput={(params) => (
-					<RenderInput key={params.id} params={params} />
-				)}
-			/>
-		</SearchBarContainer>
+		<Autocomplete
+			open={open}
+			onOpen={() => setOpen(true)}
+			onClose={() => setOpen(false)}
+			sx={{ width: "100%" }}
+			value={searchBar.selectedValue}
+			onChange={(_, newValue: TypeSearchBarSelectedValue) => {
+				searchBar.setSelectedValue(newValue);
+			}}
+			inputValue={searchBar.displayValue}
+			onInputChange={(_, newInputValue) => {
+				searchBar.setDisplayValue(newInputValue);
+			}}
+			id="compounds-search-field"
+			options={data}
+			getOptionLabel={(option) => option.trivial_name}
+			renderOption={(props, option) => {
+				return (
+					<BoxContainer key={option.pk} props={props}>
+						<TrivialName>{option.trivial_name}</TrivialName>
+						<CasNumber>{option.cas_number}</CasNumber>
+					</BoxContainer>
+				);
+			}}
+			renderInput={(params) => (
+				<TextField
+					key="input"
+					onKeyDown={(event) => {
+						if (event.key === "Enter") setOpen(false);
+					}}
+					{...params}
+					label="Search Compounds"
+				/>
+			)}
+		/>
+	);
+};
+
+const SearchBar: React.FC<Props> = ({ data }) => {
+	const navigate = useNavigate();
+	return (
+		<Stack direction="row" spacing={1}>
+			<AutoCompleteComp data={data} />
+			<Button
+				variant="outlined"
+				size="small"
+				onClick={() => navigate("/compounds/add")}
+			>
+				Add Compound
+			</Button>
+		</Stack>
 	);
 };
 
