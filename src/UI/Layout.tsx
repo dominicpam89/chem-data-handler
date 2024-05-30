@@ -1,7 +1,7 @@
-import { Outlet } from "react-router-dom"
-import { UILayoutMainRootComponent } from "./Layout/Main"
-import UILayoutHeader from "./Layout/Header"
-import UILayoutFooter from "./Layout/Footer"
+import { Outlet } from "react-router-dom";
+import { UILayoutMainRootComponent } from "./Layout/Main";
+import UILayoutHeader from "./Layout/Header";
+import UILayoutFooter from "./Layout/Footer";
 
 const RootLayout = () => {
 	return (
@@ -12,7 +12,7 @@ const RootLayout = () => {
 			</UILayoutMainRootComponent>
 			<UILayoutFooter />
 		</>
-	)
-}
+	);
+};
 
-export default RootLayout
+export default RootLayout;

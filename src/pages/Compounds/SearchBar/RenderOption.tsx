@@ -1,10 +1,10 @@
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-import React, { memo } from "react"
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import React, { memo } from "react";
 
 export const BoxContainer: React.FC<{
-	children: React.ReactNode
-	props: React.HTMLAttributes<HTMLLIElement>
+	children: React.ReactNode;
+	props: React.HTMLAttributes<HTMLLIElement>;
 }> = memo(({ children, props }) => {
 	return (
 		<Box component="li" {...props}>
@@ -21,18 +21,18 @@ export const BoxContainer: React.FC<{
 				{children}
 			</Box>
 		</Box>
-	)
-})
+	);
+});
 
-export const TrivialName: React.FC<{ children: React.ReactNode }> = memo(({
-	children,
-}) => {
-	return (
-		<Typography variant="body1" component="h3">
-			{children}
-		</Typography>
-	)
-})
+export const TrivialName: React.FC<{ children: React.ReactNode }> = memo(
+	({ children }) => {
+		return (
+			<Typography variant="body1" component="h3">
+				{children}
+			</Typography>
+		);
+	}
+);
 
 export const CasNumber: React.FC<{ children: React.ReactNode }> = memo(
 	({ children }) => {
@@ -45,10 +45,6 @@ export const CasNumber: React.FC<{ children: React.ReactNode }> = memo(
 			>
 				{children}
 			</Typography>
-		)
+		);
 	}
-)
-
-export default function Default() {
-	return <></>
-}
+);
