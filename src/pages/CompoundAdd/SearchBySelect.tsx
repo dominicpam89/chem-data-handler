@@ -16,15 +16,10 @@ type Props = {
 const SearchBySelect: React.FC<Props> = ({ field }) => {
 	return (
 		<FormControl variant="standard" fullWidth>
-			<InputLabel id="searchBy">Search By</InputLabel>
-			<Select
-				{...field}
-				labelId="searchBy"
-				id="search-by-select"
-				label="Search By"
-			>
-				<MenuItem value={"name" as TSearchBy}>Search by name</MenuItem>
-				<MenuItem value={"smile" as TSearchBy}>Search by smiles</MenuItem>
+			<InputLabel id="searchBy">Search Compound</InputLabel>
+			<Select {...field} labelId="searchBy" id="search-by-select">
+				<MenuItem value={"name" as TSearchBy}>By Name</MenuItem>
+				<MenuItem value={"smile" as TSearchBy}>By Smiles</MenuItem>
 			</Select>
 		</FormControl>
 	);

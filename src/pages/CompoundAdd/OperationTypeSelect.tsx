@@ -18,29 +18,31 @@ type Props = {
 		TFormSearch<TSearchBy, TOperationType>,
 		"operationType"
 	>;
+	visible: boolean;
 };
 
-const OperationTypeSelect: React.FC<Props> = ({ field }) => {
-	return (
-		<FormControl variant="standard" fullWidth>
-			<InputLabel id="operation-type">Operation Type</InputLabel>
-			<Select
-				name={field.name}
-				labelId="operation-type"
-				id="search-by-select"
-				label="Operation Type"
-				onChange={field.onChange}
-				onBlur={field.onBlur}
-				value={field.value}
-			>
-				{options.map(({ operationType, text }) => (
-					<MenuItem key={operationType} value={operationType}>
-						{text}
-					</MenuItem>
-				))}
-			</Select>
-		</FormControl>
-	);
+const OperationTypeSelect: React.FC<Props> = ({ field, visible }) => {
+	if (visible)
+		return (
+			<FormControl variant="standard" fullWidth>
+				<InputLabel id="operation-type">Operation Type</InputLabel>
+				<Select
+					name={field.name}
+					labelId="operation-type"
+					id="search-by-select"
+					label="Operation Type"
+					onChange={field.onChange}
+					onBlur={field.onBlur}
+					value={field.value}
+				>
+					{options.map(({ operationType, text }) => (
+						<MenuItem key={operationType} value={operationType}>
+							{text}
+						</MenuItem>
+					))}
+				</Select>
+			</FormControl>
+		);
 };
 
 export default OperationTypeSelect;

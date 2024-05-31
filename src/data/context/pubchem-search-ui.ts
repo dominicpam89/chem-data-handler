@@ -1,5 +1,13 @@
 // import { useState } from "react";
 
+/**
+ * This references can be taken from
+ * middleware API or API Gateway
+ * https://github.com/dominicpam89/chem-handler-api-v2.git/test-localhost
+ * or
+ * https://github.com/dominicpam89/chem-handler-api-v2.git/test-vercel
+ */
+
 export type TSearchBy = "name" | "smile";
 export type TOperationType =
 	| "fullRecords"
@@ -57,7 +65,5 @@ export type TFormSearch<S extends TSearchBy, O extends TOperationType> = {
 	searchBy: S;
 	searchByValue: string;
 	operationType: O;
-	propertyNameValues?: O extends "property"
-		? TPropertyNames[] | TPropertyNames | ""
-		: never;
+	propertyNameValues?: O extends "property" ? TPropertyNames[] | [] : never;
 };
