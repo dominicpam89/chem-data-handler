@@ -21,7 +21,7 @@ const SearchBySelect: React.FC<Props> = ({ field }) => {
 				{...field}
 				labelId="searchBy"
 				id="search-by-select"
-				label="Age"
+				label="Search By"
 			>
 				<MenuItem value={"name" as TSearchBy}>Search by name</MenuItem>
 				<MenuItem value={"smile" as TSearchBy}>Search by smiles</MenuItem>

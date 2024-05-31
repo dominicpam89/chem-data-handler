@@ -10,6 +10,7 @@ import {
 	TSearchBy,
 	TOperationType,
 } from "./../data/context/pubchem-search-ui";
+import OperationTypeSelect from "./CompoundAdd/OperationTypeSelect";
 
 /**
  * This references can be taken from
@@ -20,7 +21,7 @@ import {
  */
 
 const AddCompound = () => {
-	const { control, handleSubmit, register } = useForm<
+	const { control, handleSubmit, register, watch } = useForm<
 		TFormSearch<TSearchBy, TOperationType>
 	>({
 		defaultValues: {
@@ -33,6 +34,7 @@ const AddCompound = () => {
 	const onSubmit = (data: TFormSearch<TSearchBy, TOperationType>) => {
 		console.log(data);
 	};
+	const searchByValue = watch("searchByValue");
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
@@ -49,9 +51,18 @@ const AddCompound = () => {
 					<TextField
 						{...register("searchByValue")}
 						id="search-by"
-						label="key"
+						label="Search Key"
 						variant="standard"
 					/>
+					{searchByValue !== "" && (
+						<Controller
+							control={control}
+							name="operationType"
+							render={({ field }) => (
+								<OperationTypeSelect field={field} />
+							)}
+						/>
+					)}
 					<ButtonActions />
 				</Form>
 			</PubChemContainer>

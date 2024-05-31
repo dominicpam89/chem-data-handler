@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ButtonActions = () => {
 	const navigate = useNavigate();
 	return (
-		<Stack direction="row" spacing={2}>
+		<Stack direction="row" spacing={2} marginTop={3}>
 			<Button variant="contained" type="submit" aria-label="form-submit">
 				Search
 			</Button>

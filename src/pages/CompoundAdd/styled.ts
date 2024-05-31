@@ -1,29 +1,29 @@
-import { Box, InputLabel as InputLabelBase, styled } from '@mui/material';
+import { Box, InputLabel as InputLabelBase, styled } from "@mui/material";
 
 export const Container = styled(Box)(({ theme }) => ({
 	maxWidth: theme.breakpoints.values.md,
-	width: '100%',
-	display: 'flex',
-	flexDirection: 'column',
+	width: "100%",
+	display: "flex",
+	flexDirection: "column",
 	gap: theme.spacing(4),
 }));
 
 export const PubChemContainer = styled(Box)(({ theme }) => ({
-	width: '100%',
-	display: 'flex',
-	flexDirection: 'column',
+	width: "100%",
+	display: "flex",
+	flexDirection: "column",
 	gap: theme.spacing(4),
 }));
 
-export const Form = styled('form')(({ theme }) => ({
-	width: '100%',
-	display: 'flex',
-	flexDirection: 'column',
-	gap: theme.spacing(2),
+export const Form = styled("form")(({ theme }) => ({
+	width: "100%",
+	display: "flex",
+	flexDirection: "column",
+	gap: theme.spacing(3),
 }));
 
 export const InputLabel = styled(InputLabelBase)(({ theme }) => ({
 	backgroundColor: theme.palette.background.default,
-	paddingLeft: '8px',
-	paddingRight: '8px',
+	paddingLeft: "8px",
+	paddingRight: "8px",
 }));
