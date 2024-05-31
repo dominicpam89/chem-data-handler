@@ -1,12 +1,30 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { ControllerRenderProps } from "react-hook-form";
+import {
+	TFormSearch,
+	TSearchBy,
+	TOperationType,
+} from "../../data/context/pubchem-search-ui";
 
-const SearchBySelect = () => {
+type Props = {
+	field: ControllerRenderProps<
+		TFormSearch<TSearchBy, TOperationType>,
+		"searchBy"
+	>;
+};
+
+const SearchBySelect: React.FC<Props> = ({ field }) => {
 	return (
 		<FormControl variant="standard" fullWidth>
 			<InputLabel id="searchBy">Search By</InputLabel>
-			<Select labelId="searchBy" id="search-by-select" label="Age">
-				<MenuItem>Search by name</MenuItem>
-				<MenuItem>Search by smiles</MenuItem>
+			<Select
+				{...field}
+				labelId="searchBy"
+				id="search-by-select"
+				label="Age"
+			>
+				<MenuItem value={"name" as TSearchBy}>Search by name</MenuItem>
+				<MenuItem value={"smile" as TSearchBy}>Search by smiles</MenuItem>
 			</Select>
 		</FormControl>
 	);
