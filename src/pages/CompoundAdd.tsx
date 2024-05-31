@@ -73,10 +73,16 @@ const AddCompound = () => {
 					<Controller
 						control={control}
 						name="propertyNameValues"
+						rules={{
+							validate: (value) =>
+								(value && value?.length > 0) ||
+								"At least one property is required!",
+						}}
 						render={({ field }) => (
 							<PropertySelect
 								field={field}
 								visible={operationType === "property"}
+								error={errors.propertyNameValues}
 							/>
 						)}
 					/>
