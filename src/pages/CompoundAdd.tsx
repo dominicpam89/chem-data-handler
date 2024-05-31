@@ -28,12 +28,20 @@ const AddCompound = () => {
 		resetField,
 		formState: { errors },
 	} = hookForm;
-	const onSubmit = (data: TFormSearch<TSearchBy, TOperationType>) => {
-		console.log(data);
-	};
 	const searchBy = watch("searchBy");
 	const searchByValue = watch("searchByValue");
 	const operationType = watch("operationType");
+	const allowRender = {
+		operationType: searchByValue !== "",
+		propertyNameValues: operationType === "property" && searchByValue !== "",
+	};
+	const disable = {
+		operationType: searchByValue === "",
+		propertyNameValues: operationType !== "property" || searchByValue === "",
+	};
+	const onSubmit = (data: TFormSearch<TSearchBy, TOperationType>) => {
+		console.log(data);
+	};
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
@@ -63,12 +71,12 @@ const AddCompound = () => {
 					<Controller
 						control={control}
 						name="operationType"
-						render={({ field }) => (
-							<OperationTypeSelect
-								field={field}
-								visible={searchByValue !== ""}
-							/>
-						)}
+						disabled={disable.operationType}
+						render={({ field }) => {
+							if (allowRender.operationType)
+								return <OperationTypeSelect field={field} />;
+							else return <></>;
+						}}
 					/>
 					<Controller
 						control={control}
@@ -78,13 +86,17 @@ const AddCompound = () => {
 								(value && value?.length > 0) ||
 								"At least one property is required!",
 						}}
-						render={({ field }) => (
-							<PropertySelect
-								field={field}
-								visible={operationType === "property"}
-								error={errors.propertyNameValues}
-							/>
-						)}
+						disabled={disable.propertyNameValues}
+						render={({ field }) => {
+							if (allowRender.propertyNameValues)
+								return (
+									<PropertySelect
+										field={field}
+										error={errors.propertyNameValues}
+									/>
+								);
+							else return <></>;
+						}}
 					/>
 					<ButtonActions />
 				</Form>
