@@ -13,9 +13,7 @@ import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
 import PropertySelect from "./CompoundAdd/PropertySelect";
 
 const AddCompound = () => {
-	const { control, handleSubmit, watch, resetField } = useForm<
-		TFormSearch<TSearchBy, TOperationType>
-	>({
+	const hookForm = useForm<TFormSearch<TSearchBy, TOperationType>>({
 		defaultValues: {
 			searchBy: "name",
 			searchByValue: "",
@@ -23,6 +21,13 @@ const AddCompound = () => {
 			propertyNameValues: [],
 		},
 	});
+	const {
+		control,
+		handleSubmit,
+		watch,
+		resetField,
+		formState: { errors },
+	} = hookForm;
 	const onSubmit = (data: TFormSearch<TSearchBy, TOperationType>) => {
 		console.log(data);
 	};
@@ -45,11 +50,13 @@ const AddCompound = () => {
 					<Controller
 						control={control}
 						name="searchByValue"
+						rules={{ required: true }}
 						render={({ field }) => (
 							<SearchBySelectValue
 								field={field}
 								resetField={() => resetField("searchByValue")}
 								searchBy={searchBy}
+								error={errors.searchByValue}
 							/>
 						)}
 					/>
