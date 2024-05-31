@@ -10,6 +10,7 @@ import {
 } from "./../data/context/pubchem-search-ui";
 import OperationTypeSelect from "./CompoundAdd/OperationTypeSelect";
 import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
+import PropertySelect from "./CompoundAdd/PropertySelect";
 
 const AddCompound = () => {
 	const { control, handleSubmit, watch, resetField } = useForm<
@@ -27,6 +28,7 @@ const AddCompound = () => {
 	};
 	const searchBy = watch("searchBy");
 	const searchByValue = watch("searchByValue");
+	const operationType = watch("operationType");
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
@@ -58,6 +60,16 @@ const AddCompound = () => {
 							<OperationTypeSelect
 								field={field}
 								visible={searchByValue !== ""}
+							/>
+						)}
+					/>
+					<Controller
+						control={control}
+						name="propertyNameValues"
+						render={({ field }) => (
+							<PropertySelect
+								field={field}
+								visible={operationType === "property"}
 							/>
 						)}
 					/>
