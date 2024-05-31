@@ -10,10 +10,6 @@ import {
 	ContextNavigationItems,
 	useContextNavigationItems,
 } from "./navigation-items";
-import {
-	ContextPubchemSearchUI,
-	useContextPubchemSearchUI,
-} from "./pubchem-search-ui";
 
 export const ContextMain = createContext({
 	theme: ContextTheme,
@@ -21,7 +17,6 @@ export const ContextMain = createContext({
 	sidebarPersist: ContextSidebarPersist,
 	compound: ContextCompound,
 	navigationItems: ContextNavigationItems,
-	pubchemSearchUI: ContextPubchemSearchUI,
 });
 
 type Props = {
@@ -34,7 +29,6 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 	const sidebarPersist = useContextSidebarPersist();
 	const navigationItems = useContextNavigationItems();
 	const compound = useContextCompound();
-	const pubchemSearchUI = useContextPubchemSearchUI();
 	return (
 		<ContextMain.Provider
 			value={{
@@ -43,7 +37,6 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 				sidebarPersist,
 				navigationItems,
 				compound,
-				pubchemSearchUI,
 			}}
 		>
 			{children}

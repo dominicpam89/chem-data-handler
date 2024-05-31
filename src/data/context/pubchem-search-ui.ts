@@ -1,26 +1,14 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 export type TSearchBy = "name" | "smile";
+export type TOperationType =
+	| "fullRecords"
+	| "property"
+	| "synonyms"
+	| "picture";
 
-type TContextPubchemSearchUI = {
-	searchBy: TSearchBy;
-	onSearchByChange: (searchBy: TSearchBy) => void;
-};
-
-export const ContextPubchemSearchUI: TContextPubchemSearchUI = {
-	searchBy: "name",
-	onSearchByChange: (searchBy) => {
-		searchBy;
-	},
-};
-
-export const useContextPubchemSearchUI = () => {
-	const [searchBy, setSearchBy] = useState<TSearchBy>("name");
-	const pubchemSearch: TContextPubchemSearchUI = {
-		searchBy,
-		onSearchByChange(searchBy) {
-			setSearchBy(searchBy);
-		},
-	};
-	return pubchemSearch;
+export type TFormSearch<S extends TSearchBy, O extends TOperationType> = {
+	searchBy: S;
+	operationType: O;
+	propertyName: O extends "property" ? string : never;
 };
