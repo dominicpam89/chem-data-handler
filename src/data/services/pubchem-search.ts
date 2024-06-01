@@ -1,62 +1,95 @@
-import getByNameFullRecords from "./pubchem-search/getByNameFullRecords";
-import {
-	TOperationType,
-	TPropertyNames,
-	TSearchBy,
-} from "../context/pubchem-search-ui";
+import { TFormSearchData } from '../context/pubchem-search-ui';
+import { pubchemSearchUrl } from '../utils/pubchem-search.util';
 
-type TGetPubchemDataParams = {
-	searchBy: TSearchBy;
-	searchByValue: string;
-	operationType: TOperationType;
-	propertyNameValues?: TPropertyNames[];
+type TDataFullRecords = {
+	pk: number;
+	smiles: string;
+	inchi: string;
+	inchiKey: string;
+	IUPACNames: string;
+	molecularFormula: string;
+	count: {
+		heavy_atom: number;
+		atom_chiral: number;
+		atom_chiral_def: number;
+		atom_chiral_undef: number;
+		bond_chiral: number;
+		bond_chiral_def: number;
+		bond_chiral_undef: number;
+		isotope_atom: number;
+		covalent_unit: number;
+		tautomers: number;
+	};
 };
 
-type TGetPubchemData = (params: TGetPubchemDataParams) => {};
-
-// abstract functions
-const getByNameSynonyms = (params: Partial<TGetPubchemDataParams>) => {
-	params;
-	return new Response();
-};
-// abstract functions
-const getByNameProperty = (params: Partial<TGetPubchemDataParams>) => {
-	params;
-	return new Response();
+type TDataSynonyms = {
+	pk: number;
+	synonyms: Array<string>;
 };
 
-const getErrorResponse = (response: Response) => {
-	response;
-	return new Error();
+type TDataProperty = {
+	pk: number;
+	[key: string]: string | number;
 };
 
-// abstract
-const getPubchemData: TGetPubchemData = async ({
+/** 
+	Body format for pubchem integration with middleware (or API Gateway)
+	Can be found here:
+	https://github.com/dominicpam89/chem-handler-api-v2/tree/main/test-vercel
+*/
+type TBodyFormatAPIGateway = {
+	name: string;
+	operationType: string;
+	propertyName?: string;
+};
+
+const getPubchemCompoundData = async ({
 	searchBy,
 	searchByValue,
 	operationType,
 	propertyNameValues,
-}) => {
-	const isGetByNameFullRecords =
-		searchBy === "name" && operationType === "fullRecords";
-	const isGetByNameSynonyms =
-		searchBy === "name" && operationType === "synonyms";
-	const isGetByNameProperty =
-		searchBy === "name" && operationType === "property";
-	let response: Response = new Response();
-	if (isGetByNameFullRecords)
-		response = getByNameFullRecords({ searchByValue });
-	if (isGetByNameSynonyms)
-		response = getByNameSynonyms({ operationType, searchByValue });
-	if (isGetByNameProperty)
-		response = getByNameProperty({
-			searchByValue,
+}: TFormSearchData) => {
+	let url: string = pubchemSearchUrl;
+	let _body: TBodyFormatAPIGateway;
+	url += searchBy === 'name' ? 'name' : 'smiles';
+	if (operationType === 'property')
+		_body = {
+			name: searchByValue,
 			operationType,
-			propertyNameValues,
-		});
-	if (!response!.ok) throw getErrorResponse(response!);
-	const data = await response!.json();
+			propertyName: propertyNameValues?.join(','),
+		};
+	else
+		_body = {
+			name: searchByValue,
+			operationType,
+		};
+	const body = JSON.stringify(_body);
+	console.log(url);
+	console.log(body);
+	const response = await fetch(url, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		method: 'POST',
+		body,
+		mode: 'cors',
+	});
+	if (!response.ok) throw new Error("Couldn't fetch data");
+	let data = await response.json();
+	switch (operationType) {
+		case 'fullRecords':
+			data = data as TDataFullRecords;
+			break;
+		case 'synonyms':
+			data = data as TDataSynonyms;
+			break;
+		case 'property':
+			data = data as TDataProperty;
+			break;
+		default:
+			break;
+	}
 	return data;
 };
 
-export default getPubchemData;
+export default getPubchemCompoundData;

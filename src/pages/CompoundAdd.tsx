@@ -2,46 +2,23 @@ import { Container, PubChemContainer, Form } from "./CompoundAdd/styled";
 import FormTitle from "./CompoundAdd/FormTitle";
 import ButtonActions from "./CompoundAdd/FormButtons";
 import SearchBySelect from "./CompoundAdd/SearchBySelect";
-import { useForm, Controller } from "react-hook-form";
-import {
-	TFormSearch,
-	TSearchBy,
-	TOperationType,
-} from "./../data/context/pubchem-search-ui";
 import OperationTypeSelect from "./CompoundAdd/OperationTypeSelect";
 import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
 import PropertySelect from "./CompoundAdd/PropertySelect";
+import useAddCompoundData from "../data/hooks/useAddCompoundData";
+import { Controller } from "react-hook-form";
 
 const AddCompound = () => {
-	const hookForm = useForm<TFormSearch<TSearchBy, TOperationType>>({
-		defaultValues: {
-			searchBy: "name",
-			searchByValue: "",
-			operationType: "fullRecords",
-			propertyNameValues: [],
-		},
-	});
 	const {
-		control,
 		handleSubmit,
-		watch,
+		onSubmit,
+		control,
 		resetField,
-		formState: { errors },
-	} = hookForm;
-	const searchBy = watch("searchBy");
-	const searchByValue = watch("searchByValue");
-	const operationType = watch("operationType");
-	const allowRender = {
-		operationType: searchByValue !== "",
-		propertyNameValues: operationType === "property" && searchByValue !== "",
-	};
-	const disable = {
-		operationType: searchByValue === "",
-		propertyNameValues: operationType !== "property" || searchByValue === "",
-	};
-	const onSubmit = (data: TFormSearch<TSearchBy, TOperationType>) => {
-		console.log(data);
-	};
+		searchBy,
+		errors,
+		disable,
+		allowRender,
+	} = useAddCompoundData();
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
