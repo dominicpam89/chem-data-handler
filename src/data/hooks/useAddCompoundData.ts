@@ -29,7 +29,7 @@ const useAddCompoundData = () => {
 		operationType: searchByValue === "",
 		propertyNameValues: operationType !== "property" || searchByValue === "",
 	};
-	const { mutate, data } = useMutation({
+	const { mutate, data, error, isError, isPending } = useMutation({
 		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
 	});
 	if (data) console.log(data);
@@ -45,6 +45,8 @@ const useAddCompoundData = () => {
 		allowRender,
 		disable,
 		onSubmit,
+		dataState: { isError, isPending },
+		data: { data, error },
 	};
 };
 

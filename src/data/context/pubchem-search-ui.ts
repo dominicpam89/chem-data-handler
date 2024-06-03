@@ -6,7 +6,7 @@
  * https://github.com/dominicpam89/chem-handler-api-v2/tree/main/test-vercel
  */
 
-export type TSearchBy = "name" | "smile";
+export type TSearchBy = "name" | "smiles";
 export type TOperationType = "fullRecords" | "property" | "synonyms";
 
 export type TPropertyNames =
@@ -117,35 +117,24 @@ export const propertyOptions: { text: string; val: TPropertyNames }[] = [
  * https://github.com/dominicpam89/chem-handler-api-v2/tree/main/test-vercel
  */
 
-type TRequestDataByName<T extends "property" | "others"> = T extends "property"
-	? {
-			name: string;
-			operationType: "property";
-			propertyName: string;
-	  }
-	: {
-			name: string;
-			operationType: "fullRecords" | "synonyms";
-	  };
+type TRequestDataByName<T extends TOperationType> = {
+	name: string;
+	operationType: T;
+	propertyName: string | undefined;
+};
 
-type TRequestDataBySmiles<T extends "property" | "others"> =
-	T extends "property"
-		? {
-				smiles: string;
-				operationType: "property";
-				propertyName: string;
-		  }
-		: {
-				smiles: string;
-				operationType: "fullRecords" | "synonyms";
-		  };
+type TRequestDataBySmiles<T extends TOperationType> = {
+	smiles: string;
+	operationType: T;
+	propertyName: string | undefined;
+};
 
 export type TRequestData<
 	T extends TSearchBy,
-	Y extends "property" | "others"
+	Y extends TOperationType
 > = T extends "name" ? TRequestDataByName<Y> : TRequestDataBySmiles<Y>;
 
-export type TResponseDataFullRecords = {
+type TResponseDataFullRecords = {
 	pk: number;
 	smiles: string;
 	inchi: string;
@@ -166,12 +155,20 @@ export type TResponseDataFullRecords = {
 	};
 };
 
-export type TResponseDataSynonyms = {
+type TResponseDataSynonyms = {
 	pk: number;
 	synonyms: Array<string>;
 };
 
-export type TResponseDataProperty = {
+type TResponseDataProperty = {
 	pk: number;
 	[key: string]: string | number;
 };
+
+export type TResponseData<T extends TOperationType> = T extends "fullRecords"
+	? TResponseDataFullRecords
+	: T extends "synonyms"
+	? TResponseDataSynonyms
+	: T extends "property"
+	? TResponseDataProperty
+	: any;
