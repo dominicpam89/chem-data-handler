@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { PropsWithChildren, createContext } from "react";
 import { ContextTheme, useContextTheme } from "./theme";
 import { ContextSidebar, useContextSidebar } from "./sidebar";
 import { ContextCompound, useContextCompound } from "./compound";
@@ -19,11 +19,7 @@ export const ContextMain = createContext({
 	navigationItems: ContextNavigationItems,
 });
 
-type Props = {
-	children: React.ReactNode;
-};
-
-const ContextProvider: React.FC<Props> = ({ children }) => {
+const ContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 	const theme = useContextTheme();
 	const sidebar = useContextSidebar();
 	const sidebarPersist = useContextSidebarPersist();

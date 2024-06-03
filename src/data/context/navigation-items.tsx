@@ -1,27 +1,27 @@
-import { useState } from "react"
-import HomeIcon from "@mui/icons-material/Home"
-import ScienceIcon from "@mui/icons-material/Science"
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
-import LogoutIcon from "@mui/icons-material/Logout"
-import VpnKeyIcon from '@mui/icons-material/VpnKey'
+import { useState } from "react";
+import HomeIcon from "@mui/icons-material/Home";
+import ScienceIcon from "@mui/icons-material/Science";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import LogoutIcon from "@mui/icons-material/Logout";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 
 export type TypeNavItem = {
-    id: string;
-    text: string;
-    link: string;
-    icon: JSX.Element;
-}
+	id: string;
+	text: string;
+	link: string;
+	icon: JSX.Element;
+};
 
 type TypeContextNavigationItems = {
-  items: TypeNavItem[]
-}
+	items: TypeNavItem[];
+};
 
-export const ContextNavigationItems:TypeContextNavigationItems = {
-  items: []
+export const ContextNavigationItems: TypeContextNavigationItems = {
+	items: [],
 };
 
 const initialState = [
-  {
+	{
 		id: "home",
 		text: "Home",
 		link: "/home",
@@ -51,12 +51,12 @@ const initialState = [
 		link: "/auth",
 		icon: <VpnKeyIcon fontSize="inherit" />,
 	},
-]
+];
 
-export const useContextNavigationItems = ()=>{
-  const [navItems] = useState<TypeNavItem[]>(initialState)
-  const data = {
-		items: navItems
-  }
-  return data
-}
+export const useContextNavigationItems = () => {
+	const [navItems] = useState<TypeNavItem[]>(initialState);
+	const data = {
+		items: navItems,
+	};
+	return data;
+};

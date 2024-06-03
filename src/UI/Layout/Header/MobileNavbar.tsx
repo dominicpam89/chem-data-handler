@@ -1,12 +1,12 @@
-import { IconButton, Stack } from "@mui/material"
-import { useContext } from "react"
-import { ContextMain } from "../../../data/context/main"
-import { AppBarStyled, ToolbarStyled } from "./Styled"
-import MenuIcon from "@mui/icons-material/Menu"
-import NavbarSidebar from "./MobileNavbar/Sidebar"
-import { MobileNavbarBrandIcon, BrandText } from "../../Brand"
+import { IconButton, Stack } from "@mui/material";
+import { useContext } from "react";
+import { ContextMain } from "../../../data/context/main";
+import { AppBarStyled, ToolbarStyled } from "./Styled";
+import MenuIcon from "@mui/icons-material/Menu";
+import NavbarSidebar from "./MobileNavbar/Sidebar";
+import { MobileNavbarBrandIcon, BrandText } from "../../Brand";
 
-const Brand = ()=>{
+const Brand = () => {
 	return (
 		<Stack
 			direction="row"
@@ -17,11 +17,11 @@ const Brand = ()=>{
 			<MobileNavbarBrandIcon />
 			<BrandText color="inherit" variant="h5" />
 		</Stack>
-	)
-}
+	);
+};
 
 const MobileNavbar = () => {
-	const { sidebar } = useContext(ContextMain)
+	const { sidebar } = useContext(ContextMain);
 	return (
 		<>
 			<AppBarStyled aria-label="mobile-nav">
@@ -39,7 +39,7 @@ const MobileNavbar = () => {
 			</AppBarStyled>
 			<NavbarSidebar />
 		</>
-	)
-}
+	);
+};
 
-export default MobileNavbar
+export default MobileNavbar;
