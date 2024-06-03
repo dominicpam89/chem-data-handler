@@ -22,6 +22,10 @@ const AddCompound = () => {
 		dataState,
 		pictureUrl,
 	} = useAddCompoundData();
+	// need to be added into main UI
+	data;
+	dataState;
+	pictureUrl;
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
