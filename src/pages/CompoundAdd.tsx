@@ -1,12 +1,12 @@
-import { Container, PubChemContainer, Form } from "./CompoundAdd/styled";
-import FormTitle from "./CompoundAdd/FormTitle";
-import ButtonActions from "./CompoundAdd/FormButtons";
-import SearchBySelect from "./CompoundAdd/SearchBySelect";
-import OperationTypeSelect from "./CompoundAdd/OperationTypeSelect";
-import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
-import PropertySelect from "./CompoundAdd/PropertySelect";
-import useAddCompoundData from "../data/hooks/useAddCompoundData";
-import { Controller } from "react-hook-form";
+import { Container, PubChemContainer, Form } from './CompoundAdd/styled';
+import FormTitle from './CompoundAdd/FormTitle';
+import ButtonActions from './CompoundAdd/FormButtons';
+import SearchBySelect from './CompoundAdd/SearchBySelect';
+import OperationTypeSelect from './CompoundAdd/OperationTypeSelect';
+import SearchBySelectValue from './CompoundAdd/SearchBySelectValue';
+import PropertySelect from './CompoundAdd/PropertySelect';
+import useAddCompoundData from '../data/hooks/useAddCompoundData';
+import { Controller } from 'react-hook-form';
 
 const AddCompound = () => {
 	const {
@@ -18,6 +18,9 @@ const AddCompound = () => {
 		errors,
 		disable,
 		allowRender,
+		data,
+		dataState,
+		pictureUrl,
 	} = useAddCompoundData();
 	return (
 		<Container aria-label="compound-add-container">
@@ -30,7 +33,9 @@ const AddCompound = () => {
 					<Controller
 						control={control}
 						name="searchBy"
-						render={({ field }) => <SearchBySelect field={field} />}
+						render={({ field }) => (
+							<SearchBySelect field={field} />
+						)}
 					/>
 					<Controller
 						control={control}
@@ -39,7 +44,11 @@ const AddCompound = () => {
 						render={({ field }) => (
 							<SearchBySelectValue
 								field={field}
-								resetField={() => resetField("searchByValue")}
+								resetField={() =>
+									resetField(
+										'searchByValue'
+									)
+								}
 								searchBy={searchBy}
 								error={errors.searchByValue}
 							/>
@@ -51,7 +60,11 @@ const AddCompound = () => {
 						disabled={disable.operationType}
 						render={({ field }) => {
 							if (allowRender.operationType)
-								return <OperationTypeSelect field={field} />;
+								return (
+									<OperationTypeSelect
+										field={field}
+									/>
+								);
 							else return <></>;
 						}}
 					/>
@@ -61,7 +74,7 @@ const AddCompound = () => {
 						rules={{
 							validate: (value) =>
 								(value && value?.length > 0) ||
-								"At least one property is required!",
+								'At least one property is required!',
 						}}
 						disabled={disable.propertyNameValues}
 						render={({ field }) => {
@@ -69,7 +82,9 @@ const AddCompound = () => {
 								return (
 									<PropertySelect
 										field={field}
-										error={errors.propertyNameValues}
+										error={
+											errors.propertyNameValues
+										}
 									/>
 								);
 							else return <></>;
