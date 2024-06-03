@@ -46,8 +46,7 @@ const getPubchemCompoundData = async ({
 		mode: 'cors',
 	});
 	if (!response.ok) throw new Error("Couldn't fetch data");
-	let data = await response.json();
-	data = data as TResponseData<typeof operationType>;
+	let data: TResponseData<typeof operationType> = await response.json();
 	return data;
 };
 
