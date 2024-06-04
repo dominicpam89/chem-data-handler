@@ -34,16 +34,18 @@ const useCompoundAddData = () => {
 
 	const [pictureUrl, setPictureUrl] = useState("");
 	const onResetPictureUrl = () => setPictureUrl("");
+	const [viewResult, setViewResult] = useState(false);
 
 	const { mutate, data, error, isError, isPending } = useMutation({
 		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
-		onError: (error) => {
-			console.log(error);
+		onError: () => {
 			onResetPictureUrl();
+			setViewResult(false);
 		},
 		onSuccess: (_, formData) => {
 			onResetPictureUrl();
 			setPictureUrl(getPubchemPictureUrl(formData));
+			setViewResult(true);
 		},
 	});
 
@@ -66,6 +68,10 @@ const useCompoundAddData = () => {
 		dataState: { isError, isPending },
 		data: { data, error },
 		pictureUrl,
+		resultState: {
+			viewResult,
+			setViewResult,
+		},
 	};
 };
 

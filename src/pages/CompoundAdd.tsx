@@ -16,12 +16,14 @@ const AddCompound = () => {
 		control,
 		resetField,
 		searchBy,
+		operationType,
 		errors,
 		disable,
 		allowRender,
 		data,
 		dataState,
 		pictureUrl,
+		resultState: { viewResult, setViewResult },
 	} = useCompoundAddData();
 	return (
 		<Container aria-label="compound-add-container">
@@ -43,7 +45,10 @@ const AddCompound = () => {
 						render={({ field }) => (
 							<SearchBySelectValue
 								field={field}
-								resetField={() => resetField("searchByValue")}
+								resetField={() => {
+									resetField("searchByValue");
+									setViewResult(false);
+								}}
 								searchBy={searchBy}
 								error={errors.searchByValue}
 							/>
@@ -82,11 +87,14 @@ const AddCompound = () => {
 					<ButtonActions />
 				</Form>
 			</PubChemContainer>
-			<SearchResult
-				data={data}
-				dataState={dataState}
-				pictureUrl={pictureUrl}
-			/>
+			{viewResult && (
+				<SearchResult
+					data={data}
+					dataState={dataState}
+					pictureUrl={pictureUrl}
+					operationType={operationType}
+				/>
+			)}
 		</Container>
 	);
 };
