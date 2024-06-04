@@ -17,10 +17,13 @@ interface Props {
 }
 
 const SearchResult: React.FC<Props> = ({ data, dataState, pictureUrl }) => {
-	data;
-	dataState;
-	pictureUrl;
-	return <></>;
+	return (
+		<>
+			{data.data && <p>Data Exist</p>}
+			{dataState.isError && <p>Error in fetching data</p>}
+			{pictureUrl && <img src={pictureUrl} alt="picture" />}
+		</>
+	);
 };
 
 export default SearchResult;

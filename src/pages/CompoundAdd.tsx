@@ -7,6 +7,7 @@ import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
 import PropertySelect from "./CompoundAdd/PropertySelect";
 import useCompoundAddData from "../data/hooks/useCompoundAddData";
 import { Controller } from "react-hook-form";
+import SearchResult from "./CompoundAdd/SearchResult";
 
 const AddCompound = () => {
 	const {
@@ -85,6 +86,11 @@ const AddCompound = () => {
 					<ButtonActions />
 				</Form>
 			</PubChemContainer>
+			<SearchResult
+				data={data}
+				dataState={dataState}
+				pictureUrl={pictureUrl}
+			/>
 		</Container>
 	);
 };
