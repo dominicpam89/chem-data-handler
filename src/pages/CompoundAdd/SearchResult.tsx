@@ -1,7 +1,7 @@
 import {
 	TOperationType,
 	TResponseData,
-} from '../../data/context/pubchem-search-ui';
+} from "../../data/context/pubchem-search-ui";
 
 // Data types taken from parent's component
 interface Props {
