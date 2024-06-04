@@ -31,22 +31,25 @@ const useCompoundAddData = () => {
 		operationType: searchByValue === "",
 		propertyNameValues: operationType !== "property" || searchByValue === "",
 	};
-	const { mutate, data, error, isError, isPending } = useMutation({
-		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
-		onError: (error, data) => {
-			console.log(error);
-			console.log(data);
-		},
-	});
 
 	const [pictureUrl, setPictureUrl] = useState("");
 	const onResetPictureUrl = () => setPictureUrl("");
 
-	if (data) console.log(data);
+	const { mutate, data, error, isError, isPending } = useMutation({
+		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
+		onError: (error) => {
+			console.log(error);
+			onResetPictureUrl();
+		},
+		onSuccess: (_, formData) => {
+			onResetPictureUrl();
+			setPictureUrl(getPubchemPictureUrl(formData));
+		},
+	});
+
 	const onSubmit = (data: TFormSearchData) => {
 		mutate(data);
 		onResetPictureUrl();
-		setPictureUrl(getPubchemPictureUrl(data));
 	};
 
 	return {
@@ -63,8 +66,6 @@ const useCompoundAddData = () => {
 		dataState: { isError, isPending },
 		data: { data, error },
 		pictureUrl,
-		setPictureUrl,
-		onResetPictureUrl,
 	};
 };
 

@@ -2,8 +2,8 @@ import {
 	TFormSearchData,
 	TResponseData,
 	TRequestData,
-} from '../context/pubchem-search-ui';
-import { pubchemSearchUrl } from '../utils/pubchem-search.util';
+} from "../context/pubchem-search-ui";
+import { pubchemSearchUrl } from "../utils/pubchem-search.util";
 
 /** 
 	Body format for pubchem integration with middleware (or API Gateway)
@@ -18,14 +18,14 @@ const getPubchemCompoundData = async ({
 	propertyNameValues,
 }: TFormSearchData) => {
 	let url: string = pubchemSearchUrl;
-	url += searchBy === 'name' ? 'name' : 'smiles';
+	url += searchBy === "name" ? "name" : "smiles";
 	let _body: TRequestData<typeof searchBy, typeof operationType>;
-	if (searchBy === 'name')
+	if (searchBy === "name")
 		_body = {
 			name: searchByValue,
 			operationType,
 			propertyName: propertyNameValues
-				? propertyNameValues.join(',')
+				? propertyNameValues.join(",")
 				: undefined,
 		};
 	else
@@ -33,19 +33,22 @@ const getPubchemCompoundData = async ({
 			smiles: searchByValue,
 			operationType,
 			propertyName: propertyNameValues
-				? propertyNameValues.join(',')
+				? propertyNameValues.join(",")
 				: undefined,
 		};
 	const body = JSON.stringify(_body);
 	const response = await fetch(url, {
 		headers: {
-			'Content-Type': 'application/json',
+			"Content-Type": "application/json",
 		},
-		method: 'POST',
+		method: "POST",
 		body,
-		mode: 'cors',
+		mode: "cors",
 	});
-	if (!response.ok) throw new Error("Couldn't fetch data");
+	if (!response.ok) {
+		const error = await response.json();
+		throw error;
+	}
 	let data: TResponseData<typeof operationType> = await response.json();
 	return data;
 };
