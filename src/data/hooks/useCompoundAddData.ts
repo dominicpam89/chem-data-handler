@@ -54,10 +54,16 @@ const useCompoundAddData = () => {
 		onResetPictureUrl();
 	};
 
+	const onReset = () => {
+		setViewResult(false);
+		resetField("searchByValue");
+		resetField("operationType");
+		resetField("propertyNameValues");
+	};
+
 	return {
 		control,
 		handleSubmit,
-		resetField,
 		errors,
 		searchBy,
 		searchByValue,
@@ -65,6 +71,7 @@ const useCompoundAddData = () => {
 		allowRender,
 		disable,
 		onSubmit,
+		onReset,
 		dataState: { isError, isPending },
 		data: { data, error },
 		pictureUrl,

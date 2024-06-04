@@ -40,6 +40,15 @@ const SearchResult: React.FC<Props> = ({ data, operationType }) => {
 			</>
 		);
 	}
+	if (operationType === "synonyms") {
+		const _data = data.data as TResponseData<"synonyms">;
+		_data;
+		return <></>;
+	} else {
+		const _data = data.data as TResponseData<"property">;
+		_data;
+		return <></>;
+	}
 };
 
 export default SearchResult;
