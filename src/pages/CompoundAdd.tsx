@@ -7,7 +7,6 @@ import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
 import PropertySelect from "./CompoundAdd/PropertySelect";
 import useCompoundAddData from "../data/hooks/useCompoundAddData";
 import { Controller } from "react-hook-form";
-import SearchResult from "./CompoundAdd/SearchResult";
 
 const AddCompound = () => {
 	const {
@@ -16,14 +15,9 @@ const AddCompound = () => {
 		onReset,
 		control,
 		searchBy,
-		operationType,
 		errors,
-		disable,
 		allowRender,
-		data,
-		dataState,
-		pictureUrl,
-		resultState: { viewResult },
+		disableInput,
 	} = useCompoundAddData();
 	return (
 		<Container aria-label="compound-add-container">
@@ -51,47 +45,37 @@ const AddCompound = () => {
 							/>
 						)}
 					/>
-					<Controller
-						control={control}
-						name="operationType"
-						disabled={disable.operationType}
-						render={({ field }) => {
-							if (allowRender.operationType)
-								return <OperationTypeSelect field={field} />;
-							else return <></>;
-						}}
-					/>
-					<Controller
-						control={control}
-						name="propertyNameValues"
-						rules={{
-							validate: (value) =>
-								(value && value?.length > 0) ||
-								"At least one property is required!",
-						}}
-						disabled={disable.propertyNameValues}
-						render={({ field }) => {
-							if (allowRender.propertyNameValues)
-								return (
-									<PropertySelect
-										field={field}
-										error={errors.propertyNameValues}
-									/>
-								);
-							else return <></>;
-						}}
-					/>
+					{allowRender.operationType && (
+						<Controller
+							control={control}
+							name="operationType"
+							disabled={disableInput.operationType}
+							render={({ field }) => (
+								<OperationTypeSelect field={field} />
+							)}
+						/>
+					)}
+					{allowRender.propertyNameValues && (
+						<Controller
+							control={control}
+							name="propertyNameValues"
+							rules={{
+								validate: (value) =>
+									(value && value?.length > 0) ||
+									"At least one property is required!",
+							}}
+							disabled={disableInput.propertyNameValues}
+							render={({ field }) => (
+								<PropertySelect
+									field={field}
+									error={errors.propertyNameValues}
+								/>
+							)}
+						/>
+					)}
 					<ButtonActions resetField={onReset} />
 				</Form>
 			</PubChemContainer>
-			{viewResult && (
-				<SearchResult
-					data={data}
-					dataState={dataState}
-					pictureUrl={pictureUrl}
-					operationType={operationType}
-				/>
-			)}
 		</Container>
 	);
 };

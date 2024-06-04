@@ -1,54 +1,29 @@
-import { Stack, Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import {
 	TOperationType,
 	TResponseData,
 } from "../../data/context/pubchem-search-ui";
-import ResultFullRecords from "./SearchResult/ResultFullRecords";
+import ResultFullRecords from "./SearchResult/FullRecords";
 
-// Data types taken from parent's component
-interface Props {
-	data: {
-		data: TResponseData<TOperationType> | undefined;
-		error: Error | null;
-	};
-	dataState: {
-		isError: boolean;
-		isPending: boolean;
-	};
-	pictureUrl: string;
+type TLocationState = {
+	data: TResponseData<TOperationType>;
 	operationType: TOperationType;
-}
+	pictureUrl: string;
+};
 
-const SearchResult: React.FC<Props> = ({ data, operationType }) => {
+const SearchResult = () => {
+	const location = useLocation();
+	const {
+		data: _data,
+		operationType,
+		pictureUrl,
+	}: TLocationState = location.state;
+	let data;
 	if (operationType === "fullRecords") {
-		const _data = data.data as TResponseData<"fullRecords">;
-		const dataObjects = Object.entries(_data).filter(
-			([key]) => key !== "count"
-		) as [string, string | number][];
-		const countObjects = Object.entries(_data.count);
-		return (
-			<>
-				<Stack direction="column" gap={2}>
-					<Typography variant="h4" component="h1">
-						Search Result
-					</Typography>
-					<ResultFullRecords
-						dataObjects={dataObjects}
-						countObjects={countObjects}
-					/>
-				</Stack>
-			</>
-		);
+		data = _data as TResponseData<"fullRecords">;
+		return <ResultFullRecords data={data} pictureUrl={pictureUrl} />;
 	}
-	if (operationType === "synonyms") {
-		const _data = data.data as TResponseData<"synonyms">;
-		_data;
-		return <></>;
-	} else {
-		const _data = data.data as TResponseData<"property">;
-		_data;
-		return <></>;
-	}
+	return <></>;
 };
 
 export default SearchResult;

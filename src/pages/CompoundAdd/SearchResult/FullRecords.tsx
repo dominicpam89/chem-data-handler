@@ -7,15 +7,23 @@ import {
 	TableCell,
 	TableBody,
 } from "@mui/material";
+import { TResponseData } from "../../../data/context/pubchem-search-ui";
+import ResultContainer from "./ResultContainer";
+import ImageComponent from "./ImageComponent";
 
 interface Props {
-	dataObjects: [string, string | number][];
-	countObjects: [string, number][];
+	data: TResponseData<"fullRecords">;
+	pictureUrl: string;
 }
 
-const ResultFullRecords: React.FC<Props> = ({ dataObjects, countObjects }) => {
+const ResultFullRecords: React.FC<Props> = ({ data, pictureUrl }) => {
+	const dataObjects = Object.entries(data).filter(
+		([key]) => key !== "count"
+	) as [string, string | number][];
+	const countObjects = Object.entries(data.count);
 	return (
-		<>
+		<ResultContainer>
+			<ImageComponent pictureUrl={pictureUrl} alt={data.inchi} />
 			<TableContainer component={Paper} sx={{ padding: 3 }}>
 				<Table>
 					<TableHead>
@@ -55,7 +63,7 @@ const ResultFullRecords: React.FC<Props> = ({ dataObjects, countObjects }) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-		</>
+		</ResultContainer>
 	);
 };
 

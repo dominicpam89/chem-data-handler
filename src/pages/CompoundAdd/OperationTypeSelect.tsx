@@ -1,21 +1,21 @@
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import {
 	TFormSearch,
 	TOperationType,
 	TSearchBy,
-} from '../../data/context/pubchem-search-ui';
-import { ControllerRenderProps } from 'react-hook-form';
+} from "../../data/context/pubchem-search-ui";
+import { ControllerRenderProps } from "react-hook-form";
 
 const options: { operationType: TOperationType; text: string }[] = [
-	{ operationType: 'fullRecords', text: 'Full Records' },
-	{ operationType: 'synonyms', text: 'Synonyms' },
-	{ operationType: 'property', text: 'Properties' },
+	{ operationType: "fullRecords", text: "Full Records" },
+	{ operationType: "synonyms", text: "Synonyms" },
+	{ operationType: "property", text: "Properties" },
 ];
 
 type Props = {
 	field: ControllerRenderProps<
 		TFormSearch<TSearchBy, TOperationType>,
-		'operationType'
+		"operationType"
 	>;
 };
 
@@ -33,10 +33,7 @@ const OperationTypeSelect: React.FC<Props> = ({ field }) => {
 				value={field.value}
 			>
 				{options.map(({ operationType, text }) => (
-					<MenuItem
-						key={operationType}
-						value={operationType}
-					>
+					<MenuItem key={operationType} value={operationType}>
 						{text}
 					</MenuItem>
 				))}

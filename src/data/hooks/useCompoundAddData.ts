@@ -2,10 +2,12 @@ import { useForm } from "react-hook-form";
 import { TFormSearchData } from "../context/pubchem-search-ui";
 import { useMutation } from "@tanstack/react-query";
 import getPubchemCompoundData from "../services/pubchem-search";
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { getPubchemPictureUrl } from "../services/pubchem-search.picture";
-import { useState } from "react";
 
 const useCompoundAddData = () => {
+	const navigate = useNavigate();
 	const {
 		control,
 		handleSubmit,
@@ -24,42 +26,44 @@ const useCompoundAddData = () => {
 	const searchByValue = watch("searchByValue");
 	const operationType = watch("operationType");
 	const allowRender = {
-		operationType: searchByValue !== "",
-		propertyNameValues: operationType === "property" && searchByValue !== "",
+		operationType: searchByValue.length > 0,
+		propertyNameValues:
+			searchByValue.length > 0 && operationType === "property",
 	};
-	const disable = {
-		operationType: searchByValue === "",
-		propertyNameValues: operationType !== "property" || searchByValue === "",
+	const disableInput = {
+		operationType: searchByValue.length == 0,
+		propertyNameValues:
+			searchByValue.length == 0 || operationType !== "property",
 	};
-
-	const [pictureUrl, setPictureUrl] = useState("");
-	const onResetPictureUrl = () => setPictureUrl("");
-	const [viewResult, setViewResult] = useState(false);
 
 	const { mutate, data, error, isError, isPending } = useMutation({
 		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
-		onError: () => {
-			onResetPictureUrl();
-			setViewResult(false);
-		},
-		onSuccess: (_, formData) => {
-			onResetPictureUrl();
-			setPictureUrl(getPubchemPictureUrl(formData));
-			setViewResult(true);
+		onSuccess: (data, formData) => {
+			navigate("search-result", {
+				state: {
+					data,
+					operationType,
+					pictureUrl: getPubchemPictureUrl(formData),
+				},
+			});
 		},
 	});
 
-	const onSubmit = (data: TFormSearchData) => {
-		mutate(data);
-		onResetPictureUrl();
-	};
+	const onReset = useMemo(
+		() => () => {
+			resetField("searchByValue");
+			resetField("operationType");
+			resetField("propertyNameValues");
+		},
+		[resetField]
+	);
 
-	const onReset = () => {
-		setViewResult(false);
-		resetField("searchByValue");
-		resetField("operationType");
-		resetField("propertyNameValues");
-	};
+	const onSubmit = useMemo(
+		() => (data: TFormSearchData) => {
+			mutate(data);
+		},
+		[mutate]
+	);
 
 	return {
 		control,
@@ -69,15 +73,16 @@ const useCompoundAddData = () => {
 		searchByValue,
 		operationType,
 		allowRender,
-		disable,
+		disableInput,
 		onSubmit,
 		onReset,
-		dataState: { isError, isPending },
-		data: { data, error },
-		pictureUrl,
-		resultState: {
-			viewResult,
-			setViewResult,
+		data: {
+			data,
+			error,
+		},
+		dataState: {
+			isPending,
+			isError,
 		},
 	};
 };
