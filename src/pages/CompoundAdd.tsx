@@ -85,11 +85,6 @@ const AddCompound = () => {
 					<ButtonActions />
 				</Form>
 			</PubChemContainer>
-			<SearchResult
-				data={data}
-				dataState={dataState}
-				pictureUrl={pictureUrl}
-			/>
 		</Container>
 	);
 };
