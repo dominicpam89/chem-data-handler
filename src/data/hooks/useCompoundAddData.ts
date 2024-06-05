@@ -7,8 +7,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getPubchemPictureUrl } from "../services/pubchem-search.picture";
 
 const useCompoundAddData = () => {
-	const { state } = useLocation();
-	const preFilledFormData = (state.formData as TFormSearchData) || undefined;
+	const location = useLocation();
+	const preFilledFormData =
+		location.state && location.state.formData
+			? (location.state.formData as TFormSearchData)
+			: undefined;
 	const navigate = useNavigate();
 	const {
 		control,
@@ -18,10 +21,10 @@ const useCompoundAddData = () => {
 		formState: { errors },
 	} = useForm<TFormSearchData>({
 		defaultValues: {
-			searchBy: preFilledFormData.searchBy || "name",
-			searchByValue: preFilledFormData.searchByValue || "",
-			operationType: preFilledFormData.operationType || "fullRecords",
-			propertyNameValues: preFilledFormData.propertyNameValues || [],
+			searchBy: preFilledFormData?.searchBy || "name",
+			searchByValue: preFilledFormData?.searchByValue || "",
+			operationType: preFilledFormData?.operationType || "fullRecords",
+			propertyNameValues: preFilledFormData?.propertyNameValues || [],
 		},
 	});
 	const searchBy = watch("searchBy");
