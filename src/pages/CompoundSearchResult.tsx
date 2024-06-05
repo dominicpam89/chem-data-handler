@@ -3,7 +3,8 @@ import {
 	TOperationType,
 	TResponseData,
 } from "../data/context/pubchem-search-ui";
-import ResultFullRecords from "./SearchResult/FullRecords";
+import TableFullRecords from "./SearchResult/TableFullRecords";
+import TableSynonyms from "./SearchResult/TableSynonyms";
 
 type TLocationState = {
 	data: TResponseData<TOperationType>;
@@ -21,7 +22,13 @@ const PageSearchResult = () => {
 	let data;
 	if (operationType === "fullRecords") {
 		data = _data as TResponseData<"fullRecords">;
-		return <ResultFullRecords data={data} pictureUrl={pictureUrl} />;
+		return <TableFullRecords data={data} pictureUrl={pictureUrl} />;
+	}
+	if (operationType === "synonyms") {
+		const { pk, synonyms } = _data as TResponseData<"synonyms">;
+		return (
+			<TableSynonyms pk={pk} synonyms={synonyms} pictureUrl={pictureUrl} />
+		);
 	}
 	return <></>;
 };
