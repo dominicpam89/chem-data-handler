@@ -49,8 +49,18 @@ const TableProperties: React.FC<Props> = ({ data, pictureUrl }) => {
 						{arrayData.map((data) => {
 							return (
 								<TableRow key={data[0]}>
-									<TableCell>{data[0]}</TableCell>
-									<TableCell>{data[1]}</TableCell>
+									<TableCell style={{ width: 240 }}>
+										{data[0]}
+									</TableCell>
+									<TableCell
+										style={{
+											maxWidth: 480,
+											wordWrap: "break-word",
+											whiteSpace: "normal",
+										}}
+									>
+										{data[1]}
+									</TableCell>
 								</TableRow>
 							);
 						})}

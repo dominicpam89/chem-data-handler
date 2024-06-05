@@ -4,6 +4,7 @@ import { PropsWithChildren } from "react";
 const TableContainer: React.FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<TBContainer
+			aria-label="table-container"
 			component={Paper}
 			sx={{
 				padding: 4,
