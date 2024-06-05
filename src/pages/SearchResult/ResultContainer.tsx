@@ -1,7 +1,9 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ResultContainer: React.FC<PropsWithChildren> = ({ children }) => {
+	const navigate = useNavigate();
 	return (
 		<Stack direction="column" gap={6} justifyContent="center" width="100%">
 			<Stack direction="column" gap={1}>
@@ -16,6 +18,13 @@ const ResultContainer: React.FC<PropsWithChildren> = ({ children }) => {
 				>
 					From Pubchem Database Query
 				</Typography>
+				<Button
+					variant="text"
+					color="secondary"
+					onClick={() => navigate("/compounds/add")}
+				>
+					Back to Search Form
+				</Button>
 			</Stack>
 			{children}
 		</Stack>
