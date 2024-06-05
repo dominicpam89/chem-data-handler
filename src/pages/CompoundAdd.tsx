@@ -7,6 +7,7 @@ import SearchBySelectValue from "./CompoundAdd/SearchBySelectValue";
 import PropertySelect from "./CompoundAdd/PropertySelect";
 import useCompoundAddData from "../data/hooks/useCompoundAddData";
 import { Controller } from "react-hook-form";
+import ErrorComponent from "./CompoundAdd/ErrorComponent";
 
 const AddCompound = () => {
 	const {
@@ -18,11 +19,14 @@ const AddCompound = () => {
 		errors,
 		allowRender,
 		disableInput,
+		data: { error },
+		dataState: { isError, isPending },
 	} = useCompoundAddData();
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
 				<FormTitle>Pubchem Search</FormTitle>
+				{isError && <ErrorComponent error={error!} />}
 				<Form
 					aria-label="pubchem-search-form"
 					onSubmit={handleSubmit(onSubmit)}
@@ -73,7 +77,7 @@ const AddCompound = () => {
 							)}
 						/>
 					)}
-					<ButtonActions resetField={onReset} />
+					<ButtonActions resetField={onReset} pending={isPending} />
 				</Form>
 			</PubChemContainer>
 		</Container>

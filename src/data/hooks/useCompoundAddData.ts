@@ -16,6 +16,7 @@ const useCompoundAddData = () => {
 	const {
 		control,
 		handleSubmit,
+		getValues,
 		watch,
 		setValue,
 		formState: { errors },
@@ -27,7 +28,7 @@ const useCompoundAddData = () => {
 			propertyNameValues: preFilledFormData?.propertyNameValues || [],
 		},
 	});
-	const searchBy = watch("searchBy");
+	const searchBy = getValues("searchBy");
 	const searchByValue = watch("searchByValue");
 	const operationType = watch("operationType");
 	const allowRender = {
