@@ -1,25 +1,27 @@
+import { TFormSearchData } from "./../context/pubchem-search-ui";
 import { useForm } from "react-hook-form";
-import { TFormSearchData } from "../context/pubchem-search-ui";
 import { useMutation } from "@tanstack/react-query";
 import getPubchemCompoundData from "../services/pubchem-search";
 import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getPubchemPictureUrl } from "../services/pubchem-search.picture";
 
 const useCompoundAddData = () => {
+	const { state } = useLocation();
+	const preFilledFormData = (state.formData as TFormSearchData) || undefined;
 	const navigate = useNavigate();
 	const {
 		control,
 		handleSubmit,
 		watch,
-		resetField,
+		setValue,
 		formState: { errors },
 	} = useForm<TFormSearchData>({
 		defaultValues: {
-			searchBy: "name",
-			searchByValue: "",
-			operationType: "fullRecords",
-			propertyNameValues: [],
+			searchBy: preFilledFormData.searchBy || "name",
+			searchByValue: preFilledFormData.searchByValue || "",
+			operationType: preFilledFormData.operationType || "fullRecords",
+			propertyNameValues: preFilledFormData.propertyNameValues || [],
 		},
 	});
 	const searchBy = watch("searchBy");
@@ -52,11 +54,11 @@ const useCompoundAddData = () => {
 
 	const onReset = useMemo(
 		() => () => {
-			resetField("searchByValue");
-			resetField("operationType");
-			resetField("propertyNameValues");
+			setValue("searchByValue", "");
+			setValue("operationType", "fullRecords");
+			setValue("propertyNameValues", []);
 		},
-		[resetField]
+		[setValue]
 	);
 
 	const onSubmit = useMemo(
