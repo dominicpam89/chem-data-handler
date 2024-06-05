@@ -1,41 +1,95 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
+	TFormSearchData,
 	TOperationType,
 	TResponseData,
 } from "../data/context/pubchem-search-ui";
 import TableFullRecords from "./SearchResult/TableFullRecords";
 import TableSynonyms from "./SearchResult/TableSynonyms";
 import TableProperties from "./SearchResult/TableProperties";
+import { Stack, Typography, Button } from "@mui/material";
 
-type TLocationState = {
+interface PropSearchResult {
 	data: TResponseData<TOperationType>;
 	operationType: TOperationType;
 	pictureUrl: string;
-};
+}
 
-const PageSearchResult = () => {
-	const location = useLocation();
-	const {
-		data: _data,
-		operationType,
-		pictureUrl,
-	}: TLocationState = location.state;
-	let data;
+interface TLocationState extends PropSearchResult {
+	formData: TFormSearchData;
+}
+
+const SearchResult: React.FC<PropSearchResult> = ({
+	data,
+	operationType,
+	pictureUrl,
+}) => {
 	if (operationType === "fullRecords") {
-		data = _data as TResponseData<"fullRecords">;
-		return <TableFullRecords data={data} pictureUrl={pictureUrl} />;
+		return (
+			<TableFullRecords
+				data={data as TResponseData<"fullRecords">}
+				pictureUrl={pictureUrl}
+			/>
+		);
 	} else if (operationType === "synonyms") {
-		const { pk, synonyms } = _data as TResponseData<"synonyms">;
+		const { pk, synonyms } = data as TResponseData<"synonyms">;
 		return (
 			<TableSynonyms pk={pk} synonyms={synonyms} pictureUrl={pictureUrl} />
 		);
 	} else if (operationType === "property") {
-		const data = _data as TResponseData<"property">;
-		return <TableProperties data={data} pictureUrl={pictureUrl} />;
+		return (
+			<TableProperties
+				data={data as TResponseData<"property">}
+				pictureUrl={pictureUrl}
+			/>
+		);
 	} else {
 		// supossed to return ErrorComponent
 		return <></>;
 	}
+};
+
+const PageSearchResult = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
+	const { data, operationType, pictureUrl, formData }: TLocationState =
+		location.state;
+	const onBackToSearchForm = () => {
+		navigate("/compounds/add", {
+			state: {
+				formData,
+			},
+		});
+	};
+	return (
+		<Stack direction="column" gap={6} justifyContent="center" width="100%">
+			<Stack direction="column" gap={1}>
+				<Typography variant="h2" component="h1" textAlign="center">
+					Search Result
+				</Typography>
+				<Typography
+					variant="subtitle2"
+					fontSize={16}
+					component="h2"
+					textAlign="center"
+				>
+					From Pubchem Database Query
+				</Typography>
+				<Button
+					variant="text"
+					color="secondary"
+					onClick={onBackToSearchForm}
+				>
+					Back to Search Form
+				</Button>
+			</Stack>
+			<SearchResult
+				data={data}
+				operationType={operationType}
+				pictureUrl={pictureUrl}
+			/>
+		</Stack>
+	);
 };
 
 export default PageSearchResult;

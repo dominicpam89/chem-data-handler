@@ -6,7 +6,6 @@ import {
 	TableRow,
 	Typography,
 } from "@mui/material";
-import ResultContainer from "./ResultContainer";
 import TableContainer from "./TableContainer";
 import { TResponseData } from "../../data/context/pubchem-search-ui";
 import { useEffect, useMemo } from "react";
@@ -25,7 +24,7 @@ const TableProperties: React.FC<Props> = ({ data, pictureUrl }) => {
 		else tableTitle = "Record based on one Property";
 	}, [arrayData]);
 	return (
-		<ResultContainer>
+		<>
 			<ImageComponent
 				pictureUrl={pictureUrl}
 				alt={arrayData[1][1].toString()}
@@ -58,7 +57,7 @@ const TableProperties: React.FC<Props> = ({ data, pictureUrl }) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-		</ResultContainer>
+		</>
 	);
 };
 

@@ -7,7 +7,6 @@ import {
 	Typography,
 } from "@mui/material";
 import ImageComponent from "./ImageComponent";
-import ResultContainer from "./ResultContainer";
 import TableContainer from "./TableContainer";
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
 
 const TableSynonyms: React.FC<Props> = ({ pk, synonyms, pictureUrl }) => {
 	return (
-		<ResultContainer>
+		<>
 			<ImageComponent pictureUrl={pictureUrl} alt={synonyms[0]} />
 			<TableContainer>
 				<Typography
@@ -54,7 +53,7 @@ const TableSynonyms: React.FC<Props> = ({ pk, synonyms, pictureUrl }) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-		</ResultContainer>
+		</>
 	);
 };
 

@@ -44,6 +44,7 @@ const useCompoundAddData = () => {
 					data,
 					operationType,
 					pictureUrl: getPubchemPictureUrl(formData),
+					formData,
 				},
 			});
 		},
