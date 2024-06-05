@@ -39,7 +39,7 @@ const useCompoundAddData = () => {
 	const { mutate, data, error, isError, isPending } = useMutation({
 		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
 		onSuccess: (data, formData) => {
-			navigate("search-result", {
+			navigate("/compounds/search-result", {
 				state: {
 					data,
 					operationType,

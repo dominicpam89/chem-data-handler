@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import {
 	TOperationType,
 	TResponseData,
-} from "../../data/context/pubchem-search-ui";
+} from "../data/context/pubchem-search-ui";
 import ResultFullRecords from "./SearchResult/FullRecords";
 
 type TLocationState = {
@@ -11,7 +11,7 @@ type TLocationState = {
 	pictureUrl: string;
 };
 
-const SearchResult = () => {
+const PageSearchResult = () => {
 	const location = useLocation();
 	const {
 		data: _data,
@@ -26,4 +26,4 @@ const SearchResult = () => {
 	return <></>;
 };
 
-export default SearchResult;
+export default PageSearchResult;

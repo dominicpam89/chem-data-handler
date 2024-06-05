@@ -7,7 +7,7 @@ import PageCompound from "./pages/Compound";
 import PageAddCompound from "./pages/CompoundAdd";
 import PagePredictResult from "./pages/Compound/_PredictResult";
 import PageProfile from "./pages/Profile";
-import PageSearchResult from "./pages/CompoundAdd/SearchResult";
+import PageSearchResult from "./pages/CompoundSearchResult";
 import { loaderLogout } from "./pages/Logout";
 
 const router = createBrowserRouter([
@@ -23,11 +23,8 @@ const router = createBrowserRouter([
 					{ index: true, element: <PageCompounds /> },
 					{ path: ":pk", element: <PageCompound /> },
 					{ path: ":pk/result", element: <PagePredictResult /> },
-					{
-						path: "add",
-						element: <PageAddCompound />,
-					},
-					{ path: "add/search-result", element: <PageSearchResult /> },
+					{ path: "add", element: <PageAddCompound /> },
+					{ path: "search-result", element: <PageSearchResult /> },
 				],
 			},
 			{ path: "profile", element: <PageProfile /> },
