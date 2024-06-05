@@ -31,9 +31,7 @@ const MainTable: React.FC<{ dataObjects: [string, string | number][] }> = ({
 				<TableBody>
 					{dataObjects.map((data) => (
 						<TableRow key={data[0]}>
-							<TableCell component="th" style={{ width: 240 }}>
-								{data[0]}
-							</TableCell>
+							<TableCell style={{ width: 240 }}>{data[0]}</TableCell>
 							<TableCell>{data[1]}</TableCell>
 						</TableRow>
 					))}
