@@ -9,6 +9,7 @@ import PagePredictResult from "./pages/Compound/_PredictResult";
 import PageProfile from "./pages/Profile";
 import PageSearchResult from "./pages/CompoundSearchResult";
 import { loaderLogout } from "./pages/Logout";
+import PageKetcher from "./pages/KetcherPage";
 
 const router = createBrowserRouter([
 	{
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
 					{ path: "search-result", element: <PageSearchResult /> },
 				],
 			},
+			{ path: "ketcher", element: <PageKetcher /> },
 			{ path: "profile", element: <PageProfile /> },
 			{ path: "logout", loader: loaderLogout },
 		],

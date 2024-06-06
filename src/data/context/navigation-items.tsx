@@ -4,6 +4,7 @@ import ScienceIcon from "@mui/icons-material/Science";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LogoutIcon from "@mui/icons-material/Logout";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import AdUnitsIcon from "@mui/icons-material/AdUnits";
 
 export type TypeNavItem = {
 	id: string;
@@ -32,6 +33,12 @@ const initialState = [
 		text: "Compounds",
 		link: "/compounds",
 		icon: <ScienceIcon fontSize="inherit" />,
+	},
+	{
+		id: "ketcher",
+		text: "Ketcher",
+		link: "/ketcher",
+		icon: <AdUnitsIcon fontSize="inherit" />,
 	},
 	{
 		id: "profile",
