@@ -17,6 +17,11 @@ const useCompoundAddData = () => {
 			? (location.state.formData as TFormSearchData)
 			: undefined;
 	const navigate = useNavigate();
+
+	/**
+	 * Form related hooks parameters
+	 * get from react-hook-form library
+	 */
 	const {
 		control,
 		handleSubmit,
@@ -50,6 +55,11 @@ const useCompoundAddData = () => {
 			searchByValue.length == 0 || operationType !== "property",
 	};
 
+	/**
+	 * Tanstack query library implementation
+	 * for handling submitting data to service
+	 * and providing state management
+	 */
 	const { mutate, data, error, isError, isPending } = useMutation({
 		mutationFn: (data: TFormSearchData) => getPubchemCompoundData(data),
 		onSuccess: (data, formData) => {
@@ -85,6 +95,15 @@ const useCompoundAddData = () => {
 
 	const onSubmit = useMemo(
 		() => (data: TFormSearchData) => {
+			/**
+			 * remove old display error before submitting to Middleware App
+			 * to evade rerender Error while the data that triggering error is changed
+			 */
+			setDisplayError(false);
+			/**
+			 * send data to function using tanstack query
+			 * with hooks useMutation
+			 */
 			mutate(data);
 		},
 		[mutate]
