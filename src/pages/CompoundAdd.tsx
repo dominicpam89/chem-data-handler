@@ -8,6 +8,7 @@ import PropertySelect from "./CompoundAdd/PropertySelect";
 import useCompoundAddData from "../data/hooks/useCompoundAddData";
 import { Controller } from "react-hook-form";
 import ErrorComponent from "./CompoundAdd/ErrorComponent";
+import { LinearProgress } from "@mui/material";
 
 const AddCompound = () => {
 	const {
@@ -20,13 +21,15 @@ const AddCompound = () => {
 		allowRender,
 		disableInput,
 		data: { error },
-		dataState: { isError, isPending },
+		dataState: { isPending },
+		displayError,
 	} = useCompoundAddData();
 	return (
 		<Container aria-label="compound-add-container">
 			<PubChemContainer aria-label="pubchem-search-container">
 				<FormTitle>Pubchem Search</FormTitle>
-				{isError && <ErrorComponent error={error!} />}
+				{displayError && <ErrorComponent error={error!} />}
+				{isPending && <LinearProgress />}
 				<Form
 					aria-label="pubchem-search-form"
 					onSubmit={handleSubmit(onSubmit)}

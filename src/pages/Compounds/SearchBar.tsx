@@ -59,7 +59,7 @@ const SearchBar: React.FC<Props> = ({ data }) => {
 				size="small"
 				onClick={() => navigate("/compounds/add")}
 			>
-				Add Compound
+				Pubchem Access
 			</Button>
 		</Stack>
 	);
