@@ -23,7 +23,7 @@ const Buttons = () => {
 					navigate("/compounds");
 				}}
 			>
-				Clear Search
+				Back to Compounds
 			</Button>
 			<Button
 				variant="contained"
