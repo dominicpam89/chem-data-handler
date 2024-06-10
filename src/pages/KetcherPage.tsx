@@ -1,6 +1,8 @@
-import { Stack, Typography, Link } from "@mui/material";
+import { Stack, Typography, Link, LinearProgress } from "@mui/material";
+import { useState } from "react";
 
 const PageKetcher = () => {
+	const [isLoading, setIsLoading] = useState(true);
 	return (
 		<Stack width="100%" height="100vh" direction="column" gap={6}>
 			<Stack direction="column" gap={1} alignItems="center">
@@ -14,7 +16,9 @@ const PageKetcher = () => {
 					EPAM documentation
 				</Link>
 			</Stack>
+			{isLoading && <LinearProgress />}
 			<iframe
+				onLoad={() => setIsLoading(false)}
 				src="./src/pages/KetcherPage/index.html"
 				style={{ border: "none", height: "100%", width: "100%" }}
 				title="Ketcher-Standalone"
