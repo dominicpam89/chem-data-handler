@@ -19,7 +19,7 @@ const PageKetcher = () => {
 			{isLoading && <LinearProgress />}
 			<iframe
 				onLoad={() => setIsLoading(false)}
-				src="./src/pages/KetcherPage/index.html"
+				src="./ketcher-assets/index.html"
 				style={{ border: "none", height: "100%", width: "100%" }}
 				title="Ketcher-Standalone"
 			></iframe>
