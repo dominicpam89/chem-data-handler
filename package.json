@@ -25,6 +25,8 @@
     "react-router-dom": "^6.21.3"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^20.11.10",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -36,6 +38,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "msw": "^2.2.1",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vitest": "^1.6.0"
   }
 }
