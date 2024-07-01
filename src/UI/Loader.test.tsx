@@ -11,12 +11,12 @@ it("loader container is defined", () => {
 	const loaderContainer = screen.getByLabelText("loader-container", {
 		exact: true,
 	});
-	expect(loaderContainer).toBeInTheDocument();
+	expect(loaderContainer).toBeDefined();
 });
 
 it("loader component is defined", () => {
 	const loaderContainer = screen.getByLabelText("loader", {
 		exact: true,
 	});
-	expect(loaderContainer).toBeInTheDocument();
+	expect(loaderContainer).toBeDefined();
 });

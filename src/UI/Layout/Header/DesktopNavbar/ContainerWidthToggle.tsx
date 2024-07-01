@@ -1,26 +1,25 @@
-import { Box, IconButton, useTheme } from "@mui/material"
-import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle"
-import { useContext, useEffect } from "react"
-import { ContextMain } from "../../../../data/context/main"
-import { useAnimate } from "framer-motion"
+import { Box, IconButton, useTheme } from "@mui/material";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
+import { useContext, useEffect } from "react";
+import { ContextMain } from "../../../../data/context/main";
+import { useAnimate } from "framer-motion";
 
-const useHooks = ()=>{
-	const theme = useTheme()
-	const { sidebarPersist } = useContext(ContextMain)
-	const [scope, animate] = useAnimate()
-	useEffect(()=>{
-		if(sidebarPersist.minimize){
-			animate("button", {rotateZ:"-90deg"})
+const useHooks = () => {
+	const theme = useTheme();
+	const { sidebarPersist } = useContext(ContextMain);
+	const [scope, animate] = useAnimate();
+	useEffect(() => {
+		if (sidebarPersist.minimize) {
+			animate("button", { rotateZ: "-90deg" });
+		} else {
+			animate("button", { rotateZ: "90deg" });
 		}
-		else{
-			animate("button", {rotateZ:"90deg"})
-		}
-	},[sidebarPersist.minimize])
-	return {scope, sidebarPersist, theme}
-}
+	}, [sidebarPersist.minimize]);
+	return { scope, sidebarPersist, theme };
+};
 
 const ContainerWidthToggle = () => {
-	const { scope, sidebarPersist, theme } = useHooks()
+	const { scope, sidebarPersist, theme } = useHooks();
 	return (
 		<Box
 			ref={scope}
@@ -32,16 +31,17 @@ const ContainerWidthToggle = () => {
 			}}
 		>
 			<IconButton
+				aria-label="navbar-toggle"
 				sx={{
 					fontSize: "40px",
-					color: theme.palette.primary.main
+					color: theme.palette.primary.main,
 				}}
 				onClick={() => sidebarPersist.toggleSizeSidebar()}
 			>
 				<ArrowDropDownCircleIcon fontSize="inherit" color="inherit" />
 			</IconButton>
 		</Box>
-	)
-}
+	);
+};
 
-export default ContainerWidthToggle
+export default ContainerWidthToggle;

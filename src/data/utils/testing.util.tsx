@@ -1,17 +1,19 @@
 import { render, RenderOptions } from "@testing-library/react";
 import ContextProvider from "@/data/context/main";
-import { BrowserRouter as Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { queryClient } from "./queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 export const renderWithProviders = (
 	ui: React.ReactNode,
+	route: string = "/",
 	options?: RenderOptions
 ) => {
+	window.history.pushState({}, "home", route);
 	render(
 		<QueryClientProvider client={queryClient}>
 			<ContextProvider>
-				<Router>{ui}</Router>
+				<MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>
 			</ContextProvider>
 		</QueryClientProvider>,
 		{ ...options }
