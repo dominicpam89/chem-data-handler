@@ -3,6 +3,7 @@ import { it, expect, beforeEach } from "vitest";
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DesktopNavbar from "./DesktopNavbar";
+import { initialState as navItems } from "@/data/context/navigation-items";
 
 const setWidth = (width: number) => {
 	window.innerWidth = width;
@@ -46,5 +47,16 @@ describe("Component functional testing", () => {
 		const listTextHome = within(sidebarNav).getByText(/home/i);
 		expect(listTextCompounds).not.toBeVisible();
 		expect(listTextHome).not.toBeVisible();
+	});
+});
+
+describe("All navigation items are in the sidebar container", () => {
+	it("sidebar contains all navigation items", () => {
+		const itemsTotal = navItems.length;
+		const sidebarNav = screen.getByLabelText("desktop-navbar-container");
+		expect(sidebarNav).toBeVisible();
+		const elements = within(sidebarNav);
+		const listItems = elements.getAllByRole("listitem");
+		expect(itemsTotal).toEqual(listItems.length);
 	});
 });

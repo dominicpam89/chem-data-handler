@@ -21,7 +21,7 @@ export const ContextNavigationItems: TypeContextNavigationItems = {
 	items: [],
 };
 
-const initialState = [
+export const initialState = [
 	{
 		id: "home",
 		text: "Home",

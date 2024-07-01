@@ -1,8 +1,8 @@
-import { Alert, AlertTitle } from "@mui/material"
-import { ErrorFetch } from "../data/services/errors"
+import { Alert, AlertTitle } from "@mui/material";
+import { ErrorFetch } from "../data/services/errors";
 
 interface Props {
-	error: ErrorFetch | null
+	error: ErrorFetch | null;
 }
 const UILoaderError: React.FC<Props> = ({ error }) => {
 	return (
@@ -10,7 +10,7 @@ const UILoaderError: React.FC<Props> = ({ error }) => {
 			<AlertTitle>{error!.errorStatus}</AlertTitle>
 			{error!.errorMessage}
 		</Alert>
-	)
-}
+	);
+};
 
-export default UILoaderError
+export default UILoaderError;
