@@ -1,16 +1,21 @@
-import { Fab, Zoom, useScrollTrigger } from "@mui/material";
+import { Fab, Zoom } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { useEffect, useState } from "react";
 
 const ScrollToTop = () => {
-	const trigger = useScrollTrigger({
-		disableHysteresis: true,
-		threshold: window.screen.height,
-	});
+	const [trigger, setTrigger] = useState<boolean>(false);
+	const handleScroll = () => {
+		if (window.scrollY > window.innerHeight) setTrigger(true);
+		else setTrigger(false);
+	};
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [handleScroll]);
 	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 	return (
 		<Zoom in={trigger}>

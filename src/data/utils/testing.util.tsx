@@ -9,7 +9,7 @@ export const renderWithProviders = (
 	route: string = "/",
 	options?: RenderOptions
 ) => {
-	window.history.pushState({}, "home", route);
+	window.history.pushState({}, "", route);
 	render(
 		<QueryClientProvider client={queryClient}>
 			<ContextProvider>
