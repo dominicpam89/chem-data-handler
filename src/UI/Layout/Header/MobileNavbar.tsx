@@ -28,6 +28,7 @@ const MobileNavbar = () => {
 				<ToolbarStyled>
 					<Brand />
 					<IconButton
+						aria-label="sidebar-toggle"
 						color="inherit"
 						edge="start"
 						onClick={() => sidebar.showSidebar()}
