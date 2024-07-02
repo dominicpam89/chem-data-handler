@@ -8,6 +8,10 @@ import {
 	TOOLBAR_STYLED_PADDING,
 } from "./Header/Styled";
 
+/**
+ * A styled main layout base component with responsive padding.
+ * @component
+ */
 const LayoutBase = styled("main")(({ theme }) => ({
 	[theme.breakpoints.up("xs")]: {
 		padding: `${theme.spacing(2)} ${theme.spacing(3)}`,
@@ -20,22 +24,32 @@ const LayoutBase = styled("main")(({ theme }) => ({
 	},
 }));
 
-/* 
-	Styled Components that follows Desktop Bar that have features:
-	- can be minimized: DESKTOPNAVBARCONTAINERMINIMIZE_WIDTH (48px)
-	- can be full width: DESKTOPNAVBARCONTAINERFULL_WIDTH (240px)
-*/
-
+/**
+ * A styled component for the Desktop Layout <main>
+ * based on LayoutBase.
+ * @component
+ */
 export const UIRootLayoutMainDesktop = styled(LayoutBase)(({}) => ({
 	display: "flex",
 	justifyContent: "center",
 	alignItems: "center",
 }));
 
+/**
+ * A styled component for the Mobile Layout <main>
+ * based on LayoutBase.
+ * @component
+ */
 export const UIRootLayoutMainMobile = styled(LayoutBase)(({}) => ({
 	marginTop: `${APPBAR_HEIGHT + TOOLBAR_STYLED_PADDING}px`,
 }));
 
+/**
+ * A styled component for the Auth Page,
+ * separated layout,
+ * based on LayoutBase.
+ * @component
+ */
 export const UILayoutMainAuth = styled(LayoutBase)(({}) => ({
 	minHeight: "100vh",
 	display: "flex",
@@ -48,6 +62,12 @@ interface Props {
 	children: React.ReactNode;
 }
 
+/**
+ * The main root layout component that conditionally renders either the desktop or mobile layout
+ * based on screen size and sidebar state.
+ * use custom styled components above
+ * @component
+ */
 export const UILayoutMainRootComponent: React.FC<Props> = ({ children }) => {
 	const theme = useTheme();
 	const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
