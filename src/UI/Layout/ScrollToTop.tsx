@@ -2,6 +2,17 @@ import { Fab, Zoom } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useEffect, useState } from "react";
 
+/**
+ * Custom hook to handle scroll functionality.
+ * @returns {Object} - An object containing the scroll trigger state and a function to scroll to the top.
+ * @returns {boolean} trigger - Indicates if the scroll position is beyond the window height.
+ * @returns {function} scrollToTop - Function to scroll the window to the top smoothly.
+ * @example
+ * const { trigger, scrollToTop } = useScrollFn();
+ * if (trigger) {
+ *   // Show scroll to top button
+ * }
+ */
 const useScrollFn = () => {
 	const [trigger, setTrigger] = useState<boolean>(false);
 	const handleScroll = () => {
