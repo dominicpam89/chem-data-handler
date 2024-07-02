@@ -6,10 +6,27 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getPubchemPictureUrl } from "../services/pubchem-search.picture";
 
+/**
+ * Custom hook to manage form state and data submission for compound addition.
+ * @returns {Object} useCompoundAddData - An object containing various properties and functions for form management and data submission.
+ * @type {Object} useCompoundAddData return data type
+ * @property {Control} control - React Hook Form destructure data from useForm, for ReactHookForm's Controller per each input field
+ * @property {UseFormHandleSubmit} handleSubmit - React Hook Form destructure data from useForm, for handling form's submission
+ * @property {FieldError} errors - React Hook Form fields's error states
+ * @property {TSearchBy} searchBy - variable hold value from React Hook Form's Field, on searchBy input
+ * @property {string} searchByValue - variable hold value from React Hook Form's Field, on searchByValue input
+ * @property {TOperationType} operationType - variable hold value from React Hook Form's Field, on operationType input
+ * @property {boolean} allowRender - Conditional rendering control based on form's values
+ * @property {boolean} disableInput - Conditional disabling input based on form's values
+ * @property {data: TResponseData<TOperationType> | undefined; error: Error | null;} data - Response Data, coming from useMutation Tanstack Query
+ * @property {isPending: boolean; isError: boolean;} dataState - Response Data State, coming from useMutation Tanstack Query
+ *
+ */
 const useCompoundAddData = () => {
 	const location = useLocation();
 
-	/** get prefileed form data
+	/**
+	 * get prefilled form data
 	 * streamlined from previous form's submission
 	 */
 	const preFilledFormData =
@@ -19,7 +36,7 @@ const useCompoundAddData = () => {
 	const navigate = useNavigate();
 
 	/**
-	 * Form related hooks parameters
+	 * React Hook Form related hooks parameters
 	 * get from react-hook-form library
 	 */
 	const {
