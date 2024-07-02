@@ -7,7 +7,7 @@ export const BoxContainer: React.FC<{
 	props: React.HTMLAttributes<HTMLLIElement>;
 }> = memo(({ children, props }) => {
 	return (
-		<Box component="li" {...props}>
+		<Box component="li" {...props} aria-label="compound-list-container">
 			<Box
 				component="div"
 				sx={{

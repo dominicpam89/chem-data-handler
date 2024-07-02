@@ -16,6 +16,7 @@ const AutoCompleteComp: React.FC<Props> = ({ data }) => {
 	const { searchBar } = useContext(ContextMain).compound;
 	return (
 		<Autocomplete
+			aria-label="compounds-search-bar"
 			sx={{ width: "100%" }}
 			open={open}
 			onOpen={() => setOpen(true)}
@@ -43,7 +44,11 @@ const AutoCompleteComp: React.FC<Props> = ({ data }) => {
 				);
 			}}
 			renderInput={(params) => (
-				<TextField {...params} label="Search Compounds" />
+				<TextField
+					{...params}
+					label="Search Compounds"
+					aria-label="search-compound-input"
+				/>
 			)}
 		/>
 	);

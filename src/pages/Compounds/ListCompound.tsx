@@ -26,6 +26,7 @@ const ListCompound: React.FC<Props> = ({ data }) => {
 	return (
 		<Box>
 			<DataGridStyled
+				aria-label="compounds-table"
 				rows={data}
 				rowHeight={8 * 10}
 				getRowId={getRowId}
